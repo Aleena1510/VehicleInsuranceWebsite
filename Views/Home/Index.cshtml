@@ -1,0 +1,375 @@
+﻿
+
+@{
+    ViewBag.Title = "ShieldDrive - Vehicle Insurance";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+    <link href="~/css/home.css" rel="stylesheet" />
+    
+
+</head>
+<body>
+
+    
+
+    <!-- ═══ HERO ═══ -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <!-- Text Side -->
+                <div class="hero-text">
+                    <div class="hero-eyebrow"><i class="fas fa-award"></i> Pakistan's #1 Rated Vehicle Insurer</div>
+                    <h1 class="hero-title">
+                        Drive With <span class="gradient-text">Complete</span> Peace of Mind
+                    </h1>
+                    <p class="hero-sub">
+                        Comprehensive vehicle insurance tailored to your life. Get covered in minutes with instant quotes, zero paperwork, and 24/7 claims support.
+                    </p>
+                    <div class="hero-actions">
+                        <a asp-action="Policylayout" asp-controller="Home" class="btn-primary"><i class="fas fa-calculator"></i>Get Started</a>
+                        <a href="#types" class="btn-outline"><i class="fas fa-play-circle"></i> View Plans</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-num">2M<span>+</span></div>
+                            <div class="stat-label">Vehicles Insured</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-num">98<span>%</span></div>
+                            <div class="stat-label">Claim Settlement</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-num">24<span>/7</span></div>
+                            <div class="stat-label">Support Available</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visual Side -->
+                <div class="hero-visual">
+                    <div class="float-badge float-badge-1">
+                        <div class="badge-dot"></div>
+                        <span>Policy Active · Renewed</span>
+                    </div>
+                    <div class="hero-card">
+                        <div class="card-header">
+                            <span class="card-header-title">Your Dashboard</span>
+                            <span class="card-badge">&#10003; All Clear</span>
+                        </div>
+                        <div class="quote-amount"><span>₨</span>4,200</div>
+                        <div class="quote-period">Monthly Premium · Comprehensive Plan</div>
+
+                        <div class="coverage-bars">
+                            <div class="coverage-bar-item">
+                                <div class="coverage-bar-label">
+                                    <span>Third-Party Liability</span>
+                                    <span>100%</span>
+                                </div>
+                                <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+                            </div>
+                            <div class="coverage-bar-item">
+                                <div class="coverage-bar-label">
+                                    <span>Own Damage Cover</span>
+                                    <span>85%</span>
+                                </div>
+                                <div class="bar-track"><div class="bar-fill" style="width:85%"></div></div>
+                            </div>
+                            <div class="coverage-bar-item">
+                                <div class="coverage-bar-label">
+                                    <span>Roadside Assistance</span>
+                                    <span>Unlimited</span>
+                                </div>
+                                <div class="bar-track"><div class="bar-fill" style="width:75%; background:linear-gradient(90deg,#7c3aed,#a78bfa)"></div></div>
+                            </div>
+                        </div>
+
+                        <div class="vehicle-row">
+                            <div class="vehicle-icon"><i class="fas fa-car"></i></div>
+                            <div class="vehicle-info">
+                                <div class="vehicle-name">Toyota Corolla 2022</div>
+                                <div class="vehicle-plate">LHR-11-2209</div>
+                            </div>
+                            <div class="vehicle-status">Active ●</div>
+                        </div>
+                    </div>
+                    <div class="float-badge float-badge-2">
+                        <div class="badge-dot gold"></div>
+                        <span>Claim filed · Processing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ TRUST BAR ═══ -->
+    <div class="trust-bar">
+        <div class="container">
+            <div class="trust-inner">
+                <span class="trust-label">Trusted by leading partners</span>
+                <div class="trust-logos">
+                    <span class="trust-logo">EFU Life</span>
+                    <span class="trust-logo">Jubilee Insurance</span>
+                    <span class="trust-logo">Adamjee</span>
+                    <span class="trust-logo">Atlas Honda</span>
+                    <span class="trust-logo">Pak Kuwait</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ INSURANCE TYPES ═══ -->
+    <section class="types-section" id="types">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">Coverage Options</div>
+                <h2 class="section-title">Protection Built for <span class="gradient-text">Every Driver</span></h2>
+                <p class="section-desc">Choose from our range of meticulously designed plans that fit your vehicle, lifestyle, and budget.</p>
+            </div>
+
+            <div class="types-grid">
+
+                <!-- Card 1 – Comprehensive (Featured) -->
+                <div class="type-card featured">
+                    <div class="type-icon"><i class="fas fa-shield-halved"></i></div>
+                    <h3 class="type-title">Comprehensive Cover</h3>
+                    <p class="type-desc">Our flagship plan covering all risks — accidents, theft, fire, flood and more, with zero-depreciation add-ons.</p>
+                    <ul class="type-features">
+                        <li>Own damage & third-party liability</li>
+                        <li>Theft & total loss replacement</li>
+                        <li>Natural disaster protection</li>
+                        <li>Free roadside assistance 24/7</li>
+                    </ul>
+                    <div class="type-price">
+                        <span class="from">From</span>
+                        <span class="amount">$10,000</span>
+                        <span class="period">/ year</span>
+                    </div>
+                </div>
+
+                <!-- Card 2 – Third Party -->
+                <div class="type-card">
+                    <div class="type-icon"><i class="fas fa-users-between-lines"></i></div>
+                    <h3 class="type-title">Third-Party Liability</h3>
+                    <p class="type-desc">Mandatory by law — protects you against claims from others for bodily injury or property damage you cause.</p>
+                    <ul class="type-features">
+                        <li>Bodily injury liability</li>
+                        <li>Property damage coverage</li>
+                        <li>Legal defence expenses</li>
+                        <li>Fatality compensation</li>
+                    </ul>
+                    <div class="type-price">
+                        <span class="from">From</span>
+                        <span class="amount">$5,000</span>
+                        <span class="period">/ year</span>
+                    </div>
+                </div>
+
+                <!-- Card 3 – Electric Vehicle -->
+                <div class="type-card">
+                    <div class="type-icon"><i class="fas fa-bolt"></i></div>
+                    <h3 class="type-title">Own Demage</h3>
+                    <p class="type-desc">Specially crafted for EVs — covers battery replacement, charging equipment, and EV-specific risks.</p>
+                    <ul class="type-features">
+                        <li>Battery pack coverage</li>
+                        <li>Home charger protection</li>
+                        <li>Software/firmware issues</li>
+                        <li>EV-specialist towing</li>
+                    </ul>
+                    <div class="type-price">
+                        <span class="from">From</span>
+                        <span class="amount">$15,000</span>
+                        <span class="period">/ year</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+             
+
+             
+
+               
+    </section>
+
+    <!-- ═══ HOW IT WORKS ═══ -->
+    <section class="how-section" id="how">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">Simple Process</div>
+                <h2 class="section-title">Get Covered in <span class="gradient-text">4 Easy Steps</span></h2>
+                <p class="section-desc">From quote to policy in under 10 minutes — no agents, no paperwork, no hassle.</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-num">01</div>
+                    <div class="step-icon"><i class="fas fa-search" style="color:var(--accent-glow)"></i></div>
+                    <h4 class="step-title">Enter Vehicle Details</h4>
+                    <p class="step-desc">Provide your vehicle registration, make, model, and year to get an instant, personalised quote.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">02</div>
+                    <div class="step-icon"><i class="fas fa-sliders" style="color:#a78bfa"></i></div>
+                    <h4 class="step-title">Choose Your Plan</h4>
+                    <p class="step-desc">Compare coverage options and add-ons. Customise your deductibles and benefits to fit your budget.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">03</div>
+                    <div class="step-icon"><i class="fas fa-credit-card" style="color:#10b981"></i></div>
+                    <h4 class="step-title">Secure Payment</h4>
+                    <p class="step-desc">Pay safely via bank transfer, card, Easypaisa, JazzCash or EMI options. 100% encrypted checkout.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">04</div>
+                    <div class="step-icon"><i class="fas fa-file-shield" style="color:var(--gold)"></i></div>
+                    <h4 class="step-title">Download Policy</h4>
+                    <p class="step-desc">Receive your digital policy instantly via email and SMS. Manage everything from your dashboard.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ TESTIMONIALS ═══ -->
+    <section class="testimonials-section" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">Customer Stories</div>
+                <h2 class="section-title">Real People, <span class="gradient-text">Real Protection</span></h2>
+                <p class="section-desc">Over 2 million Pakistanis trust ShieldDrive to protect their vehicles every day. Here's what they say.</p>
+            </div>
+
+            <div class="testimonials-grid">
+
+                <!-- Large Card -->
+                <div class="testimonial-card large">
+                    <div class="rating-strip"><i class="fas fa-star"></i> 5.0 · Verified Customer</div>
+                    <div class="quote-icon">"</div>
+                    <p class="testimonial-text">I was involved in a serious accident on the motorway last year and was dreading the claims process. ShieldDrive's team handled everything — from arranging a recovery truck to settling the repair bill directly with the workshop. I didn't pay a single rupee out of pocket. The dashboard kept me updated at every step. Truly outstanding service that I didn't expect from an insurance company.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar avatar-1">AK</div>
+                        <div class="author-info">
+                            <div class="author-name">Ahmed Khalid</div>
+                            <div class="author-role">Comprehensive Plan · Lahore</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <div class="quote-icon">"</div>
+                    <p class="testimonial-text">Got a quote in under 3 minutes and my policy was active the same day. The EV plan covers my charger too — something other insurers wouldn't. Highly recommend!</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar avatar-2">SR</div>
+                        <div class="author-info">
+                            <div class="author-name">Sara Rehman</div>
+                            <div class="author-role">EV Plan · Karachi</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <div class="quote-icon">"</div>
+                    <p class="testimonial-text">Managing a fleet of 40 vehicles used to be a nightmare. ShieldDrive's fleet dashboard saves me hours every week. Renewals, claims, everything in one place.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar avatar-3">ZM</div>
+                        <div class="author-info">
+                            <div class="author-name">Zain Mahmood</div>
+                            <div class="author-role">Fleet Plan · Islamabad</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                 <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <div class="quote-icon">"</div>
+                    <p class="testimonial-text">My motorcycle was stolen and I honestly thought I'd never get it back or be compensated. ShieldDrive settled my claim within 7 working days. Phenomenal.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar avatar-4">FH</div>
+                        <div class="author-info">
+                            <div class="author-name">Fatima Hussain</div>
+                            <div class="author-role">Motorcycle Plan · Faisalabad</div>
+                        </div>
+                    </div>
+                </div> 
+
+                <!-- Card 5 -->
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <div class="quote-icon">"</div>
+                    <p class="testimonial-text">The price comparison tool is brilliant. I saved ₨18,000 annually just by switching from my old insurer. The coverage is actually better too. A no-brainer.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar avatar-5">OB</div>
+                        <div class="author-info">
+                            <div class="author-name">Omar Baig</div>
+                            <div class="author-role">Comprehensive Plan · Multan</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ CTA SECTION ═══ -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-box">
+                <div class="section-tag" style="margin:0 auto 1.2rem;">Limited Time Offer</div>
+                <h2 class="cta-title">Get Your First Month <span class="gold-text">Free</span></h2>
+                <p class="cta-desc">Join over 2 million drivers who trust ShieldDrive. No hidden fees, instant digital policy, and cancel anytime.</p>
+                <div class="cta-actions">
+                    <a asp-action="Policylayout" asp-controller="Home" class="btn-primary" style="font-size:1rem;padding:1rem 2.5rem;"><i class="fas fa-rocket"></i> Get Started</a>
+                    <a asp-action="Index" asp-controller="Contact" class="btn-outline"><i class="fas fa-phone"></i> Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+   
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

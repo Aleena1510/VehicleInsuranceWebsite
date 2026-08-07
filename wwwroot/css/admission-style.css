@@ -1,0 +1,144 @@
+﻿
+body {
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	min-height: 100vh;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.progress-container {
+	background: rgba(255,255,255,0.95);
+	backdrop-filter: blur(10px);
+	box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+	z-index: 1000;
+}
+
+.progress-bar-container {
+	display: flex;
+	justify-content: space-between;
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 20px 0;
+}
+
+.progress-step {
+	flex: 1;
+	text-align: center;
+	position: relative;
+	color: #6c757d;
+	transition: all 0.3s ease;
+}
+
+	.progress-step span {
+		display: block;
+		font-size: 12px;
+		margin-top: 5px;
+		font-weight: 500;
+	}
+
+	.progress-step i {
+		font-size: 20px;
+		display: block;
+	}
+
+	.progress-step.active {
+		color: #007bff !important;
+	}
+
+		.progress-step.active::after {
+			content: '';
+			position: absolute;
+			top: 15px;
+			left: 50%;
+			transform: translateX(-50%);
+			width: 30px;
+			height: 30px;
+			background: #007bff;
+			border-radius: 50%;
+			z-index: 2;
+		}
+
+	.progress-step:not(:last-child)::before {
+		content: '';
+		position: absolute;
+		top: 20px;
+		left: 100%;
+		width: calc(100% - 20px);
+		height: 4px;
+		background: #dee2e6;
+		z-index: 1;
+	}
+
+.card {
+	border: none;
+	border-radius: 20px;
+	overflow: hidden;
+}
+
+.card-header {
+	border-radius: 20px 20px 0 0 !important;
+}
+
+.btn-lg {
+	border-radius: 50px;
+	font-weight: 600;
+	padding: 12px 30px;
+	transition: all 0.3s ease;
+}
+
+.btn:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 10px 25px rgba(0,0,0,0.2) !important;
+}
+
+.form-control-lg {
+	border-radius: 15px;
+	border: 2px solid #e9ecef;
+	padding: 15px 20px;
+	font-size: 16px;
+	transition: all 0.3s ease;
+}
+
+	.form-control-lg:focus {
+		border-color: #007bff;
+		box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25);
+		transform: translateY(-2px);
+	}
+
+.checkmark-circle {
+	width: 150px;
+	height: 150px;
+	border: 8px solid #e3f2fd;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0 auto 30px;
+	background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+	box-shadow: 0 20px 40px rgba(0,123,255,0.3);
+}
+
+.progress-circle {
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+	font-size: 24px;
+	color: white;
+	position: relative;
+}
+
+@media (max-width: 768px) {
+	.progress-bar-container {
+		flex-direction: column;
+		gap: 15px;
+	}
+
+	.progress-step {
+		display: flex;
+		align-items: center;
+		gap: 15px;
+	}
+}

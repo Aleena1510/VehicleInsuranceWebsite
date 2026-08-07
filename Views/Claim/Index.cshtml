@@ -1,0 +1,161 @@
+﻿@model InsurancePortal.Models.ClaimDetail
+@{
+    ViewData["Title"] = "File Insurance Claim";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <!-- Success/Error Messages -->
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="fas fa-check-circle me-2"></i>@TempData["Success"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            }
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="fas fa-exclamation-triangle me-2"></i>@TempData["Error"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            }
+
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-header bg-primary text-white text-center py-5">
+                    <h1 class="display-5 fw-bold mb-3">
+                        <i class="fas fa-file-medical me-3"></i>File Claim
+                    </h1>
+                    <p class="lead mb-0 opacity-90">Register accident claim details</p>
+                </div>
+                <div class="card-body p-5">
+                    <form asp-action="Index" method="post">
+                        <div asp-validation-summary="All" class="text-danger mb-4"></div>
+
+                        <!-- Policy Information -->
+                        <div class="row g-4 mb-5">
+                            <div class="col-md-12">
+                                <h4 class="text-danger mb-4">
+                                    <i class="fas fa-file-contract me-2"></i>Policy Details
+                                </h4>
+                            </div>
+                            <div class="col-md-4">
+                                <label asp-for="PolicyNumber" class="form-label fw-bold fs-5">
+                                    <i class="fas fa-hashtag text-danger me-2"></i>Policy Number *
+                                </label>
+                                <input asp-for="PolicyNumber" class="form-control form-control-lg shadow-sm"
+                                       placeholder="Enter policy number" />
+                                <span asp-validation-for="PolicyNumber" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4">
+                                <label asp-for="PolicyStartDate" class="form-label fw-bold fs-5">
+                                    <i class="fas fa-calendar-alt text-danger me-2"></i>Start Date *
+                                </label>
+                                <input asp-for="PolicyStartDate" type="date" class="form-control form-control-lg shadow-sm" />
+                                <span asp-validation-for="PolicyStartDate" class="text-danger"></span>
+                            </div>
+                          
+                            <div class="col-md-4">
+                                <label asp-for="PolicyEndDate" class="form-label fw-bold fs-5">
+                                    <i class="fas fa-calendar-check text-danger me-2"></i>End Date *
+                                </label>
+                                <input asp-for="PolicyEndDate"
+                                       type="date"
+                                       class="form-control form-control-lg shadow-sm"
+                                       value="@DateTime.Now.ToString("yyyy-MM-dd")"
+                                       min="@DateTime.Now.ToString("yyyy-MM-dd")"
+                                       max="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                                <span asp-validation-for="PolicyEndDate" class="text-danger"></span>
+                            </div>
+
+
+
+                        <!-- Customer Information -->
+                        <div class="row g-4 mb-5">
+                            <div class="col-md-12">
+                                <h4 class="text-primary mb-4">
+                                    <i class="fas fa-user-injured me-2"></i>Customer Details
+                                </h4>
+                            </div>
+                            <div class="col-md-8">
+                                <label asp-for="CustomerName" class="form-label fw-bold fs-5">
+                                    <i class="fas fa-user text-primary me-2"></i>Customer Name *
+                                </label>
+                                <input asp-for="CustomerName" class="form-control form-control-lg shadow-sm"
+                                       placeholder="Enter customer full name" />
+                                <span asp-validation-for="CustomerName" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Accident Details -->
+                        <div class="row g-4 mb-5">
+                            <div class="col-md-12">
+                                <h4 class="text-warning mb-4">
+                                    <i class="fas fa-exclamation-triangle me-2"></i>Accident Information
+                                </h4>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="DateOfAccident" class="form-label fw-bold fs-5">
+                                    <i class="fas fa-clock text-warning me-2"></i>Date of Accident *
+                                </label>
+                                <input asp-for="DateOfAccident" type="date" class="form-control form-control-lg shadow-sm" />
+                                <span asp-validation-for="DateOfAccident" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="PlaceOfAccident" class="form-label fw-bold fs-5">
+                                    <i class="fas fa-map-marker-alt text-warning me-2"></i>Place of Accident
+                                </label>
+                                <input asp-for="PlaceOfAccident" class="form-control form-control-lg shadow-sm"
+                                       placeholder="Enter accident location" />
+                                <span asp-validation-for="PlaceOfAccident" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Amount Details -->
+                        <div class="row g-4 mb-5">
+                            <div class="col-md-12">
+                                <h4 class="text-success mb-4">
+                                    <i class="fas fa-coins me-2"></i>Claim Amount
+                                </h4>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="InsuredAmount" class="form-label fw-bold fs-5">
+                                    <i class="fas fa-rupee-sign text-success me-2"></i>Insured Amount ($)
+                                </label>
+                                <input asp-for="InsuredAmount" type="number" step="0.01"
+                                       class="form-control form-control-lg shadow-sm text-end" />
+                                <span asp-validation-for="InsuredAmount" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="ClaimableAmount" class="form-label fw-bold fs-5">
+                                    <i class="fas fa-hand-holding-dollar text-success me-2"></i>Claimable Amount ($)
+                                </label>
+                                <input asp-for="ClaimableAmount" type="number" step="0.01"
+                                       class="form-control form-control-lg shadow-sm text-end" />
+                                <span asp-validation-for="ClaimableAmount" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Submit Buttons -->
+                        <div class="d-grid gap-3 d-md-flex justify-content-center mt-5 pt-4 border-top">
+                            <a asp-action="Index" asp-controller="Home" class="btn btn-outline-secondary btn-lg px-5 py-3 me-md-3">
+                                <i class="fas fa-arrow-left me-2"></i>Back to Home
+                            </a>
+                            <button type="submit" class="btn btn-primary btn-lg px-5 py-3 fw-bold shadow-lg">
+                                <i class="fas fa-paper-plane me-2"></i>Submit Claim
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

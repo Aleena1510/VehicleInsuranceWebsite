@@ -1,0 +1,680 @@
+﻿@{
+    ViewData["Title"] = "Confirmation";
+    Layout = "~/Views/Shared/_AdmissionLayout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var customer = ViewBag.CustomerData as InsurancePortal.Models.Customer;
+    var vehicle = ViewBag.VehicleData as InsurancePortal.Models.Vehicle;
+    var estimate = ViewBag.EstimateData as InsurancePortal.Models.Estimate;
+    
+}
+
+<style>
+    body {
+        background: #0a1931;
+    }
+
+    .card-custom {
+        background: #112240;
+        color: white;
+        border-radius: 15px;
+    }
+
+    .title {
+        color: #64ffda;
+    }
+
+    .label {
+        color: #8892b0;
+    }
+
+    .value {
+        color: #ccd6f6;
+        font-weight: 600;
+    }
+
+    .btn-custom {
+        background: #64ffda;
+        color: #0a1931;
+        font-weight: bold;
+    }
+
+        .btn-custom:hover {
+            background: #52e0c4;
+        }
+</style>
+
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h1 class="title">✔ Registration Complete</h1>
+        <p class="text-light">Your insurance policy is successfully created</p>
+    </div>
+
+    <div class="card card-custom p-4 shadow-lg">
+
+        <div class="row">
+
+            <!-- Customer -->
+            <div class="col-md-6">
+                <h4 class="title">Customer Info</h4>
+
+                <p>
+                    <span class="label">Name:</span>
+                    <span class="value">@customer?.CustomerName</span>
+                </p>
+
+                <p>
+                    <span class="label">Phone:</span>
+                    <span class="value">@customer?.CustomerPhoneNumber</span>
+                </p>
+
+                <p>
+                    <span class="label">Address:</span>
+                    <span class="value">@customer?.CustomerAddress</span>
+                </p>
+            </div>
+
+            <!-- Policy -->
+            <div class="col-md-6">
+                <h4 class="title">Policy Info</h4>
+
+                <p>
+                    <span class="label">Policy No:</span>
+                    <span class="value">
+                        POL-@DateTime.Now.Year-@customer?.CustomerId
+                    </span>
+                </p>
+
+                <p>
+                    <span class="label">Vehicle:</span>
+                    <span class="value">@vehicle?.VehicleModel</span>
+                </p>
+
+                <p>
+                    <span class="label">PolicyType:</span>
+                    <span class="value">@estimate?.VehiclePolicyType</span>
+                </p>
+
+                
+
+                <p>
+                    <span class="label">Status:</span>
+                    <span class="value text-success">ACTIVE</span>
+                </p>
+            </div>
+
+        </div>
+
+        <hr class="bg-light" />
+
+        <!-- Buttons -->
+        <div class="text-center mt-4">
+            <button onclick="printPage()" class="btn btn-custom px-4 me-2">
+                Print / Save PDF
+            </button>
+
+            <a asp-action="Index" asp-controller="Home" class="btn btn-outline-light px-4">
+                Back to Home
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function printPage() {
+        window.print();
+    }
+</script>
+
+@* @model FormConfirmationReport.Models.ApplicationFormModel
+@{
+    ViewBag.Title = "Form Confirmation Report";
+    Layout = null; // Self-contained page — no shared layout dependency
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Confirmation Report</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <style>
+        /* ── CSS Variables ── */
+        :root {
+            --navy:        #0a1e50;
+            --navy-mid:    #1a3a8f;
+            --navy-light:  #2a52c0;
+            --accent:      #4fc3f7;
+            --gold:        #f0c040;
+            --white:       #ffffff;
+            --surface:     #f4f6fb;
+            --border:      #dde3f5;
+            --text-dark:   #1a2340;
+            --text-muted:  #5a6890;
+            --success:     #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background: var(--surface);
+            min-height: 100vh;
+            color: var(--text-dark);
+        }
+
+        /* ── Top Nav Bar ── */
+        .topbar {
+            background: var(--navy);
+            padding: 14px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 3px solid var(--gold);
+        }
+        .topbar .brand {
+            color: var(--white);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            letter-spacing: 0.5px;
+        }
+        .topbar .brand span { color: var(--gold); }
+        .topbar .ref-badge {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.25);
+            color: rgba(255,255,255,0.85);
+            padding: 5px 18px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* ── Page Wrapper ── */
+        .page {
+            max-width: 960px;
+            margin: 40px auto 60px;
+            padding: 0 24px;
+        }
+
+        /* ── Hero Header ── */
+        .report-header {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 55%, var(--navy-light) 100%);
+            border-radius: 16px 16px 0 0;
+            padding: 44px 52px;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        .report-header::before {
+            content: '';
+            position: absolute;
+            top: -60px; right: -60px;
+            width: 260px; height: 260px;
+            background: radial-gradient(circle, rgba(79,195,247,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .report-header::after {
+            content: '';
+            position: absolute;
+            bottom: -40px; left: 30%;
+            width: 180px; height: 180px;
+            background: radial-gradient(circle, rgba(240,192,64,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .header-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+        .header-icon {
+            width: 60px; height: 60px;
+            background: rgba(255,255,255,0.12);
+            border: 2px solid rgba(255,255,255,0.25);
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.8rem;
+        }
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(34,197,94,0.2);
+            border: 1px solid rgba(34,197,94,0.5);
+            color: #86efac;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .status-dot {
+            width: 8px; height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @@keyframes pulse {
+            0%,100% { opacity: 1; transform: scale(1); }
+            50%      { opacity: 0.5; transform: scale(1.3); }
+        }
+        .report-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.1rem;
+            margin-top: 20px;
+            line-height: 1.2;
+        }
+        .report-header p {
+            margin-top: 8px;
+            opacity: 0.7;
+            font-size: 0.95rem;
+            font-weight: 300;
+        }
+        .meta-row {
+            display: flex;
+            gap: 32px;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.15);
+        }
+        .meta-item label {
+            display: block;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 3px;
+        }
+        .meta-item span {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+        .meta-item span.gold { color: var(--gold); }
+
+        /* ── Report Body ── */
+        .report-body {
+            background: var(--white);
+            border-radius: 0 0 16px 16px;
+            padding: 40px 52px;
+            border: 1px solid var(--border);
+            border-top: none;
+        }
+
+        /* ── Section ── */
+        .section {
+            margin-bottom: 36px;
+        }
+        .section:last-of-type { margin-bottom: 0; }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .section-icon {
+            width: 36px; height: 36px;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            color: var(--navy);
+        }
+        .section-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, var(--border), transparent);
+        }
+
+        /* ── Field Grid ── */
+        .fields-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+        .field-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px 18px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .field-card:hover {
+            border-color: var(--navy-mid);
+            box-shadow: 0 2px 12px rgba(26,58,143,0.08);
+        }
+        .field-card.full-width  { grid-column: 1 / -1; }
+        .field-card.half-width  { grid-column: span 2; }
+        .field-card label {
+            display: block;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.9px;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        .field-card .value {
+            font-size: 0.98rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            word-break: break-word;
+        }
+        .field-card .value.empty {
+            color: var(--text-muted);
+            font-weight: 400;
+            font-style: italic;
+            font-size: 0.88rem;
+        }
+
+        /* ── Divider ── */
+        .divider {
+            height: 1px;
+            background: var(--border);
+            margin: 32px 0;
+        }
+
+        /* ── Action Bar ── */
+        .action-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 36px;
+            padding-top: 28px;
+            border-top: 2px solid var(--border);
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .action-note {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            max-width: 420px;
+            line-height: 1.5;
+        }
+        .action-note strong { color: var(--navy); }
+        .btn-group { display: flex; gap: 12px; }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border-radius: 10px;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 0.92rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            border: none;
+            text-decoration: none;
+            transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
+        }
+        .btn:hover { transform: translateY(-2px); }
+        .btn:active { transform: translateY(0); }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+            color: var(--white);
+            box-shadow: 0 4px 16px rgba(10,30,80,0.3);
+        }
+        .btn-primary:hover { box-shadow: 0 6px 24px rgba(10,30,80,0.4); }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--navy);
+            border: 2px solid var(--border);
+        }
+        .btn-outline:hover {
+            border-color: var(--navy-mid);
+            background: var(--surface);
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, #d4a017 0%, var(--gold) 100%);
+            color: var(--navy);
+            box-shadow: 0 4px 16px rgba(240,192,64,0.3);
+        }
+        .btn-gold:hover { box-shadow: 0 6px 24px rgba(240,192,64,0.45); }
+
+        /* ── Print Styles ── */
+        @@media print {
+            .topbar, .action-bar { display: none !important; }
+            body { background: white; }
+            .report-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .page { margin: 0; padding: 0; max-width: 100%; }
+        }
+
+        /* ── Responsive ── */
+        @@media (max-width: 700px) {
+            .report-header, .report-body { padding: 28px 24px; }
+            .fields-grid { grid-template-columns: 1fr 1fr; }
+            .topbar { padding: 14px 20px; }
+            .action-bar { flex-direction: column; align-items: flex-start; }
+        }
+        @@media (max-width: 480px) {
+            .fields-grid { grid-template-columns: 1fr; }
+            .field-card.half-width { grid-column: span 1; }
+            .meta-row { flex-wrap: wrap; gap: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ── Top Navigation ── -->
+<div class="topbar">
+    <div class="brand">Form<span>Confirm</span> Portal</div>
+    <div class="ref-badge">Ref: @Model.ReferenceNumber</div>
+</div>
+
+<!-- ── Main Page ── -->
+<div class="page">
+
+    <!-- ── Report Header ── -->
+    <div class="report-header">
+        <div class="header-top">
+            <div class="header-icon">📋</div>
+            <div class="status-pill">
+                <div class="status-dot"></div>
+                Submitted Successfully
+            </div>
+        </div>
+
+        <h1>Form Confirmation<br />Report</h1>
+        <p>All information you submitted has been recorded. Please review and download your report.</p>
+
+        <div class="meta-row">
+            <div class="meta-item">
+                <label>Reference No.</label>
+                <span class="gold">@Model.ReferenceNumber</span>
+            </div>
+            <div class="meta-item">
+                <label>Application Type</label>
+                <span>@(string.IsNullOrEmpty(Model.ApplicationType) ? "—" : Model.ApplicationType)</span>
+            </div>
+            <div class="meta-item">
+                <label>Submitted On</label>
+                <span>@Model.SubmissionDate.ToString("dd MMM yyyy, hh:mm tt")</span>
+            </div>
+            <div class="meta-item">
+                <label>Status</label>
+                <span>✔ Confirmed</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Report Body ── -->
+    <div class="report-body">
+
+        <!-- SECTION 1: Personal Information -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">👤</div>
+                <div class="section-title">Personal Information</div>
+                <div class="section-line"></div>
+            </div>
+            <div class="fields-grid">
+                <div class="field-card">
+                    <label>Full Name</label>
+                    <div class="value @(string.IsNullOrEmpty(Model.FullName) ? "empty" : "")">
+                        @(string.IsNullOrEmpty(Model.FullName) ? "Not provided" : Model.FullName)
+                    </div>
+                </div>
+                <div class="field-card">
+                    <label>Date of Birth</label>
+                    <div class="value">@Model.DateOfBirth.ToString("dd MMMM yyyy")</div>
+                </div>
+                <div class="field-card">
+                    <label>Gender</label>
+                    <div class="value @(string.IsNullOrEmpty(Model.Gender) ? "empty" : "")">
+                        @(string.IsNullOrEmpty(Model.Gender) ? "Not provided" : Model.Gender)
+                    </div>
+                </div>
+                <div class="field-card">
+                    <label>CNIC / ID Number</label>
+                    <div class="value @(string.IsNullOrEmpty(Model.CNIC) ? "empty" : "")">
+                        @(string.IsNullOrEmpty(Model.CNIC) ? "Not provided" : Model.CNIC)
+                    </div>
+                </div>
+                <div class="field-card">
+                    <label>Nationality</label>
+                    <div class="value @(string.IsNullOrEmpty(Model.Nationality) ? "empty" : "")">
+                        @(string.IsNullOrEmpty(Model.Nationality) ? "Not provided" : Model.Nationality)
+                    </div>
+                </div>
+                <div class="field-card">
+                    <label>Marital Status</label>
+                    <div class="value @(string.IsNullOrEmpty(Model.MaritalStatus) ? "empty" : "")">
+                        @(string.IsNullOrEmpty(Model.MaritalStatus) ? "Not provided" : Model.MaritalStatus)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- SECTION 2: Contact Details -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">📞</div>
+                <div class="section-title">Contact Details</div>
+                <div class="section-line"></div>
+            </div>
+            <div class="fields-grid">
+                <div class="field-card half-width">
+                    <label>Email Address</label>
+                    <div class="value @(string.IsNullOrEmpty(Model.Email) ? "empty" : "")">
+                        @(string.IsNullOrEmpty(Model.Email) ? "Not provided" : Model.Email)
+                    </div>
+                </div>
+                <div class="field-card">
+                    <label>Phone Number</label>
+                    <div class="value @(string.IsNullOrEmpty(Model.PhoneNumber) ? "empty" : "")">
+                        @(string.IsNullOrEmpty(Model.PhoneNumber) ? "Not provided" : Model.PhoneNumber)
+                    </div>
+                </div>
+                <div class="field-card full-width">
+                    <label>Residential Address</label>
+                    <div class="value @(string.IsNullOrEmpty(Model.Address) ? "empty" : "")">
+                        @(string.IsNullOrEmpty(Model.Address) ? "Not provided" : Model.Address)
+                    </div>
+                </div>
+                <div class="field-card">
+                    <label>City</label>
+                    <div class="value @(string.IsNullOrEmpty(Model.City) ? "empty" : "")">
+                        @(string.IsNullOrEmpty(Model.City) ? "Not provided" : Model.City)
+                    </div>
+                </div>
+                <div class="field-card half-width">
+                    <label>Province / State</label>
+                    <div class="value @(string.IsNullOrEmpty(Model.Province) ? "empty" : "")">
+                        @(string.IsNullOrEmpty(Model.Province) ? "Not provided" : Model.Province)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- SECTION 3: Application Details -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">📄</div>
+                <div class="section-title">Application Details</div>
+                <div class="section-line"></div>
+            </div>
+            <div class="fields-grid">
+                <div class="field-card">
+                    <label>Application Type</label>
+                    <div class="value @(string.IsNullOrEmpty(Model.ApplicationType) ? "empty" : "")">
+                        @(string.IsNullOrEmpty(Model.ApplicationType) ? "Not provided" : Model.ApplicationType)
+                    </div>
+                </div>
+                <div class="field-card">
+                    <label>Reference Number</label>
+                    <div class="value">@Model.ReferenceNumber</div>
+                </div>
+                <div class="field-card">
+                    <label>Submission Date</label>
+                    <div class="value">@Model.SubmissionDate.ToString("dd MMM yyyy, hh:mm tt")</div>
+                </div>
+                <div class="field-card full-width">
+                    <label>Additional Notes / Remarks</label>
+                    <div class="value @(string.IsNullOrEmpty(Model.AdditionalNotes) ? "empty" : "")">
+                        @(string.IsNullOrEmpty(Model.AdditionalNotes) ? "No additional notes provided." : Model.AdditionalNotes)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── Action Bar ── -->
+        <div class="action-bar">
+            <div class="action-note">
+                <strong>Please save a copy of this report.</strong><br />
+                Download the PDF report for your records or print this page directly.
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-outline" onclick="window.print()">
+                    🖨️ Print
+                </button>
+                @using (Html.BeginForm("DownloadPdf", "Report", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <!-- Pass all model fields as hidden inputs -->
+                    @Html.Hidden("FullName",        Model.FullName)
+                    @Html.Hidden("DateOfBirth",     Model.DateOfBirth.ToString("yyyy-MM-dd"))
+                    @Html.Hidden("Gender",          Model.Gender)
+                    @Html.Hidden("CNIC",            Model.CNIC)
+                    @Html.Hidden("Nationality",     Model.Nationality)
+                    @Html.Hidden("MaritalStatus",   Model.MaritalStatus)
+                    @Html.Hidden("Email",           Model.Email)
+                    @Html.Hidden("PhoneNumber",     Model.PhoneNumber)
+                    @Html.Hidden("Address",         Model.Address)
+                    @Html.Hidden("City",            Model.City)
+                    @Html.Hidden("Province",        Model.Province)
+                    @Html.Hidden("ApplicationType", Model.ApplicationType)
+                    @Html.Hidden("SubmissionDate",  Model.SubmissionDate.ToString("yyyy-MM-ddTHH:mm:ss"))
+                    @Html.Hidden("ReferenceNumber", Model.ReferenceNumber)
+                    @Html.Hidden("AdditionalNotes", Model.AdditionalNotes)
+                    <button type="submit" class="btn btn-gold">
+                        ⬇️ Download Report
+                    </button>
+                }
+                <a href="@Url.Action("Index","Home")" class="btn btn-primary">
+                    ← Back to Home
+                </a>
+            </div>
+        </div>
+
+    </div><!-- /report-body -->
+</div><!-- /page -->
+
+</body>
+</html> *@

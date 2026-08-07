@@ -1,0 +1,116 @@
+﻿@model InsurancePortal.Models.Vehicle
+@{
+    ViewData["Title"] = "Step 2: Vehicle Information";
+    // Layout = "~/Views/Shared/_AdmissionLayout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+    var customer = ViewBag.CustomerData as InsurancePortal.Models.Customer;
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-primary text-white text-center py-4">
+                    <h2 class="mb-0">
+                        <i class="fas fa-car me-3"></i>
+                        Step 2: Vehicle Details
+                    </h2>
+                    <small class="text-white-50">Enter complete vehicle information</small>
+                </div>
+                <div class="card-body p-5">
+                    <form asp-action="Vehicle" method="post">
+                        @Html.AntiForgeryToken()
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-4"></div>
+                        <input type="hidden" asp-for="CustomerId" />
+                        
+                        
+
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <label asp-for="VehicleName" class="form-label fw-bold">
+                                    <i class="fas fa-car text-success me-2"></i>Vehicle Name *
+                                </label>
+                                <input asp-for="VehicleName" class="form-control form-control-lg" />
+                                <span asp-validation-for="VehicleName" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label asp-for="VehicleOwnerName" class="form-label fw-bold">
+                                    <i class="fas fa-user-tie text-success me-2"></i>Owner Name *
+                                </label>
+                                <input asp-for="VehicleOwnerName" class="form-control form-control-lg" />
+                                <span asp-validation-for="VehicleOwnerName" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 mb-4">
+                                <label asp-for="VehicleModel" class="form-label fw-bold">
+                                    <i class="fas fa-cog text-success me-2"></i>Model *
+                                </label>
+                                <input asp-for="VehicleModel" class="form-control form-control-lg" />
+                                <span asp-validation-for="VehicleModel" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <label asp-for="VehicleVersion" class="form-label">
+                                    <i class="fas fa-tag text-success me-2"></i>Version
+                                </label>
+                                <input asp-for="VehicleVersion" class="form-control form-control-lg" />
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <label asp-for="VehicleRate" class="form-label fw-bold">
+                                    <i class="fas fa-rupee-sign text-success me-2"></i>Rate ($) *
+                                </label>
+                                <input asp-for="VehicleRate" class="form-control form-control-lg" type="number" step="0.01" />
+                                <span asp-validation-for="VehicleRate" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <label asp-for="VehicleBodyNumber" class="form-label fw-bold">
+                                    <i class="fas fa-id-card text-success me-2"></i>Body Number *
+                                </label>
+                                <input asp-for="VehicleBodyNumber" class="form-control form-control-lg" />
+                                <span asp-validation-for="VehicleBodyNumber" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label asp-for="VehicleEngineNumber" class="form-label fw-bold">
+                                    <i class="fas fa-cogs text-success me-2"></i>Engine Number *
+                                </label>
+                                <input asp-for="VehicleEngineNumber" class="form-control form-control-lg" />
+                                <span asp-validation-for="VehicleEngineNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 mb-4">
+                                <label asp-for="VehicleNumber" class="form-label fw-bold">
+                                    <i class="fas fa-hashtag text-success me-2"></i>Vehicle Number *
+                                </label>
+                                <input asp-for="VehicleNumber" class="form-control form-control-lg" />
+                                <span asp-validation-for="VehicleNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-3 d-md-flex justify-content-between mt-5">
+                            <a asp-action="Index" class="btn btn-secondary btn-lg px-5">
+                                <i class="fas fa-arrow-left me-2"></i>Previous
+                            </a>
+                            <button type="submit" class="btn btn-primary btn-lg px-5">
+                                <i class="fas fa-arrow-right me-2"></i>Next: Estimate
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

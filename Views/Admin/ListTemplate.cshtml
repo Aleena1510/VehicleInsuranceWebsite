@@ -1,0 +1,45 @@
+﻿@model dynamic
+@{
+    Layout = "_AdminLayout.cshtml";
+    
+}
+
+<div class="table-responsive">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h5>@ViewBag.Title</h5>
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="fas fa-plus me-2"></i>Add New
+        </a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                @if (ViewBag.HasId == true)
+                {
+                    <th>ID</th>
+                }
+                @Html.Raw(ViewBag.Columns)
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.DataType == "Customer")
+            {
+                @foreach (Customer item in Model)
+                {
+                    <tr>
+                        <td>@item.CustomerId</td>
+                        <td>@item.CustomerName</td>
+                        <td>@item.CustomerPhoneNumber</td>
+                        <td>@item.CustomerAddress?.Substring(0, 30)...</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.CustomerId" class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            }
+            <!-- Add other model types similarly -->
+        </tbody>
+    </table>
+</div>

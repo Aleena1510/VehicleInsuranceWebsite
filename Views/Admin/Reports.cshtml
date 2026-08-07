@@ -1,0 +1,37 @@
+﻿@model List<InsurancePortal.Models.ViewModels.ReportViewModel>
+@{
+    ViewData["Title"] = ViewBag.ReportTitle ?? "Report";
+    ViewBag.Icon = "fas fa-chart-bar";
+    Layout = "_AdminLayout.cshtml";
+
+}
+
+<h4>@ViewBag.ReportTitle</h4>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Total Amount</th>
+                <th>Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var i = 1;
+            }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@i</td>
+                    <td>@item.Title</td>
+                    <td>$@item.Value.ToString("N0")</td>
+                    <td>@item.Count</td>
+                </tr>
+                i++;
+            }
+        </tbody>
+    </table>
+</div>

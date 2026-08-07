@@ -1,0 +1,65 @@
+﻿@* @model List<InsurancePortal.Models.ClaimDetail>
+@{
+    ViewData["Title"] = "Claims List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0">
+            <i class="fas fa-list me-2 text-primary"></i>All Claims (@Model.Count)
+        </h2>
+        <a asp-action="Index" class="btn btn-primary">
+            <i class="fas fa-plus me-2"></i>New Claim
+        </a>
+    </div>
+
+    @if (Model.Any())
+    {
+        <div class="card shadow-lg">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Claim #</th>
+                                <th>Policy #</th>
+                                <th>Customer</th>
+                                <th>Accident Date</th>
+                                <th>Location</th>
+                                <th>Insured (₹)</th>
+                                <th>Claimable (₹)</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var claim in Model)
+                            {
+                                <tr>
+                                    <td><strong>#@claim.ClaimNumber</strong></td>
+                                    <td>POL-@claim.PolicyNumber</td>
+                                    <td>@claim.CustomerName</td>
+                                    <td>@claim.DateOfAccident</td>
+                                    <td>@(claim.PlaceOfAccident ?? "N/A")</td>
+                                    <td class="text-success fw-bold">₹@claim.InsuredAmount.ToString("N0")</td>
+                                    <td class="text-primary fw-bold">₹@claim.ClaimableAmount.ToString("N0")</td>
+                                    <td>
+                                        <span class="badge bg-warning">Pending</span>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="text-center py-5">
+            <i class="fas fa-inbox fa-5x text-muted mb-4"></i>
+            <h4 class="text-muted">No claims found</h4>
+            <a asp-action="Index" class="btn btn-primary mt-3">File First Claim</a>
+        </div>
+    }
+</div> *@

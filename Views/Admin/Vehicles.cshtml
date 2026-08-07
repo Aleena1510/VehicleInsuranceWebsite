@@ -1,0 +1,39 @@
+﻿@model List<Vehicle>
+@{
+    ViewData["Title"] = "Vehicles";
+    ViewBag.Icon = "fas fa-car";
+    Layout = "_AdminLayout.cshtml";
+
+}
+
+<div class="d-flex justify-content-between mb-4">
+    <h4>Total Vehicles: @Model.Count</h4>
+</div>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Vehicle Name</th>
+                <th>Owner</th>
+                <th>Model</th>
+                <th>Rate</th>
+                <th>Vehicle No</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.VehicleId</td>
+                    <td>@item.VehicleName</td>
+                    <td>@item.VehicleOwnerName</td>
+                    <td>@item.VehicleModel</td>
+                    <td>$@item.VehicleRate</td>
+                    <td>@item.VehicleNumber</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,175 @@
+﻿@{
+    ViewBag.Title = "About Us";
+}
+
+<style>
+    body {
+        background-color:#152238;
+    }
+
+    /* Hero Image */
+    .hero {
+        
+
+    
+        background-image: url('/img/car.jpg');
+        background-size: cover;
+        background-position:center;
+     
+    
+        height:60vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color:white;
+    }
+
+    .section h1 {
+            font-size: 72px;
+            font-weight: bold;
+            color: white;
+            background-color:rgba(0,0,0,0.05);
+            align-items:center;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+        }
+
+    /* Cards */
+    .card-custom {
+        border: none;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        transition: 0.3s;
+        height: 100%;
+        background: #273c75;
+    }
+
+        .card-custom:hover {
+            transform: translateY(-8px);
+        }
+
+    .card-icon {
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+
+    .card-title {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color:white;
+    }
+
+    .card-text {
+        font-size: 16px;
+        color:white;
+        line-height: 1.7;
+    }
+
+    .section {
+        margin-top: 60px;
+    }
+</style>
+
+<!-- Hero -->
+<div class="hero">
+    
+</div>
+
+<div class="container section">
+    <div class="row g-4">
+        <h1 class="text-center">About Us</h1>
+
+        <!-- Card 1 -->
+        <div class="col-md-4">
+            <div class="card-custom">
+                <div class="card-icon">🚗</div>
+                <div class="card-title">Who We Are</div>
+                <div class="card-text">
+                    We provide a smart vehicle insurance system built with .NET technology.
+                    Our platform allows users to manage policies, vehicles, and claims easily
+                    in a secure and digital environment.
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="col-md-4">
+            <div class="card-custom">
+                <div class="card-icon">🎯</div>
+                <div class="card-title">Our Mission</div>
+                <div class="card-text">
+                    Our mission is to simplify vehicle insurance by reducing paperwork and
+                    offering a fast, transparent, and efficient digital system for all users.
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col-md-4">
+            <div class="card-custom">
+                <div class="card-icon">👁️</div>
+                <div class="card-title">Our Vision</div>
+                <div class="card-text">
+                    We aim to become a leading online vehicle insurance platform providing
+                    reliable and user-friendly services with complete transparency.
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="col-md-6">
+            <div class="card-custom">
+                <div class="card-icon">⚙️</div>
+                <div class="card-title">What We Offer</div>
+                <div class="card-text">
+                    • Vehicle insurance registration<br>
+                    • Policy management system<br>
+                    • Claim submission & tracking<br>
+                    • Secure login system<br>
+                    • Admin dashboard control
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="col-md-6">
+            <div class="card-custom">
+                <div class="card-icon">💡</div>
+                <div class="card-title">Why Choose Us</div>
+                <div class="card-text">
+                    • Built with powerful .NET framework<br>
+                    • Secure & reliable system<br>
+                    • Fast processing speed<br>
+                    • Modern UI/UX design<br>
+                    • Accessible anytime, anywhere
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="col-md-6 mb-5">
+            <div class="card-custom">
+                <div class="card-icon">👨‍💻</div>
+                <div class="card-title">Our Team</div>
+                <div class="card-text">
+                    Our team consists of skilled developers focused on building scalable
+                    and efficient applications for modern insurance solutions.
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 7 -->
+        <div class="col-md-6 mb-5">
+            <div class="card-custom">
+                <div class="card-icon">📞</div>
+                <div class="card-title">Contact Us</div>
+                <div class="card-text">
+                    Need help? Contact us anytime. We are here to assist you with your
+                    vehicle insurance needs and provide full support.
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

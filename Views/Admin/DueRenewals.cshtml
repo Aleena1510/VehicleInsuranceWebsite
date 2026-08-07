@@ -1,0 +1,54 @@
+﻿@model List<CustomerPolicy>
+@{
+    ViewData["Title"] = "Policies Due for Renewal";
+    ViewBag.Icon = "fas fa-clock";
+    Layout = "_AdminLayout.cshtml";
+    
+}
+
+<div class="row mb-4">
+    <div class="col">
+        <h3><i class="fas fa-clock text-warning me-2"></i>Policies Due for Renewal</h3>
+        <p class="text-muted">Total Due: @Model.Count | Next 30 Days</p>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Policy #</th>
+                <th>Customer</th>
+                <th>Vehicle</th>
+                <th>Start Date</th>
+                <th>Duration</th>
+                <th>Expiry Date</th>
+                <th>Days Left</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                
+                    var expiry = DateTime.Parse(item.PolicyDate).AddMonths(item.PolicyDuration);
+                    var daysLeft = (expiry - DateTime.Now).Days;
+                
+                <tr class="table-warning">
+                    <td><strong>@item.PolicyNumber</strong></td>
+                    <td>@item.CustomerName</td>
+                    <td>@item.VehicleName (@item.VehicleModel)</td>
+                    <td>@item.PolicyDate</td>
+                    <td>@item.PolicyDuration months</td>
+                    <td>@expiry.ToShortDateString()</td>
+                    <td>
+                        <span class="badge bg-warning">@daysLeft days</span>
+                    </td>
+                    <td>
+                        <button class="btn btn-sm btn-warning">Renew</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

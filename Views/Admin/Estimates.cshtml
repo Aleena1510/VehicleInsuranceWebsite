@@ -1,0 +1,39 @@
+﻿@model List<Estimate>
+@{
+    ViewData["Title"] = "Estimates";
+    ViewBag.Icon = "fas fa-calculator";
+    Layout = "_AdminLayout.cshtml";
+
+}
+
+<div class="d-flex justify-content-between mb-4">
+    <h4>Total Estimates: @Model.Count</h4>
+</div>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Estimate #</th>
+                <th>Customer</th>
+                <th>Phone</th>
+                <th>Vehicle</th>
+                <th>Rate</th>
+                <th>Policy Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.EstimateNumber</td>
+                    <td>@item.CustomerName</td>
+                    <td>@item.CustomerPhoneNumber</td>
+                    <td>@item.VehicleName</td>
+                    <td>$@item.VehicleRate</td>
+                    <td>@item.VehiclePolicyType</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

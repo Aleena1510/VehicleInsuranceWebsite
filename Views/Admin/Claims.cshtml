@@ -1,0 +1,39 @@
+﻿@model List<ClaimDetail>
+@{
+    ViewData["Title"] = "Claims";
+    ViewBag.Icon = "fas fa-exclamation-triangle";
+    Layout = "_AdminLayout.cshtml";
+
+}
+
+<div class="d-flex justify-content-between mb-4">
+    <h4>Total Claims: @Model.Count</h4>
+</div>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Claim #</th>
+                <th>Policy #</th>
+                <th>Customer</th>
+                <th>Accident Date</th>
+                <th>Insured</th>
+                <th>Claimable</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ClaimNumber</td>
+                    <td>@item.PolicyNumber</td>
+                    <td>@item.CustomerName</td>
+                    <td>@item.DateOfAccident</td>
+                    <td>$@item.InsuredAmount</td>
+                    <td>$@item.ClaimableAmount</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

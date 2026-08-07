@@ -1,0 +1,41 @@
+﻿@model List<CustomerPolicy>
+@{
+    ViewData["Title"] = "Policies";
+    ViewBag.Icon = "fas fa-file-contract";
+    Layout = "_AdminLayout.cshtml";
+
+}
+
+<div class="d-flex justify-content-between mb-4">
+    <h4>Total Policies: @Model.Count</h4>
+</div>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Policy #</th>
+                <th>Customer</th>
+                <th>Phone</th>
+                <th>Vehicle</th>
+                <th>Rate</th>
+                <th>Date</th>
+                <th>Duration</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.PolicyNumber</td>
+                    <td>@item.CustomerName</td>
+                    <td>@item.CustomerPhoneNumber</td>
+                    <td>@item.VehicleName</td>
+                    <td>$@item.VehicleRate</td>
+                    <td>@item.PolicyDate</td>
+                    <td>@item.PolicyDuration months</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,164 @@
+﻿@model InsurancePortal.Models.CustomerBilling
+@{
+    ViewData["Title"] = "Step 5: Billing & Payment";
+     // Layout = "~/Views/Shared/_AdmissionLayout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var customer = ViewBag.CustomerData as InsurancePortal.Models.Customer;
+    var vehicle = ViewBag.VehicleData as InsurancePortal.Models.Vehicle;
+    
+
+
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-header bg-primary text-white text-center py-5 position-relative overflow-hidden">
+                    <div class="bg-white rounded-circle position-absolute top-50 start-10 translate-middle opacity-10" style="width: 150px; height: 150px;"></div>
+                    <div class="bg-white rounded-circle position-absolute bottom-0 end-0 opacity-10" style="width: 120px; height: 120px;"></div>
+                    <h2 class="mb-2 fw-bold position-relative">
+                        <i class="fas fa-receipt me-3"></i>Final Billing
+                    </h2>
+                    <p class="mb-0 opacity-90 position-relative fs-6">Complete payment to activate policy</p>
+                </div>
+                <div class="card-body p-5">
+                    <form asp-action="Billing" method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" style="display:none;"></div>
+
+                        <div class="row g-4 mb-5">
+                            <div class="col-md-12">
+                                <h5 class="text-success mb-4 border-start border-4 border-success ps-3 py-2">
+                                    <i class="fas fa-file-invoice-dollar me-2"></i>Payment Summary
+                                </h5>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="BillNo" class="form-label fw-bold fs-5">
+                                    <i class="fas fa-hashtag text-danger me-2"></i>Bill Number *
+                                </label>
+                                <input asp-for="BillNo" class="form-control" readonly value="@ViewBag.BillNumber" />
+                                <span asp-validation-for="BillNo" class="text-danger"></span>
+                            </div>
+                      
+
+                            <div class="col-md-6">
+                                <label asp-for="Date" class="form-label fw-bold fs-5">
+                                    <i class="fas fa-calendar-day text-danger me-2"></i>Billing Date *
+                                </label>
+                                <input asp-for="Date"
+                                       type="date"
+                                       class="form-control form-control-lg shadow-sm"
+                                       value="@DateTime.Now.ToString("yyyy-MM-dd")"
+                                       min="@DateTime.Now.ToString("yyyy-MM-dd")"
+                                       max="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                                <span asp-validation-for="Date" class="text-danger"></span>
+                            </div>
+
+
+
+                        <div class="row g-4 mb-5">
+                            <div class="col-md-12">
+                                <h5 class="text-success mb-4 border-start border-4 border-success ps-3 py-2">
+                                    <i class="fas fa-car me-2"></i>Vehicle & Policy Details
+                                </h5>
+                            </div>
+                            <div class="col-md-4">
+                                <label asp-for="CustomerName" class="form-label fw-bold">Customer Name *</label>
+                                <input asp-for="CustomerName" class="form-control form-control-lg shadow-sm" value="@customer?.CustomerName" readonly />
+                                <span asp-validation-for="CustomerName" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4">
+                                <label asp-for="PolicyNumber" class="form-label fw-bold">Policy Number *</label>
+                                <input asp-for="PolicyNumber" class="form-control" readonly value="@ViewBag.PolicyNumber" />
+                                <span asp-validation-for="PolicyNumber" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4">
+                                <label asp-for="CustomerPhoneNumber" class="form-label fw-bold">Phone *</label>
+                                <input asp-for="CustomerPhoneNumber" class="form-control form-control-lg shadow-sm" value="@customer?.CustomerPhoneNumber" readonly />
+                                <span asp-validation-for="CustomerPhoneNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row g-4">
+                            <div class="col-md-12">
+                                <h5 class="text-success mb-4 border-start border-4 border-success ps-3 py-2">
+                                    <i class="fas fa-list me-2"></i>Amount Details
+                                </h5>
+                            </div>
+                            <div class="col-md-4">
+                                <label asp-for="VehicleName" class="form-label fw-bold">Vehicle</label>
+                                <input asp-for="VehicleName" class="form-control form-control-lg shadow-sm" value="@vehicle?.VehicleName" readonly />
+                                <span asp-validation-for="VehicleName" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4">
+                                <label asp-for="VehicleModel" class="form-label fw-bold">Model</label>
+                                <input asp-for="VehicleModel" class="form-control form-control-lg shadow-sm" value="@vehicle?.VehicleModel" readonly />
+                                <span asp-validation-for="VehicleModel" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-2">
+                                <label asp-for="VehicleRate" class="form-label fw-bold">Rate</label>
+                                <input asp-for="VehicleRate" class="form-control form-control-lg shadow-sm text-end fw-bold fs-5" value="@vehicle?.VehicleRate" readonly />
+                                <span asp-validation-for="VehicleRate" class="text-danger"></span>
+                            </div>
+                        
+                        
+
+                                <div class="col-md-2">
+                                    <label asp-for="Amount" class="form-label fw-bold">
+                                        <i class="fas fa-rupee-sign text-primary me-2"></i>Total Amount
+                                    </label>
+                                    <select asp-for="Amount" class="form-control form-control-lg shadow-sm fw-bold text-center">
+                                        <option value="">Amount</option>
+                                        <option value="5000">$ 5,000</option>
+                                        <option value="10000">$ 10,000</option>
+                                        <option value="15000">$ 15,000</option>
+                                        <option value="20000">$ 20,000</option>
+                                    </select>
+                                    <span asp-validation-for="Amount" class="text-danger"></span>
+                                </div>
+
+                        <div class="row g-4 mt-4">
+                            <div class="col-md-6">
+                                <label asp-for="VehicleBodyNumber" class="form-label fw-bold">Chassis No.</label>
+                                <input asp-for="VehicleBodyNumber" class="form-control form-control-lg shadow-sm" value="@vehicle?.VehicleBodyNumber" readonly />
+                                <span asp-validation-for="VehicleBodyNumber" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="VehicleEngineNumber" class="form-label fw-bold">Engine No.</label>
+                                <input asp-for="VehicleEngineNumber" class="form-control form-control-lg shadow-sm" value="@vehicle?.VehicleEngineNumber" readonly />
+                                <span asp-validation-for="VehicleEngineNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row g-4 mt-4">
+                            <div class="col-md-12">
+                                <label class="form-label">
+                                    <i class="fas fa-file-alt me-2"></i>Payment Receipt / Proof
+                                </label>
+
+                                <input type="file" asp-for="ProofFile" class="form-control" />
+
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-3 d-md-flex justify-content-between mt-5 pt-4 border-top">
+                            <a asp-action="Policy" class="btn btn-outline-secondary btn-lg px-5 py-3">
+                                <i class="fas fa-arrow-left me-2"></i>← Edit Policy
+                            </a>
+                            <button type="submit" class="btn btn-primary btn-lg px-5 py-3 fw-bold shadow-lg">
+                                <i class="fas fa-check-double me-2"></i>Complete Registration →
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

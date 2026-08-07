@@ -1,0 +1,48 @@
+﻿@model List<CustomerPolicy>
+@{
+    ViewData["Title"] = "Lapsed Policies Report";
+    ViewBag.Icon = "fas fa-times-circle";
+    Layout = "_AdminLayout.cshtml";
+    
+}
+
+<div class="row mb-4">
+    <div class="col">
+        <h3><i class="fas fa-times-circle text-danger me-2"></i>Lapsed Policies</h3>
+        <p class="text-muted">Total Lapsed: @Model.Count</p>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Policy #</th>
+                <th>Customer</th>
+                <th>Vehicle</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Days Lapsed</th>
+                <th>Rate</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                
+                    var expiry = DateTime.Parse(item.PolicyDate).AddMonths(item.PolicyDuration);
+                    var daysLapsed = (DateTime.Now - expiry).Days;
+                
+                <tr class="table-danger">
+                    <td><strong>@item.PolicyNumber</strong></td>
+                    <td>@item.CustomerName</td>
+                    <td>@item.VehicleName</td>
+                    <td>@item.PolicyDate</td>
+                    <td>@expiry.ToShortDateString()</td>
+                    <td>@daysLapsed days</td>
+                    <td>$@item.VehicleRate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

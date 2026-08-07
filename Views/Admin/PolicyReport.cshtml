@@ -1,0 +1,48 @@
+﻿@model List<CustomerPolicy>
+@{
+    ViewData["Title"] = ViewBag.ReportTitle ?? "Policy Report";
+    ViewBag.Icon = "fas fa-calendar-times";
+    Layout = "_AdminLayout.cshtml";
+
+}
+
+<h4>@ViewBag.ReportTitle</h4>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Policy #</th>
+                <th>Customer</th>
+                <th>Vehicle</th>
+                <th>Start Date</th>
+                <th>Duration</th>
+                <th>Expiry Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                
+                    var expiry = DateTime.Parse(item.PolicyDate).AddMonths(item.PolicyDuration);
+                    var status = expiry < DateTime.Now ? "Lapsed" :
+                                (expiry <= DateTime.Now.AddDays(30) ? "Due Soon" : "Active");
+                    var badgeClass = expiry < DateTime.Now ? "bg-danger" :
+                                    (expiry <= DateTime.Now.AddDays(30) ? "bg-warning" : "bg-success");
+
+                
+
+            <tr>
+                    <td>@item.PolicyNumber</td>
+                    <td>@item.CustomerName</td>
+                    <td>@item.VehicleName</td>
+                    <td>@item.PolicyDate</td>
+                    <td>@item.PolicyDuration months</td>
+                    <td>@expiry.ToShortDateString()</td>
+                    <td><span class="badge @badgeClass">@status</span></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,89 @@
+﻿<style>
+    
+    body {
+        background-color: #0b1f3a !important;
+        color: #fff !important;
+    }
+
+    .account-box {
+        background-color: #112a4d !important;
+        padding: 25px;
+        border-radius: 8px;
+        color: #fff !important;
+    }
+
+        .account-box h2 {
+            color: #ffffff !important;
+        }
+
+        .account-box p,
+        .account-box label,
+        .form-check-label {
+            color: #cbd5e1 !important;
+        }
+
+    .form-control {
+        background-color: #0b1f3a !important;
+        border: 1px solid #2e4a73 !important;
+        color: #fff !important;
+    }
+
+        .form-control:focus {
+            border-color: #4da3ff !important;
+            box-shadow: none !important;
+            color: #fff !important;
+            background-color: #0b1f3a !important;
+        }
+
+    .btn-success {
+        background-color: #1e3a8a !important;
+        border: none !important;
+    }
+
+        .btn-success:hover {
+            background-color: #274bb5 !important;
+        }
+
+    a {
+        color: #4da3ff !important;
+        text-decoration: none !important;
+    }
+
+        a:hover {
+            color: #82cfff !important;
+        }
+
+    .text-center {
+        text-align: center !important;
+    }
+
+    .text-danger {
+        color: #ff6b6b !important;
+    }
+</style>
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/UserRoles.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/account.css" asp-append-version="true"/>
+</head>
+<body>
+    <div>
+        @RenderBody()
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

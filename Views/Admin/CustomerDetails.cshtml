@@ -1,0 +1,179 @@
+﻿@model CustomerDetailsViewModel
+@{
+    Layout = "_AdminLayout.cshtml";
+}
+<div class="row g-4">
+    <!-- Customer Info -->
+    <div class="col-lg-12">
+        <div class="stat-card h-100">
+            <h4 class="mb-4"><i class="fas fa-user me-2"></i>Customer Info</h4>
+            <div class="mb-3">
+                <strong>@Model.Customer.CustomerName</strong>
+            </div>
+            <div class="mb-3">
+                <i class="fas fa-envelope me-2"></i>@Model.Customer.CustomerId
+            </div>
+            <div class="mb-3">
+                <i class="fas fa-envelope me-2"></i>@Model.Customer.CustomerName
+            </div>
+            <div class="mb-3">
+                <i class="fas fa-phone me-2"></i>@Model.Customer.CustomerPhoneNumber
+            </div>
+            <div class="mb-3">
+                <i class="fas fa-map-marker-alt me-2"></i>@Model.Customer.CustomerAddress
+            </div>
+            <a asp-action="Customers" class="btn btn-outline-primary mt-3">
+                <i class="fas fa-arrow-left me-2"></i>Back to List
+            </a>
+        </div>
+    </div>
+
+  
+    <!-- Vehicles Tab -->
+    @if (Model.Vehicles.Any())
+    {
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="admin-content-card">
+                    <h5 class="mb-3"><i class="fas fa-car me-2"></i>Vehicles (@Model.Vehicles.Count)</h5>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Vehicle</th>
+                                    <th>VehicleBodyNumber</th>
+                                    <th>VehicleEngineNumber</th>
+                                    <th>Model</th>
+                                    <th>VehicleOwnerName</th>
+                                    <th>VehicleRate</th>
+                                    <th>VehicleVersion</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var vehicle in Model.Vehicles)
+                                {
+                                    <tr>
+                                        <td>@vehicle.VehicleName</td>
+                                        <td>@vehicle.VehicleBodyNumber</td>
+                                        <td>@vehicle.VehicleEngineNumber</td>
+                                        <td>@vehicle.VehicleModel</td>
+                                        <td>@vehicle.VehicleOwnerName</td>
+                                        <td>@vehicle.VehicleRate</td>
+                                        <td>@vehicle.VehicleVersion</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <!-- Policies Tab -->
+    @if (Model.Policies.Any())
+    {
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="admin-content-card">
+                    <h5 class="mb-3"><i class="fas fa-file-contract me-2"></i>Policies (@Model.Policies.Count)</h5>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Policy #</th>
+                                    <th>Vehicle</th>
+                                    <th>Premium</th>
+                                    <th>Duration</th>
+                                    <th>ProofFile</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var policy in Model.Policies)
+                                {
+                                    <tr>
+                                        <td>@policy.PolicyNumber</td>
+                                        <td>@policy.VehicleName</td>
+                                        <td>₹@policy.VehicleRate</td>
+                                        <td>@policy.PolicyDuration months</td>
+                                        <td><img src="@policy.CustomerAddProvePath" width="120" class="img-thumbnail" /></td>
+                                    </tr>
+                                      
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <!-- Billings & Estimates -->
+    <div class="row mt-4 g-4">
+        @if (Model.Billings.Any())
+        {
+            <div class="col-lg-6">
+                <div class="admin-content-card">
+                    <h5 class="mb-3"><i class="fas fa-receipt me-2"></i>Billings (@Model.Billings.Count)</h5>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead><tr><th>Bill #</th><th>Amount</th><th>Date</th><th>ProofFile</th></tr></thead>
+                            <tbody>
+                                @foreach (var bill in Model.Billings.Take(5))
+                                {
+                                    <tr><td>@bill.BillNo</td><td>₹@bill.Amount</td><td>@bill.Date</td><td><img src="@bill.CustomerAddProve" width="100" height="100" /></td></tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        }
+
+        @if (Model.Estimates.Any())
+        {
+            <div class="col-lg-6">
+                <div class="admin-content-card">
+                    <h5 class="mb-3"><i class="fas fa-calculator me-2"></i>Estimates (@Model.Estimates.Count)</h5>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead><tr><th>Estimate #</th><th>Warranty</th><th>PolicyType</th></tr></thead>
+                            <tbody>
+                                @foreach (var estimate in Model.Estimates.Take(5))
+                                {
+                                    <tr><td>@estimate.EstimateNumber</td><td>₹@estimate.VehicleWarranty</td><td>@estimate.VehiclePolicyType</td></tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        }
+        @* Approved Or Rejected   *@
+    </div>
+    <div class="row mt-4">
+        <div class="col-12 text-end">
+
+            @foreach (var policy in Model.Policies)
+            {
+                if (policy.Status == null || policy.Status == "Pending")
+                {
+                    <a href="/Admin/ApprovePolicy/@policy.PolicyId"
+                           class="btn btn-success me-2">
+                        Approve
+                    </a>
+
+                    <a href="/Admin/RejectPolicy/@policy.PolicyId"
+                           class="btn btn-danger me-3">
+                        Reject
+                    </a>
+                }
+                else
+                {
+                    <span class="badge bg-info me-2">@policy.Status</span>
+                }
+            }
+
+        </div>
+    </div>
