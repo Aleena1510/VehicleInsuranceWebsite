@@ -1,120 +1,661 @@
 ﻿@model InsurancePortal.Models.Estimate
+
 @{
     ViewData["Title"] = "Step 3: Insurance Estimate";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
     var customer = ViewBag.CustomerData as InsurancePortal.Models.Customer;
     var vehicle = ViewBag.VehicleData as InsurancePortal.Models.Vehicle;
-    
 }
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card shadow-lg border-0">
-                <div class="card-header bg-primary text-white text-center py-4">
-                    <h2 class="mb-0">
-                        <i class="fas fa-calculator me-3"></i>
-                        Step 3: Generate Estimate
-                    </h2>
-                </div>
-                <div class="card-body p-5">
-                    <form asp-action="Estimate" method="post">
-                        <input type="hidden" asp-for="CustomerId" value="@customer?.CustomerId" />
-                        <div asp-validation-summary="All" class="text-danger"></div>
-                        <div asp-validation-summary="ModelOnly" class="text-danger mb-4"></div>
-                        
+<link rel="stylesheet" href="~/css/EstimateLayout.css" />
 
-                        <div class="row">
-                            <div class="col-md-6 mb-4">
-                                <label asp-for="EstimateNumber" class="form-label fw-bold">
-                                    <i class="fas fa-file-invoice text-info me-2"></i>Estimate No. *
-                                </label>
-                                <input asp-for="EstimateNumber" class="form-control" readonly value="@ViewBag.EstimateNumber" />
-                                <span asp-validation-for="EstimateNumber" class="text-danger"></span>
-                            </div>
-                            
-                            <div class="col-md-6 mb-4">
-                                <label asp-for="CustomerName" class="form-label fw-bold">
-                                    <i class="fas fa-user text-info me-2"></i>Customer Name *
-                                </label>
-                                <input asp-for="CustomerName" class="form-control form-control-lg" value="@customer?.CustomerName" readonly />
-                                <span asp-validation-for="CustomerName" class="text-danger"></span>
-                            </div>
-                        </div>
+<div class="estimate-page">
 
-                        <div class="row">
-                            <div class="col-md-6 mb-4">
-                                <label asp-for="CustomerPhoneNumber" class="form-label fw-bold">
-                                    <i class="fas fa-phone text-info me-2"></i>Phone *
-                                </label>
-                                <input asp-for="CustomerPhoneNumber" class="form-control form-control-lg" value="@customer?.CustomerPhoneNumber" readonly />
-                                <span asp-validation-for="CustomerPhoneNumber" class="text-danger"></span>
-                            </div>
-                            <div class="col-md-6 mb-4">
-                                <label asp-for="VehicleName" class="form-label fw-bold">
-                                    <i class="fas fa-car text-info me-2"></i>Vehicle *
-                                </label>
-                                <input asp-for="VehicleName" class="form-control form-control-lg" value="@vehicle?.VehicleName" readonly />
-                                <span asp-validation-for="VehicleName" class="text-danger"></span>
-                            </div>
-                        </div>
+    <div class="container">
 
-                        <div class="row">
-                            <div class="col-md-4 mb-4">
-                                <label asp-for="VehicleModel" class="form-label fw-bold">
-                                    <i class="fas fa-cog text-info me-2"></i>Model *
-                                </label>
-                                <input asp-for="VehicleModel" class="form-control form-control-lg" value="@vehicle?.VehicleModel" readonly />
-                                <span asp-validation-for="VehicleModel" class="text-danger"></span>
-                            </div>
-                            <div class="col-md-4 mb-4">
-                                <label asp-for="VehicleRate" class="form-label fw-bold">
-                                    <i class="fas fa-rupee-sign text-info me-2"></i>Rate *
-                                </label>
-                                <input asp-for="VehicleRate" class="form-control form-control-lg" type="number" step="0.01" value="@vehicle?.VehicleRate" readonly />
-                                <span asp-validation-for="VehicleRate" class="text-danger"></span>
-                            </div>
-                            <div class="col-md-4 mb-4">
-                                <label asp-for="VehiclePolicyType" class="form-label fw-bold">
-                                    <i class="fas fa-shield-alt text-info me-2"></i>Policy Type *
-                                </label>
-                                <select asp-for="VehiclePolicyType" class="form-control form-control-lg">
-                                    <option value="">Select Policy Type</option>
-                                    <option value="Comprehensive">Comprehensive</option>
-                                    <option value="Third Party">Third Party</option>
-                                    <option value="Own Damage">Own Damage</option>
-                                </select>
-                                <span asp-validation-for="VehiclePolicyType" class="text-danger"></span>
-                            </div>
-                        </div>
+        <!-- ================= PAGE HEADER ================= -->
 
-                        <div class="row">
-                            <div class="col-md-12 mb-4">
-                                <label asp-for="VehicleWarranty" class="form-label">
-                                    <i class="fas fa-warranty-card text-info me-2"></i>Warranty
-                                </label>
-                                <input asp-for="VehicleWarranty" class="form-control form-control-lg" />
-                                <span asp-validation-for="VehicleWarranty" class="text-danger"></span>
-                            </div>
-                        </div>
+        <div class="estimate-header">
 
-                        <div class="d-grid gap-3 d-md-flex justify-content-between mt-5">
-                            <a asp-action="Vehicle" class="btn btn-secondary btn-lg px-5">
-                                <i class="fas fa-arrow-left me-2"></i>Previous
-                            </a>
-                            <button type="submit" class="btn btn-primary btn-lg px-5">
-                                <i class="fas fa-arrow-right me-2"></i>Next: Policy
-                            </button>
-                        </div>
-                    </form>
-                </div>
+            <div class="estimate-step-icon">
+                <i class="fas fa-calculator"></i>
             </div>
+
+            <div class="estimate-step-number">
+                STEP 03
+            </div>
+
+            <h1>Insurance Estimate</h1>
+
+            <p>
+                Review your customer and vehicle information,
+                then select your preferred insurance policy.
+            </p>
+
         </div>
+
+
+        <!-- ================= PROGRESS ================= -->
+
+        <div class="estimate-progress">
+
+            <!-- STEP 1 -->
+
+            <div class="estimate-progress-step completed">
+
+                <div class="estimate-progress-circle">
+                    <i class="fas fa-user"></i>
+                </div>
+
+                <span>Customer</span>
+
+            </div>
+
+
+            <div class="estimate-progress-line completed-line"></div>
+
+
+            <!-- STEP 2 -->
+
+            <div class="estimate-progress-step completed">
+
+                <div class="estimate-progress-circle">
+                    <i class="fas fa-car"></i>
+                </div>
+
+                <span>Vehicle</span>
+
+            </div>
+
+
+            <div class="estimate-progress-line completed-line"></div>
+
+
+            <!-- STEP 3 -->
+
+            <div class="estimate-progress-step active">
+
+                <div class="estimate-progress-circle">
+                    <i class="fas fa-calculator"></i>
+                </div>
+
+                <span>Estimate</span>
+
+            </div>
+
+
+            <div class="estimate-progress-line"></div>
+
+
+            <!-- STEP 4 -->
+
+            <div class="estimate-progress-step">
+
+                <div class="estimate-progress-circle">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+
+                <span>Policy</span>
+
+            </div>
+
+            <div class="estimate-progress-line"></div>
+
+            <div class="estimate-progress-step">
+
+                <div class="estimate-progress-circle">
+                    <i class="fas fa-receipt"></i>
+                </div>
+
+                <span>Billing</span>
+
+            </div>
+
+
+           
+        </div>
+
+
+        </div>
+
+
+        <!-- ================= MAIN CARD ================= -->
+
+        <div class="estimate-card">
+
+            <!-- CARD HEADER -->
+
+            <div class="estimate-card-header">
+
+                <div class="estimate-card-icon">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                </div>
+
+                <div>
+
+                    <h2>Generate Insurance Estimate</h2>
+
+                    <p>
+                        Confirm the information below before
+                        generating your insurance estimate.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- CARD BODY -->
+
+            <div class="estimate-card-body">
+
+                <form asp-action="Estimate" method="post">
+
+                    @Html.AntiForgeryToken()
+
+                    <!-- CUSTOMER ID -->
+
+                    <input type="hidden"
+                           asp-for="CustomerId"
+                           value="@customer?.CustomerId" />
+
+
+                    <!-- VALIDATION -->
+
+                    <div asp-validation-summary="All"
+                         class="estimate-validation">
+                    </div>
+
+
+                    <!-- ================= ESTIMATE REFERENCE ================= -->
+
+                    <div class="section-title">
+
+                        <div class="section-title-icon">
+                            <i class="fas fa-file-invoice"></i>
+                        </div>
+
+                        <div>
+                            <h3>Estimate Reference</h3>
+                            <p>System generated estimate information</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+
+                        <!-- Estimate Number -->
+
+                        <div class="col-md-6">
+
+                            <div class="estimate-form-group">
+
+                                <label asp-for="EstimateNumber">
+
+                                    <span class="estimate-label-icon">
+                                        <i class="fas fa-hashtag"></i>
+                                    </span>
+
+                                    Estimate Number
+
+                                    <span class="required">*</span>
+
+                                </label>
+
+                                <div class="estimate-input-wrapper">
+
+                                    <i class="fas fa-file-invoice estimate-input-icon"></i>
+
+                                    <input asp-for="EstimateNumber"
+                                           class="estimate-input estimate-readonly"
+                                           readonly
+                                           value="@ViewBag.EstimateNumber" />
+
+                                    <span class="readonly-badge">
+                                        AUTO
+                                    </span>
+
+                                </div>
+
+                                <span asp-validation-for="EstimateNumber"
+                                      class="estimate-error">
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Customer Name -->
+
+                        <div class="col-md-6">
+
+                            <div class="estimate-form-group">
+
+                                <label asp-for="CustomerName">
+
+                                    <span class="estimate-label-icon">
+                                        <i class="fas fa-user"></i>
+                                    </span>
+
+                                    Customer Name
+
+                                    <span class="required">*</span>
+
+                                </label>
+
+                                <div class="estimate-input-wrapper">
+
+                                    <i class="fas fa-user estimate-input-icon"></i>
+
+                                    <input asp-for="CustomerName"
+                                           class="estimate-input estimate-readonly"
+                                           value="@customer?.CustomerName"
+                                           readonly />
+
+                                </div>
+
+                                <span asp-validation-for="CustomerName"
+                                      class="estimate-error">
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================= CUSTOMER DETAILS ================= -->
+
+                    <div class="section-title">
+
+                        <div class="section-title-icon">
+                            <i class="fas fa-address-card"></i>
+                        </div>
+
+                        <div>
+                            <h3>Customer Details</h3>
+                            <p>Information retrieved from customer registration</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+
+                        <!-- Phone -->
+
+                        <div class="col-md-6">
+
+                            <div class="estimate-form-group">
+
+                                <label asp-for="CustomerPhoneNumber">
+
+                                    <span class="estimate-label-icon">
+                                        <i class="fas fa-phone"></i>
+                                    </span>
+
+                                    Phone Number
+
+                                    <span class="required">*</span>
+
+                                </label>
+
+                                <div class="estimate-input-wrapper">
+
+                                    <i class="fas fa-phone estimate-input-icon"></i>
+
+                                    <input asp-for="CustomerPhoneNumber"
+                                           class="estimate-input estimate-readonly"
+                                           value="@customer?.CustomerPhoneNumber"
+                                           readonly />
+
+                                </div>
+
+                                <span asp-validation-for="CustomerPhoneNumber"
+                                      class="estimate-error">
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Vehicle -->
+
+                        <div class="col-md-6">
+
+                            <div class="estimate-form-group">
+
+                                <label asp-for="VehicleName">
+
+                                    <span class="estimate-label-icon">
+                                        <i class="fas fa-car"></i>
+                                    </span>
+
+                                    Vehicle
+
+                                    <span class="required">*</span>
+
+                                </label>
+
+                                <div class="estimate-input-wrapper">
+
+                                    <i class="fas fa-car estimate-input-icon"></i>
+
+                                    <input asp-for="VehicleName"
+                                           class="estimate-input estimate-readonly"
+                                           value="@vehicle?.VehicleName"
+                                           readonly />
+
+                                </div>
+
+                                <span asp-validation-for="VehicleName"
+                                      class="estimate-error">
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================= VEHICLE INFORMATION ================= -->
+
+                    <div class="section-title">
+
+                        <div class="section-title-icon vehicle-section">
+                            <i class="fas fa-car-side"></i>
+                        </div>
+
+                        <div>
+                            <h3>Vehicle Information</h3>
+                            <p>Vehicle details used for insurance calculation</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+
+                        <!-- Model -->
+
+                        <div class="col-md-4">
+
+                            <div class="estimate-form-group">
+
+                                <label asp-for="VehicleModel">
+
+                                    <span class="estimate-label-icon">
+                                        <i class="fas fa-cog"></i>
+                                    </span>
+
+                                    Model
+
+                                    <span class="required">*</span>
+
+                                </label>
+
+                                <div class="estimate-input-wrapper">
+
+                                    <i class="fas fa-cog estimate-input-icon"></i>
+
+                                    <input asp-for="VehicleModel"
+                                           class="estimate-input estimate-readonly"
+                                           value="@vehicle?.VehicleModel"
+                                           readonly />
+
+                                </div>
+
+                                <span asp-validation-for="VehicleModel"
+                                      class="estimate-error">
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Rate -->
+
+                        <div class="col-md-4">
+
+                            <div class="estimate-form-group">
+
+                                <label asp-for="VehicleRate">
+
+                                    <span class="estimate-label-icon gold">
+                                        <i class="fas fa-dollar-sign"></i>
+                                    </span>
+
+                                    Vehicle Rate
+
+                                    <span class="required">*</span>
+
+                                </label>
+
+                                <div class="estimate-input-wrapper">
+
+                                    <i class="fas fa-dollar-sign estimate-input-icon gold"></i>
+
+                                    <input asp-for="VehicleRate"
+                                           class="estimate-input estimate-readonly"
+                                           type="number"
+                                           step="0.01"
+                                           value="@vehicle?.VehicleRate"
+                                           readonly />
+
+                                </div>
+
+                                <span asp-validation-for="VehicleRate"
+                                      class="estimate-error">
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Policy Type -->
+
+                        <div class="col-md-4">
+
+                            <div class="estimate-form-group">
+
+                                <label asp-for="VehiclePolicyType">
+
+                                    <span class="estimate-label-icon">
+                                        <i class="fas fa-shield-alt"></i>
+                                    </span>
+
+                                    Policy Type
+
+                                    <span class="required">*</span>
+
+                                </label>
+
+                                <div class="estimate-input-wrapper">
+
+                                    <i class="fas fa-shield-alt estimate-input-icon"></i>
+
+                                    <select asp-for="VehiclePolicyType"
+                                            class="estimate-select">
+
+                                        <option value="">
+                                            Select Policy Type
+                                        </option>
+
+                                        <option value="Comprehensive">
+                                            Comprehensive
+                                        </option>
+
+                                        <option value="Third Party">
+                                            Third Party
+                                        </option>
+
+                                        <option value="Own Damage">
+                                            Own Damage
+                                        </option>
+
+                                    </select>
+
+                                    <i class="fas fa-chevron-down select-arrow"></i>
+
+                                </div>
+
+                                <span asp-validation-for="VehiclePolicyType"
+                                      class="estimate-error">
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================= WARRANTY ================= -->
+
+                    <div class="section-title">
+
+                        <div class="section-title-icon warranty-section">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+
+                        <div>
+                            <h3>Warranty Information</h3>
+                            <p>Add warranty information if applicable</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+
+                        <div class="col-12">
+
+                            <div class="estimate-form-group">
+
+                                <label asp-for="VehicleWarranty">
+
+                                    <span class="estimate-label-icon">
+                                        <i class="fas fa-certificate"></i>
+                                    </span>
+
+                                    Vehicle Warranty
+
+                                </label>
+
+                                <div class="estimate-input-wrapper">
+
+                                    <i class="fas fa-shield estimate-input-icon"></i>
+
+                                    <input asp-for="VehicleWarranty"
+                                           class="estimate-input"
+                                           placeholder="Enter warranty details (optional)" />
+
+                                </div>
+
+                                <span asp-validation-for="VehicleWarranty"
+                                      class="estimate-error">
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================= SUMMARY ================= -->
+
+                    <div class="estimate-summary">
+
+                        <div class="summary-icon">
+
+                            <i class="fas fa-calculator"></i>
+
+                        </div>
+
+                        <div class="summary-content">
+
+                            <h4>Estimate Ready</h4>
+
+                            <p>
+                                Your customer and vehicle information has
+                                been loaded successfully. Select a policy
+                                type above and continue to generate your
+                                insurance estimate.
+                            </p>
+
+                        </div>
+
+                        <div class="summary-status">
+
+                            <i class="fas fa-check-circle"></i>
+
+                            Ready
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================= ACTION BUTTONS ================= -->
+
+                    <div class="estimate-actions">
+
+                        <a asp-action="Vehicle"
+                           class="estimate-btn estimate-previous">
+
+                            <i class="fas fa-arrow-left"></i>
+
+                            <span>Previous</span>
+
+                        </a>
+
+
+                        <button type="submit"
+                                class="estimate-btn estimate-next">
+
+                            <span>Next: Policy</span>
+
+                            <i class="fas fa-arrow-right"></i>
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= SECURITY NOTE ================= -->
+
+        <div class="estimate-secure-note">
+
+            <i class="fas fa-lock"></i>
+
+            Your insurance estimate information is securely processed.
+
+        </div>
+
     </div>
+
 </div>
 
+
 @section Scripts {
+
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+
 }

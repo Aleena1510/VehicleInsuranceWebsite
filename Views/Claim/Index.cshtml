@@ -4,150 +4,339 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-10">
-            <!-- Success/Error Messages -->
-            @if (TempData["Success"] != null)
-            {
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <i class="fas fa-check-circle me-2"></i>@TempData["Success"]
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                </div>
-            }
-            @if (TempData["Error"] != null)
-            {
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <i class="fas fa-exclamation-triangle me-2"></i>@TempData["Error"]
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                </div>
-            }
+<style>
+    :root {
+        --navy-bg: #0a0f24;
+        --navy-bg-2: #0d1330;
+        --card-bg: #101830;
+        --card-border: rgba(255, 255, 255, 0.08);
+        --input-bg: #0c1224;
+        --input-border: rgba(255, 255, 255, 0.12);
+        --text-light: #e8ecf5;
+        --text-muted: #98a2b8;
+        --gold: #f5b942;
+        --blue: #5b8cff;
+        --blue-2: #8b6cff;
+        --emerald: #22c98a;
+        --rose: #fb5b73;
+    }
 
-            <div class="card shadow-lg border-0 rounded-4">
-                <div class="card-header bg-primary text-white text-center py-5">
-                    <h1 class="display-5 fw-bold mb-3">
-                        <i class="fas fa-file-medical me-3"></i>File Claim
-                    </h1>
-                    <p class="lead mb-0 opacity-90">Register accident claim details</p>
-                </div>
-                <div class="card-body p-5">
-                    <form asp-action="Index" method="post">
-                        <div asp-validation-summary="All" class="text-danger mb-4"></div>
+    .claim-page {
+        background: radial-gradient(circle at top right, var(--navy-bg-2), var(--navy-bg) 60%);
+        min-height: 100vh;
+        padding: 3rem 0;
+        font-family: 'Inter', sans-serif;
+        color: var(--text-light);
+    }
 
-                        <!-- Policy Information -->
-                        <div class="row g-4 mb-5">
-                            <div class="col-md-12">
-                                <h4 class="text-danger mb-4">
-                                    <i class="fas fa-file-contract me-2"></i>Policy Details
-                                </h4>
-                            </div>
-                            <div class="col-md-4">
-                                <label asp-for="PolicyNumber" class="form-label fw-bold fs-5">
-                                    <i class="fas fa-hashtag text-danger me-2"></i>Policy Number *
-                                </label>
-                                <input asp-for="PolicyNumber" class="form-control form-control-lg shadow-sm"
-                                       placeholder="Enter policy number" />
-                                <span asp-validation-for="PolicyNumber" class="text-danger"></span>
-                            </div>
-                            <div class="col-md-4">
-                                <label asp-for="PolicyStartDate" class="form-label fw-bold fs-5">
-                                    <i class="fas fa-calendar-alt text-danger me-2"></i>Start Date *
-                                </label>
-                                <input asp-for="PolicyStartDate" type="date" class="form-control form-control-lg shadow-sm" />
-                                <span asp-validation-for="PolicyStartDate" class="text-danger"></span>
-                            </div>
-                          
-                            <div class="col-md-4">
-                                <label asp-for="PolicyEndDate" class="form-label fw-bold fs-5">
-                                    <i class="fas fa-calendar-check text-danger me-2"></i>End Date *
-                                </label>
-                                <input asp-for="PolicyEndDate"
-                                       type="date"
-                                       class="form-control form-control-lg shadow-sm"
-                                       value="@DateTime.Now.ToString("yyyy-MM-dd")"
-                                       min="@DateTime.Now.ToString("yyyy-MM-dd")"
-                                       max="@DateTime.Now.ToString("yyyy-MM-dd")" />
-                                <span asp-validation-for="PolicyEndDate" class="text-danger"></span>
+    .claim-card {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 24px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+        overflow: hidden;
+    }
+
+    .claim-header {
+        background: linear-gradient(135deg, rgba(91, 140, 255, 0.15), rgba(139, 108, 255, 0.15));
+        border-bottom: 1px solid var(--card-border);
+        padding: 3rem 2rem;
+        text-align: center;
+    }
+
+        .claim-header .badge-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(245, 185, 66, 0.1);
+            border: 1px solid rgba(245, 185, 66, 0.3);
+            color: var(--gold);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.5rem 1.1rem;
+            border-radius: 999px;
+            margin-bottom: 1.25rem;
+        }
+
+        .claim-header h1 {
+            font-family: 'Sora', 'Inter', sans-serif;
+            font-weight: 700;
+            background: linear-gradient(90deg, #ffffff, var(--blue) 60%, var(--blue-2));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .claim-header p {
+            color: var(--text-muted);
+        }
+
+    .claim-body {
+        padding: 3rem;
+    }
+
+    .section-title {
+        font-family: 'Sora', 'Inter', sans-serif;
+        font-weight: 700;
+        font-size: 1.15rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid var(--card-border);
+    }
+
+        .section-title.gold {
+            color: var(--gold);
+        }
+
+        .section-title.blue {
+            color: var(--blue);
+        }
+
+        .section-title.amber {
+            color: #f0a63d;
+        }
+
+        .section-title.emerald {
+            color: var(--emerald);
+        }
+
+    /* Fixed: labels now forced white and visible */
+    .claim-body label,
+    .claim-body .form-label {
+        color: #ffffff !important;
+        font-weight: 600;
+        font-size: 0.95rem;
+        margin-bottom: 0.5rem;
+        display: inline-block;
+    }
+
+    .claim-body .form-control {
+        background: var(--input-bg);
+        border: 1px solid var(--input-border);
+        color: var(--text-light);
+        border-radius: 12px;
+        padding: 0.75rem 1rem;
+    }
+
+        .claim-body .form-control::placeholder {
+            color: #5c6478;
+        }
+
+        .claim-body .form-control:focus {
+            background: var(--input-bg);
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px rgba(91, 140, 255, 0.2);
+            color: var(--text-light);
+        }
+
+    .claim-body input[type="date"]::-webkit-calendar-picker-indicator,
+    .claim-body input[type="number"]::-webkit-inner-spin-button {
+        filter: invert(1) brightness(1.5);
+    }
+
+    .claim-body .text-danger {
+        color: var(--rose) !important;
+    }
+
+    .btn-claim-submit {
+        background: linear-gradient(90deg, var(--blue), var(--blue-2));
+        border: none;
+        color: #fff;
+        font-weight: 700;
+        border-radius: 999px;
+        box-shadow: 0 10px 30px rgba(91, 140, 255, 0.35);
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+        .btn-claim-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 36px rgba(91, 140, 255, 0.45);
+            color: #fff;
+        }
+
+    .btn-claim-back {
+        background: transparent;
+        border: 1px solid var(--input-border);
+        color: var(--text-muted);
+        border-radius: 999px;
+        font-weight: 600;
+    }
+
+        .btn-claim-back:hover {
+            border-color: var(--blue);
+            color: var(--blue);
+            background: rgba(91, 140, 255, 0.08);
+        }
+
+    .claim-alert {
+        border-radius: 14px;
+        border: 1px solid transparent;
+        font-weight: 500;
+    }
+
+        .claim-alert.alert-success {
+            background: rgba(34, 201, 138, 0.1);
+            border-color: rgba(34, 201, 138, 0.3);
+            color: var(--emerald);
+        }
+
+        .claim-alert.alert-danger {
+            background: rgba(251, 91, 115, 0.1);
+            border-color: rgba(251, 91, 115, 0.3);
+            color: var(--rose);
+        }
+
+        .claim-alert .btn-close {
+            filter: invert(1);
+        }
+</style>
+
+<div class="claim-page">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <!-- Success/Error Messages -->
+                @if (TempData["Success"] != null)
+                {
+                    <div class="alert claim-alert alert-success alert-dismissible fade show" role="alert">
+                        <i class="fas fa-check-circle me-2"></i>@TempData["Success"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                }
+                @if (TempData["Error"] != null)
+                {
+                    <div class="alert claim-alert alert-danger alert-dismissible fade show" role="alert">
+                        <i class="fas fa-exclamation-triangle me-2"></i>@TempData["Error"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                }
+
+                <div class="claim-card">
+                    <div class="claim-header">
+                        <span class="badge-label">
+                            <i class="fas fa-file-medical"></i> Claim Filing
+                        </span>
+                        <h1 class="display-5">File Claim</h1>
+                        <p class="lead mb-0">Register accident claim details</p>
+                    </div>
+                    <div class="claim-body">
+                        <form asp-action="Index" method="post">
+                            <div asp-validation-summary="All" class="text-danger mb-4"></div>
+
+                            <!-- Policy Information -->
+                            <div class="row g-4 mb-5">
+                                <div class="col-md-12">
+                                    <h4 class="section-title gold">
+                                        <i class="fas fa-file-contract me-2"></i>Policy Details
+                                    </h4>
+                                </div>
+                                <div class="col-md-4">
+                                    <label asp-for="PolicyNumber">
+                                        <i class="fas fa-hashtag me-1" style="color: white;"></i>Policy Number *
+                                    </label>
+                                    <input asp-for="PolicyNumber" class="form-control form-control-lg"
+                                           placeholder="Enter policy number" />
+                                    <span asp-validation-for="PolicyNumber" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label asp-for="PolicyStartDate">
+                                        <i class="fas fa-calendar-alt me-1" style="color: var(--gold);"></i>Start Date *
+                                    </label>
+                                    <input asp-for="PolicyStartDate" type="date" class="form-control form-control-lg" />
+                                    <span asp-validation-for="PolicyStartDate" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label asp-for="PolicyEndDate">
+                                        <i class="fas fa-calendar-check me-1" style="color: var(--gold);"></i>End Date *
+                                    </label>
+                                    <input asp-for="PolicyEndDate"
+                                           type="date"
+                                           class="form-control form-control-lg"
+                                           min="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                                    <span asp-validation-for="PolicyEndDate" class="text-danger"></span>
+                                </div>
                             </div>
 
+                            <!-- Customer Information -->
+                            <div class="row g-4 mb-5">
+                                <div class="col-md-12">
+                                    <h4 class="section-title blue">
+                                        <i class="fas fa-user-injured me-2"></i>Customer Details
+                                    </h4>
+                                </div>
+                                <div class="col-md-8">
+                                    <label asp-for="CustomerName">
+                                        <i class="fas fa-user me-1" style="color: var(--blue);"></i>Customer Name *
+                                    </label>
+                                    <input asp-for="CustomerName" class="form-control form-control-lg"
+                                           placeholder="Enter customer full name" />
+                                    <span asp-validation-for="CustomerName" class="text-danger"></span>
+                                </div>
+                            </div>
 
+                            <!-- Accident Details -->
+                            <div class="row g-4 mb-5">
+                                <div class="col-md-12">
+                                    <h4 class="section-title amber">
+                                        <i class="fas fa-exclamation-triangle me-2"></i>Accident Information
+                                    </h4>
+                                </div>
+                                <div class="col-md-6">
+                                    <label asp-for="DateOfAccident">
+                                        <i class="fas fa-clock me-1" style="color: #f0a63d;"></i>Date of Accident *
+                                    </label>
+                                    <input asp-for="DateOfAccident" type="date" class="form-control form-control-lg" />
+                                    <span asp-validation-for="DateOfAccident" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label asp-for="PlaceOfAccident">
+                                        <i class="fas fa-map-marker-alt me-1" style="color: #f0a63d;"></i>Place of Accident
+                                    </label>
+                                    <input asp-for="PlaceOfAccident" class="form-control form-control-lg"
+                                           placeholder="Enter accident location" />
+                                    <span asp-validation-for="PlaceOfAccident" class="text-danger"></span>
+                                </div>
+                            </div>
 
-                        <!-- Customer Information -->
-                        <div class="row g-4 mb-5">
-                            <div class="col-md-12">
-                                <h4 class="text-primary mb-4">
-                                    <i class="fas fa-user-injured me-2"></i>Customer Details
-                                </h4>
+                            <!-- Amount Details -->
+                            <div class="row g-4 mb-5">
+                                <div class="col-md-12">
+                                    <h4 class="section-title emerald">
+                                        <i class="fas fa-coins me-2"></i>Claim Amount
+                                    </h4>
+                                </div>
+                                <div class="col-md-6">
+                                    <label asp-for="InsuredAmount">
+                                        <i class="fas fa-dollar-sign me-1" style="color: var(--emerald);"></i>Insured Amount ($)
+                                    </label>
+                                    <input asp-for="InsuredAmount" type="number" step="0.01"
+                                           class="form-control form-control-lg text-end" />
+                                    <span asp-validation-for="InsuredAmount" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label asp-for="ClaimableAmount">
+                                        <i class="fas fa-hand-holding-dollar me-1" style="color: var(--emerald);"></i>Claimable Amount ($)
+                                    </label>
+                                    <input asp-for="ClaimableAmount" type="number" step="0.01"
+                                           class="form-control form-control-lg text-end" />
+                                    <span asp-validation-for="ClaimableAmount" class="text-danger"></span>
+                                </div>
                             </div>
-                            <div class="col-md-8">
-                                <label asp-for="CustomerName" class="form-label fw-bold fs-5">
-                                    <i class="fas fa-user text-primary me-2"></i>Customer Name *
-                                </label>
-                                <input asp-for="CustomerName" class="form-control form-control-lg shadow-sm"
-                                       placeholder="Enter customer full name" />
-                                <span asp-validation-for="CustomerName" class="text-danger"></span>
-                            </div>
-                        </div>
 
-                        <!-- Accident Details -->
-                        <div class="row g-4 mb-5">
-                            <div class="col-md-12">
-                                <h4 class="text-warning mb-4">
-                                    <i class="fas fa-exclamation-triangle me-2"></i>Accident Information
-                                </h4>
+                            <!-- Submit Buttons -->
+                            <div class="d-grid gap-3 d-md-flex justify-content-center mt-5 pt-4 border-top" style="border-color: var(--card-border) !important;">
+                                <a asp-action="Index" asp-controller="Home" class="btn btn-claim-back btn-lg px-5 py-3 me-md-3">
+                                    <i class="fas fa-arrow-left me-2"></i>Back to Home
+                                </a>
+                                <button type="submit" class="btn btn-claim-submit btn-lg px-5 py-3">
+                                    <i class="fas fa-paper-plane me-2"></i>Submit Claim
+                                </button>
                             </div>
-                            <div class="col-md-6">
-                                <label asp-for="DateOfAccident" class="form-label fw-bold fs-5">
-                                    <i class="fas fa-clock text-warning me-2"></i>Date of Accident *
-                                </label>
-                                <input asp-for="DateOfAccident" type="date" class="form-control form-control-lg shadow-sm" />
-                                <span asp-validation-for="DateOfAccident" class="text-danger"></span>
-                            </div>
-                            <div class="col-md-6">
-                                <label asp-for="PlaceOfAccident" class="form-label fw-bold fs-5">
-                                    <i class="fas fa-map-marker-alt text-warning me-2"></i>Place of Accident
-                                </label>
-                                <input asp-for="PlaceOfAccident" class="form-control form-control-lg shadow-sm"
-                                       placeholder="Enter accident location" />
-                                <span asp-validation-for="PlaceOfAccident" class="text-danger"></span>
-                            </div>
-                        </div>
-
-                        <!-- Amount Details -->
-                        <div class="row g-4 mb-5">
-                            <div class="col-md-12">
-                                <h4 class="text-success mb-4">
-                                    <i class="fas fa-coins me-2"></i>Claim Amount
-                                </h4>
-                            </div>
-                            <div class="col-md-6">
-                                <label asp-for="InsuredAmount" class="form-label fw-bold fs-5">
-                                    <i class="fas fa-rupee-sign text-success me-2"></i>Insured Amount ($)
-                                </label>
-                                <input asp-for="InsuredAmount" type="number" step="0.01"
-                                       class="form-control form-control-lg shadow-sm text-end" />
-                                <span asp-validation-for="InsuredAmount" class="text-danger"></span>
-                            </div>
-                            <div class="col-md-6">
-                                <label asp-for="ClaimableAmount" class="form-label fw-bold fs-5">
-                                    <i class="fas fa-hand-holding-dollar text-success me-2"></i>Claimable Amount ($)
-                                </label>
-                                <input asp-for="ClaimableAmount" type="number" step="0.01"
-                                       class="form-control form-control-lg shadow-sm text-end" />
-                                <span asp-validation-for="ClaimableAmount" class="text-danger"></span>
-                            </div>
-                        </div>
-
-                        <!-- Submit Buttons -->
-                        <div class="d-grid gap-3 d-md-flex justify-content-center mt-5 pt-4 border-top">
-                            <a asp-action="Index" asp-controller="Home" class="btn btn-outline-secondary btn-lg px-5 py-3 me-md-3">
-                                <i class="fas fa-arrow-left me-2"></i>Back to Home
-                            </a>
-                            <button type="submit" class="btn btn-primary btn-lg px-5 py-3 fw-bold shadow-lg">
-                                <i class="fas fa-paper-plane me-2"></i>Submit Claim
-                            </button>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

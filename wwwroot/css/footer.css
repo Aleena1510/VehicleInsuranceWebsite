@@ -11,3 +11,52 @@
         text-align: center !important;
         width: 100% !important;
     }
+
+/* =========================================================
+   GLOBAL PAGE LAYOUT
+   FIX FOOTER POSITION
+========================================================= */
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Main body becomes vertical layout */
+
+.insurance-site-body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #0b1f3a;
+}
+
+
+/* Main content takes available space */
+
+.insurance-main-content {
+    flex: 1 0 auto;
+    width: 100%;
+    min-height: 0;
+}
+
+
+/* Footer stays after content */
+
+.insurance-site-body > .footer {
+    position: relative !important;
+    bottom: auto !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: 100%;
+    flex-shrink: 0;
+    margin-top: auto;
+    z-index: 10;
+}
+
+

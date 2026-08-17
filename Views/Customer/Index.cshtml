@@ -1,77 +1,318 @@
 ﻿@model InsurancePortal.Models.Customer
+
 @{
     ViewData["Title"] = "Step 1: Customer Information";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card shadow-lg border-0">
-                <div class="card-header bg-primary text-white text-center py-4">
-                    <h2 class="mb-0">
-                        <i class="fas fa-user-plus me-3"></i>
-                        Step 1: Customer Registration
-                    </h2>
+<link rel="stylesheet" href="~/css/CustomerLayout.css" />
 
-                    @if (TempData["msg"] != null)
-                    {
-                        <div class="alert alert-success">@TempData["msg"]</div>
-                    }
+<div class="customer-page">
 
-                    <small class="text-white-50">Enter customer personal details</small>
-                </div>
-                <div class="card-body p-5">
-                    <form asp-action="Index" method="post">
-                        <div asp-validation-summary="ModelOnly" class="text-danger mb-4"></div>
+    <div class="container">
 
-                        <div class="row">
-                            <div class="col-md-12 mb-4">
-                                <label asp-for="CustomerName" class="form-label fw-bold">
-                                    <i class="fas fa-user text-primary me-2"></i>Full Name *
-                                </label>
-                                <input asp-for="CustomerName" class="form-control form-control-lg" placeholder="Enter full name" />
-                                <span asp-validation-for="CustomerName" class="text-danger"></span>
-                            </div>
-                        </div>
+        <!-- ================= PAGE HEADER ================= -->
 
-                        <div class="row">
-                            <div class="col-md-12 mb-4">
-                                <label asp-for="CustomerAddress" class="form-label fw-bold">
-                                    <i class="fas fa-map-marker-alt text-primary me-2"></i>Address *
-                                </label>
-                                <textarea asp-for="CustomerAddress" class="form-control form-control-lg" rows="3" placeholder="Enter complete address"></textarea>
-                                <span asp-validation-for="CustomerAddress" class="text-danger"></span>
-                            </div>
-                        </div>
+        <div class="customer-header">
 
-                        <div class="row">
-                            <div class="col-md-12 mb-4">
-                                <label asp-for="CustomerPhoneNumber" class="form-label fw-bold">
-                                    <i class="fas fa-phone text-primary me-2"></i>Phone Number *
-                                </label>
-                                <input asp-for="CustomerPhoneNumber" class="form-control form-control-lg" placeholder="Enter phone number" />
-                                <span asp-validation-for="CustomerPhoneNumber" class="text-danger"></span>
-                            </div>
-                        </div>
-
-                        <div class="d-grid gap-3 d-md-flex justify-content-between mt-5">
-                            <button type="button" class="btn btn-secondary btn-lg px-5" onclick="history.back()">
-                                <i class="fas fa-arrow-left me-2"></i>Back
-                            </button>
-                            <button type="submit" class="btn btn-primary btn-lg px-5">
-                                <i class="fas fa-arrow-right me-2"></i>Next: Vehicle Info
-                            </button>
-                        </div>
-                    </form>
-                </div>
+            <div class="step-badge">
+                <i class="fas fa-user-plus"></i>
             </div>
+
+            <div class="step-label">
+                STEP 01
+            </div>
+
+            <h1>Customer Information</h1>
+
+            <p>
+                Enter your personal details to begin your insurance application.
+            </p>
+
         </div>
+
+
+        <!-- ================= PROGRESS ================= -->
+
+        <div class="progress-wrapper">
+
+            <div class="progress-step active">
+                <div class="progress-circle">
+                    <i class="fas fa-user"></i>
+                </div>
+                <span>Customer</span>
+            </div>
+
+            <div class="progress-line"></div>
+
+            <div class="progress-step">
+                <div class="progress-circle">
+                    <i class="fas fa-car"></i>
+                </div>
+                <span>Vehicle</span>
+            </div>
+
+            <div class="progress-line"></div>
+
+            <div class="progress-step">
+                <div class="progress-circle">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                </div>
+                <span>Estimate</span>
+            </div>
+
+            <div class="progress-line"></div>
+
+            <div class="progress-step">
+                <div class="progress-circle">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <span>Policy</span>
+            </div>
+
+            <div class="progress-line"></div>
+
+            <div class="progress-step">
+                <div class="progress-circle">
+                    <i class="fas fa-receipt"></i>
+                </div>
+                <span>Billing</span>
+            </div>
+            
+
+
+
+        </div>
+
+
+        </div>
+
+
+        <!-- ================= FORM CARD ================= -->
+
+        <div class="customer-card">
+
+            <!-- Card Header -->
+
+            <div class="customer-card-header">
+
+                <div class="header-icon">
+                    <i class="fas fa-id-card"></i>
+                </div>
+
+                <div>
+                    <h2>Personal Details</h2>
+
+                    <p>
+                        Please provide accurate information as it appears
+                        on your official documents.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <!-- Card Body -->
+
+            <div class="customer-card-body">
+
+                @if (TempData["msg"] != null)
+                {
+                    <div class="success-message">
+                        <i class="fas fa-circle-check"></i>
+
+                        <span>
+                            @TempData["msg"]
+                        </span>
+                    </div>
+                }
+
+
+                <form asp-action="Index" method="post">
+
+                    <div asp-validation-summary="ModelOnly"
+                         class="validation-summary">
+                    </div>
+
+
+                    <!-- ================= FULL NAME ================= -->
+
+                    <div class="form-group">
+
+                        <label asp-for="CustomerName">
+
+                            <span class="label-icon">
+                                <i class="fas fa-user"></i>
+                            </span>
+
+                            Full Name
+
+                            <span class="required">*</span>
+
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fas fa-user input-icon"></i>
+
+                            <input asp-for="CustomerName"
+                                   class="theme-input"
+                                   placeholder="Enter your full name"
+                                   autocomplete="name" />
+
+                        </div>
+
+                        <span asp-validation-for="CustomerName"
+                              class="field-error">
+                        </span>
+
+                    </div>
+
+
+                    <!-- ================= ADDRESS ================= -->
+
+                    <div class="form-group">
+
+                        <label asp-for="CustomerAddress">
+
+                            <span class="label-icon">
+                                <i class="fas fa-location-dot"></i>
+                            </span>
+
+                            Address
+
+                            <span class="required">*</span>
+
+                        </label>
+
+                        <div class="input-wrapper textarea-wrapper">
+
+                            <i class="fas fa-map-marker-alt input-icon"></i>
+
+                            <textarea asp-for="CustomerAddress"
+                                      class="theme-input theme-textarea"
+                                      rows="4"
+                                      placeholder="Enter your complete residential address"
+                                      autocomplete="street-address"></textarea>
+
+                        </div>
+
+                        <span asp-validation-for="CustomerAddress"
+                              class="field-error">
+                        </span>
+
+                    </div>
+
+
+                    <!-- ================= PHONE ================= -->
+
+                    <div class="form-group">
+
+                        <label asp-for="CustomerPhoneNumber">
+
+                            <span class="label-icon">
+                                <i class="fas fa-phone"></i>
+                            </span>
+
+                            Phone Number
+
+                            <span class="required">*</span>
+
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fas fa-phone input-icon"></i>
+
+                            <input asp-for="CustomerPhoneNumber"
+                                   class="theme-input"
+                                   placeholder="Enter your phone number"
+                                   autocomplete="tel" />
+
+                        </div>
+
+                        <span asp-validation-for="CustomerPhoneNumber"
+                              class="field-error">
+                        </span>
+
+                    </div>
+
+
+                    <!-- ================= INFORMATION NOTE ================= -->
+
+                    <div class="information-box">
+
+                        <div class="information-icon">
+                            <i class="fas fa-shield-halved"></i>
+                        </div>
+
+                        <div>
+
+                            <h6>Why do we need this information?</h6>
+
+                            <p>
+                                Your personal information is required to
+                                create your insurance customer profile and
+                                process your policy application.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================= BUTTONS ================= -->
+
+                    <div class="form-actions">
+
+                        <button type="button"
+                                class="customer-btn btn-back"
+                                onclick="history.back()">
+
+                            <i class="fas fa-arrow-left"></i>
+
+                            <span>Back</span>
+
+                        </button>
+
+
+                        <button type="submit"
+                                class="customer-btn btn-next">
+
+                            <span>Next: Vehicle Info</span>
+
+                            <i class="fas fa-arrow-right"></i>
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <!-- Footer note -->
+
+        <div class="secure-note">
+
+            <i class="fas fa-lock"></i>
+
+            Your information is securely handled throughout the
+            insurance application process.
+
+        </div>
+
     </div>
+
 </div>
 
+
 @section Scripts {
+
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+
 }

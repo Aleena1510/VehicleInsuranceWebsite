@@ -4,134 +4,285 @@
     ViewData["Title"] = "Contact Us";
 }
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-
 <style>
-    body {
-        background: #0b2c3d;
-        color: white;
+    :root {
+        --navy-bg: #0a0f24;
+        --navy-bg-2: #0d1330;
+        --card-bg: #101830;
+        --card-border: rgba(255, 255, 255, 0.08);
+        --input-bg: #0c1224;
+        --input-border: rgba(255, 255, 255, 0.12);
+        --text-light: #e8ecf5;
+        --text-muted: #98a2b8;
+        --gold: #f5b942;
+        --blue: #5b8cff;
+        --blue-2: #8b6cff;
+        --emerald: #22c98a;
+        --rose: #fb5b73;
+    }
+
+    .contact-page {
+        background: radial-gradient(circle at top right, var(--navy-bg-2), var(--navy-bg) 60%);
+        min-height: 100vh;
+        padding: 4rem 1rem;
+        font-family: 'Inter', sans-serif;
+        color: var(--text-light);
     }
 
     .contact-container {
         max-width: 1000px;
         margin: auto;
-        margin-top: 50px;
         display: flex;
         flex-wrap: wrap;
-        background: #0f3b50;
-        border-radius: 15px;
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 24px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
         overflow: hidden;
     }
 
-    .left {
-        flex: 1;
-        padding: 40px;
-        background: #0c3a4d;
+        .contact-container .left {
+            flex: 1;
+            min-width: 280px;
+            padding: 3rem;
+            background: linear-gradient(135deg, rgba(91, 140, 255, 0.12), rgba(139, 108, 255, 0.12));
+            border-right: 1px solid var(--card-border);
+        }
+
+        .contact-container .right {
+            flex: 1;
+            min-width: 280px;
+            padding: 3rem;
+            background: var(--card-bg);
+            color: var(--text-light);
+        }
+
+    .contact-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(245, 185, 66, 0.1);
+        border: 1px solid rgba(245, 185, 66, 0.3);
+        color: var(--gold);
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 0.5rem 1.1rem;
+        border-radius: 999px;
+        margin-bottom: 1.25rem;
     }
 
-    .right {
-        flex: 1;
-        padding: 40px;
-        background: #f8f9fa;
-        color: black;
+    .contact-container .left h2 {
+        font-family: 'Sora', 'Inter', sans-serif;
+        font-weight: 700;
+        background: linear-gradient(90deg, #ffffff, var(--blue) 60%, var(--blue-2));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        margin-bottom: 1.5rem;
     }
 
-    input, textarea {
-        margin-bottom: 15px;
+    .contact-info-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        margin-bottom: 1.25rem;
+        color: var(--text-muted);
+        font-size: 0.98rem;
     }
 
-    .btn-custom {
-        background: #0b2c3d;
-        color: white;
-        border-radius: 20px;
+        .contact-info-item i {
+            color: var(--blue);
+            margin-top: 0.2rem;
+            width: 18px;
+        }
+
+    .contact-container .right h4 {
+        font-family: 'Sora', 'Inter', sans-serif;
+        font-weight: 700;
+        color: var(--text-light);
+        margin-bottom: 1.5rem;
+    }
+
+    .contact-container label {
+        color: #ffffff !important;
+        font-weight: 600;
+        font-size: 0.9rem;
+        margin-bottom: 0.4rem;
+        display: inline-block;
+    }
+
+    .contact-container input,
+    .contact-container textarea {
+        background: var(--input-bg);
+        border: 1px solid var(--input-border);
+        color: var(--text-light);
+        border-radius: 12px;
+        padding: 0.7rem 1rem;
+        margin-bottom: 0.4rem;
         width: 100%;
     }
 
+        .contact-container input::placeholder,
+        .contact-container textarea::placeholder {
+            color: #5c6478;
+        }
+
+        .contact-container input:focus,
+        .contact-container textarea:focus {
+            background: var(--input-bg);
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px rgba(91, 140, 255, 0.2);
+            color: var(--text-light);
+            outline: none;
+        }
+
+    .contact-container textarea {
+        min-height: 120px;
+        resize: vertical;
+    }
+
+    .field-group {
+        margin-bottom: 1.1rem;
+    }
+
+        .field-group .text-danger {
+            color: var(--rose) !important;
+            font-size: 0.85rem;
+        }
+
+    .btn-contact-submit {
+        background: linear-gradient(90deg, var(--blue), var(--blue-2));
+        border: none;
+        color: #fff;
+        font-weight: 700;
+        border-radius: 999px;
+        width: 100%;
+        padding: 0.85rem;
+        box-shadow: 0 10px 30px rgba(91, 140, 255, 0.35);
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+        .btn-contact-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 36px rgba(91, 140, 255, 0.45);
+            color: #fff;
+        }
+
+    /* Modal restyled to match theme (removes undefined bg-dark-navy class) */
+    .modal-content.theme-modal {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 18px;
+        color: var(--text-light);
+    }
+
+    .theme-modal .modal-header,
+    .theme-modal .modal-footer {
+        border-color: var(--card-border) !important;
+    }
+
+    .theme-modal .modal-title {
+        color: var(--emerald);
+    }
 </style>
 
-<div class="contact-container">
-    <!-- LEFT SIDE -->
-    <div class="left">
-        <h2>Contact Us</h2>
-        <p>📧 example@email.com</p>
-        <p>📞 +92 123 456 789</p>
-        <p>📍 Street Address</p>
-        <p>📍 For Feedback:VehicleInsurance@gmail.com</p>
-        
-        
-    </div>
+<div class="contact-page">
+    <div class="contact-container">
+        <!-- LEFT SIDE -->
+        <div class="left">
+            <span class="contact-badge"><i class="fas fa-headset"></i> Get In Touch</span>
+            <h2>Contact Us</h2>
+            <div class="contact-info-item">
+                <i class="fas fa-envelope"></i>
+                <span>example@email.com</span>
+            </div>
+            <div class="contact-info-item">
+                <i class="fas fa-phone"></i>
+                <span>+92 123 456 789</span>
+            </div>
+            <div class="contact-info-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Street Address</span>
+            </div>
+            <div class="contact-info-item">
+                <i class="fas fa-comment-dots"></i>
+                <span>For Feedback: VehicleInsurance@gmail.com</span>
+            </div>
+        </div>
 
-    <!-- RIGHT SIDE -->
-    <div class="right">
-        <form asp-action="Index" method="post">
+        <!-- RIGHT SIDE -->
+        <div class="right">
+            <h4><i class="fas fa-paper-plane me-2" style="color: var(--blue);"></i>Send a Message</h4>
+            <form asp-action="Index" method="post">
 
-            <input asp-for="Name" class="form-control" placeholder="Your Name" />
-            <span asp-validation-for="Name" class="text-danger"></span>
+                <div class="field-group">
+                    <label asp-for="Name">Your Name</label>
+                    <input asp-for="Name" placeholder="Enter your name" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
 
-            <input asp-for="Email" class="form-control" placeholder="Your Email" />
-            <span asp-validation-for="Email" class="text-danger"></span>
+                <div class="field-group">
+                    <label asp-for="Email">Your Email</label>
+                    <input asp-for="Email" placeholder="Enter your email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
 
-            <input asp-for="Phone" class="form-control" placeholder="Phone Number" />
-            <span asp-validation-for="Phone" class="text-danger"></span>
+                <div class="field-group">
+                    <label asp-for="Phone">Phone Number</label>
+                    <input asp-for="Phone" placeholder="Enter your phone number" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
 
-            <textarea asp-for="Message" class="form-control" placeholder="Your Message"></textarea>
-            <span asp-validation-for="Message" class="text-danger"></span>
+                <div class="field-group">
+                    <label asp-for="Message">Your Message</label>
+                    <textarea asp-for="Message" placeholder="Write your message"></textarea>
+                    <span asp-validation-for="Message" class="text-danger"></span>
+                </div>
 
-            <button type="submit" class="btn btn-custom">Send Message</button>
-        </form>
+                <button type="submit" class="btn btn-contact-submit">
+                    <i class="fas fa-paper-plane me-2"></i>Send Message
+                </button>
+            </form>
+        </div>
     </div>
 </div>
-
 
 <!-- Bootstrap Modal Popup -->
 <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-dark-navy text-white">
-            <div class="modal-header border-secondary">
-                <h5 class="modal-title text-success" id="successModalLabel">✅ Success!</h5>
+        <div class="modal-content theme-modal">
+            <div class="modal-header">
+                <h5 class="modal-title" id="successModalLabel"><i class="fas fa-check-circle me-2"></i>Success!</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 Your message has been sent successfully. We'll get back to you soon.
             </div>
-            <div class="modal-footer border-secondary">
+            <div class="modal-footer">
                 <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
 </div>
 
-@* @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-
-    <script>
-        $(document).ready(function () {
-            // Check if TempData flag is set (from server-side)
-            var showPopup = '@(TempData["ShowSuccessPopup"] != null && (bool)TempData["ShowSuccessPopup"])';
-            if (showPopup === 'True') {
-                $('#successModal').modal('show');
-                // Clear the flag after showing (optional, but TempData is already cleared on read)
-            }
-        });
-    </script>
-} *@
-
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(document).ready(function() {
-        var showPopup = '@(TempData["ShowSuccessPopup"] != null && (bool)TempData["ShowSuccessPopup"])';
-        if (showPopup === 'True') {
-        Swal.fire({
-        title: 'Success!',
-        text: 'Your message has been sent successfully.',
-        icon: 'success',
-        confirmButtonColor: '#0a5c8e',
-        background: '#112240',
-        color: '#fff'
-        });
-        }
+            var showPopup = '@(TempData["ShowSuccessPopup"] != null && (bool)TempData["ShowSuccessPopup"])';
+            if (showPopup === 'True') {
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Your message has been sent successfully.',
+                    icon: 'success',
+                    confirmButtonColor: '#5b8cff',
+                    background: '#101830',
+                    color: '#fff'
+                });
+            }
         });
     </script>
 }

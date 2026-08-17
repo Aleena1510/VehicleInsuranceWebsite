@@ -1,140 +1,313 @@
 ﻿@model InsurancePortal.Models.CustomerBilling
+
 @{
     ViewData["Title"] = "Terms & Conditions";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <head>
     <link href="~/css/Policylayout.css" rel="stylesheet" />
 </head>
-<div class="container-fluid bg-gradient-navy py-5 min-vh-100">
+
+<div class="terms-page">
+
     <div class="container">
-        <!-- Header Section -->
-        <div class="row justify-content-center mb-5">
-            <div class="col-lg-8 text-center">
-                <div class="bg-navy text-white p-5 shadow-lg position-relative overflow-hidden">
-                   
-                    <i class="fas fa-shield-alt fa-4x mb-4 d-block text-light-blue"></i>
-                    <h1 class="display-4 fw-bold mb-3">Terms & Conditions</h1>
-                    <p class="lead mb-0 fs-4 opacity-90">Read carefully before proceeding with your vehicle insurance</p>
-                </div>
+
+        <!-- ================= HERO ================= -->
+
+        <div class="terms-hero">
+
+            <div class="hero-icon">
+                <i class="fas fa-shield-alt"></i>
             </div>
+
+            <h1>Terms & Conditions</h1>
+
+            <p>
+                Please review the following terms carefully before proceeding
+                with your vehicle insurance.
+            </p>
+
         </div>
 
 
-        <!-- Terms & Conditions Section -->
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <div class="card border-0 shadow-xl rounded-4 overflow-hidden bg-white">
-                    <div class="card-header bg-navy text-white py-5 text-center position-relative">
-                        <h2 class="mb-3 fw-bold display-6">
-                            <i class="fas fa-file-contract me-3 text-P"></i>Important Terms & Conditions
-                        </h2>
-                        <p class="lead mb-0 fs-5 opacity-90">⚠️ Please read carefully before agreeing</p>
-                    </div>
-                    <div class="card-body p-5">
-                        <div class="row g-4">
-                            <div class="col-md-6">
-                                <div class="alert border-start border-4 border-primary shadow-sm bg-light">
-                                    <h6 class="fw-bold mb-3 text-navy">
-                                        <i class="fas fa-exclamation-triangle me-2 text-warning"></i>Form Accuracy
-                                    </h6>
-                                    <ul class="mb-0">
-                                        <li><strong>Fill all details carefully</strong> - Any wrong information may lead to <span class="text-danger fw-bold">policy cancellation</span></li>
-                                        <li>Vehicle details (Chassis, Engine No.) must match <strong>RC book</strong></li>
-                                        <li>Customer details must match <strong>CNIC/PassportNo.</strong></li>
-                                    </ul>
-                                </div>
+        <!-- ================= TERMS CARD ================= -->
+
+        <div class="terms-card">
+
+            <!-- Header -->
+
+            <div class="terms-header">
+
+                <h2>
+                    <i class="fas fa-file-contract me-2"></i>
+                    Important Terms & Conditions
+                </h2>
+
+                <p>
+                    <i class="fas fa-circle-exclamation me-1"></i>
+                    Please read and understand all conditions before continuing.
+                </p>
+
+            </div>
+
+
+            <!-- Body -->
+
+            <div class="terms-body">
+
+                <div class="row g-4">
+
+
+                    <!-- Form Accuracy -->
+
+                    <div class="col-md-6">
+
+                        <div class="term-box">
+
+                            <div class="term-icon">
+                                <i class="fas fa-clipboard-check"></i>
                             </div>
-                            <div class="col-md-6">
-                                <div class="alert border-start border-4 border-primary shadow-sm bg-light">
-                                    <h6 class="fw-bold mb-3 text-danger">
-                                        <i class="fas fa-gavel me-2"></i>Claim Process
-                                    </h6>
-                                    <ul class="mb-0">
-                                        <li><strong>Policy Number must match exactly</strong> during claim filing</li>
-                                        <li>Billing receipt <strong>must be clear & visible</strong></li>
-                                        <li>Any tampering in documents = <span class="text-danger fw-bold">Claim Rejected</span></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="alert border-start border-4 border-primary shadow-sm bg-light">
-                                    <h6 class="fw-bold mb-3 text-navy">
-                                        <i class="fas fa-receipt me-2"></i>Payment Terms
-                                    </h6>
-                                    <ul class="mb-0">
-                                        <li>Payment proof <strong>must be uploaded</strong> (Image/PDF)</li>
-                                        <li>Premium must be paid <strong>before policy activation</strong></li>
-                                        <li>Policy valid only after <strong>payment confirmation</strong></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="alert border-start border-4 border-primary shadow-sm bg-light">
-                                    <h6 class="fw-bold mb-3 text-secondary">
-                                        <i class="fas fa-info-circle me-2 text-info"></i>Policy Validity
-                                    </h6>
-                                    <ul class="mb-0">
-                                        <li>Policy starts from <strong>billing date</strong></li>
-                                        <li>1 year coverage from activation date</li>
-                                        <li>Renewal reminder 30 days before expiry</li>
-                                    </ul>
-                                </div>
-                            </div>
+
+                            <h5>Form Accuracy</h5>
+
+                            <ul>
+
+                                <li>
+                                    <strong>Fill all details carefully</strong>.
+                                    Incorrect information may result in
+                                    <span class="danger-text">
+                                        policy cancellation
+                                    </span>.
+                                </li>
+
+                                <li>
+                                    Vehicle details such as
+                                    <strong>Chassis Number</strong> and
+                                    <strong>Engine Number</strong>
+                                    must match the RC book.
+                                </li>
+
+                                <li>
+                                    Customer information must match the
+                                    registered <strong>CNIC / Passport</strong>.
+                                </li>
+
+                            </ul>
+
                         </div>
 
-                        <!-- Checkbox Agreement -->
-                        <div class="row mt-5">
-                            <div class="col-12">
-                                <div class="form-check form-switch form-check-lg p-4 border rounded-3 bg-light">
-                                    <input class="form-check-input border-navy border-3 ms-1 me-1" type="checkbox"  id="termsAgreement" required>
-                                    <label class="form-check-label fs-5 fw-bold text-navy" for="termsAgreement">
-                                        <i class="fas fa-check-circle text-success me-2"></i>
-                                        I have read and agree to all the above <strong>Terms & Conditions*
-                                    </label>
-                                </div>
-                                <div class="form-text mt-2">
-                                    <i class="fas fa-info-circle me-1 text-info"></i>You must agree to proceed with insurance purchase
-                                </div>
-                            </div>
-                        </div>
                     </div>
+
+
+                    <!-- Claim Process -->
+
+                    <div class="col-md-6">
+
+                        <div class="term-box">
+
+                            <div class="term-icon rose">
+                                <i class="fas fa-gavel"></i>
+                            </div>
+
+                            <h5>Claim Process</h5>
+
+                            <ul>
+
+                                <li>
+                                    The <strong>Policy Number</strong>
+                                    must match exactly during claim filing.
+                                </li>
+
+                                <li>
+                                    Billing receipt must be
+                                    <strong>clear and readable</strong>.
+                                </li>
+
+                                <li>
+                                    Any tampering or alteration of documents
+                                    may result in
+                                    <span class="danger-text">
+                                        claim rejection
+                                    </span>.
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Payment Terms -->
+
+                    <div class="col-md-6">
+
+                        <div class="term-box">
+
+                            <div class="term-icon gold">
+                                <i class="fas fa-credit-card"></i>
+                            </div>
+
+                            <h5>Payment Terms</h5>
+
+                            <ul>
+
+                                <li>
+                                    Payment proof must be uploaded in
+                                    <strong>Image or PDF</strong> format.
+                                </li>
+
+                                <li>
+                                    Premium must be paid before
+                                    <strong>policy activation</strong>.
+                                </li>
+
+                                <li>
+                                    Policy becomes valid only after
+                                    <strong>payment confirmation</strong>.
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Policy Validity -->
+
+                    <div class="col-md-6">
+
+                        <div class="term-box">
+
+                            <div class="term-icon emerald">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+
+                            <h5>Policy Validity</h5>
+
+                            <ul>
+
+                                <li>
+                                    Policy starts from the
+                                    <strong>billing date</strong>.
+                                </li>
+
+                                <li>
+                                    Coverage remains valid for
+                                    <strong>one year</strong>
+                                    from the activation date.
+                                </li>
+
+                                <li>
+                                    A renewal reminder may be sent
+                                    <strong>30 days before expiry</strong>.
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
                 </div>
+
+
+                <!-- ================= AGREEMENT ================= -->
+
+                <div class="agreement-box">
+
+                    <input class="agreement-checkbox"
+                           type="checkbox"
+                           id="termsAgreement"
+                           required />
+
+                    <div class="agreement-content">
+
+                        <label for="termsAgreement">
+
+                            <i class="fas fa-circle-check me-2"></i>
+
+                            I have read and agree to all the
+                            <strong>Terms & Conditions</strong>.
+
+                        </label>
+
+                        <span class="agreement-note">
+
+                            <i class="fas fa-info-circle me-1"></i>
+
+                            You must accept these terms before proceeding
+                            with the insurance application.
+
+                        </span>
+
+                    </div>
+
+                </div>
+
             </div>
+
         </div>
 
-        <!-- Action Buttons -->
-        <div class="row justify-content-center mt-5 pb-5">
-            <div class="col-lg-8 text-center">
-                <div class="d-grid d-md-flex gap-3 justify-content-center">
-                    <a asp-action="Index" class="btn border-light btn-outline-navy text-light btn-lg px-5 py-3 shadow-lg">
-                        <i class="fas fa-arrow-left me-2"></i>← Back to Home
-                    </a>
-                    <a asp-action="Index" asp-controller="Customer" id="getStartedBtn" class="btn  border-light bg-navy text-white btn-lg px-5 py-3 shadow-lg fs-5 fw-bold">
-                        <i class="fas fa-rocket me-2"></i>Get Started →
-                    </a>
-                </div>
-            </div>
+
+        <!-- ================= ACTION BUTTONS ================= -->
+
+        <div class="terms-actions pb-5">
+
+            <a asp-action="Index"
+               class="terms-btn btn-back">
+
+                <i class="fas fa-arrow-left me-2"></i>
+
+                Back to Home
+
+            </a>
+
+
+            <a asp-action="Index"
+               asp-controller="Customer"
+               id="getStartedBtn"
+               class="terms-btn btn-start">
+
+                Continue to Application
+
+                <i class="fas fa-arrow-right ms-2"></i>
+
+            </a>
+
         </div>
+
     </div>
+
 </div>
 
 
-
 @section Scripts {
+
     <script>
-        document.getElementById('getStartedBtn').addEventListener('click', function(e) {
-            if (!document.getElementById('termsAgreement').checked) {
-                e.preventDefault();
-                
-                if (typeof bootstrap !== 'undefined') {
-                    var toast = new bootstrap.Toast(document.createElement('div'));
-                    alert('⚠️ Please agree to Terms & Conditions first!');
-                } else {
-                    alert('⚠️ Please agree to Terms & Conditions first!');
+
+        document
+            .getElementById("getStartedBtn")
+            .addEventListener("click", function(e) {
+
+                const agreement =
+                    document.getElementById("termsAgreement");
+
+                if (!agreement.checked) {
+
+                    e.preventDefault();
+
+                    alert(
+                        "⚠️ Please agree to the Terms & Conditions before continuing."
+                    );
+
+                    agreement.focus();
                 }
-                document.getElementById('termsAgreement').focus();
-            }
-        });
+
+            });
+
     </script>
+
 }

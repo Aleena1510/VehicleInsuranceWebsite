@@ -12,44 +12,44 @@
     <link href="~/css/footer.css" rel="stylesheet" />
     <link href="~/css/site.css" rel="stylesheet" asp-append-version="true" />
     <style>
-            /* Global Form Fix - All Pages */
+        /* Global Form Fix - All Pages */
 
-            body {
-                background-color: #0b1f3a;
-                color: #fff;
-            }
+        body {
+        background-color: #0b1f3a;
+        color: #fff;
+        }
 
-            .form-control {
-                background-color: #0b1f3a !important;
-                border: 1px solid #2e4a73 !important;
-                color: #ffffff !important;
-            }
+        .form-control {
+        background-color: #0b1f3a !important;
+        border: 1px solid #2e4a73 !important;
+        color: #ffffff !important;
+        }
 
-                /* Placeholder visible everywhere */
-                .form-control::placeholder {
-                    color: #9fb3c8 !important;
-                    opacity: 1;
-                }
+        /* Placeholder visible everywhere */
+        .form-control::placeholder {
+        color: #9fb3c8 !important;
+        opacity: 1;
+        }
 
-                /* Focus state */
-                .form-control:focus {
-                    border-color: #4da3ff !important;
-                    box-shadow: none !important;
-                    background-color: #0b1f3a !important;
-                    color: #ffffff !important;
-                }
+        /* Focus state */
+        .form-control:focus {
+        border-color: #4da3ff !important;
+        box-shadow: none !important;
+        background-color: #0b1f3a !important;
+        color: #ffffff !important;
+        }
 
-            /* Textarea placeholder */
-            textarea.form-control::placeholder {
-                color: #9fb3c8 !important;
-            }
+        /* Textarea placeholder */
+        textarea.form-control::placeholder {
+        color: #9fb3c8 !important;
+        }
 
-            /* Labels */
-            label {
-            color: #0b1f3a !important;
-            }
+        /* Labels */
+        label {
+        color: #0b1f3a !important;
+        }
 
-            <style >
+        <style >
                 /* Global Form Fix - All Pages */
                 body {
                     background-color: #0b1f3a;
@@ -95,173 +95,560 @@
                     transition: background-color 5000s ease-in-out 0s;
                 }
         </style>
+
     
+    </head>
+    <body>
+        <header>
+            @* <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-info text-white border-bottom box-shadow "> *@
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index">VehicleInsurance</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon" style="color:white;"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
 
-</head>
-<body>
-    <header>
-        @* <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-info text-white border-bottom box-shadow "> *@
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index">VehicleInsurance</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon" style="color:white;"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                 
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                       
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="About">About</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="About">About</a>
+                            </li>
+
                        
 
                         
                        
                        
-                        
-                        @if (User.IsInRole("Admin"))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Admin" asp-action="Index">Dashboard</a>
-                            </li>
-                        }
-                        @if (User.IsInRole("User"))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="" asp-controller="Contact" asp-action="Index">Contact</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="" asp-controller="Claim" asp-action="Index">Claim</a>
-                            </li>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Admin" asp-action="Index">Dashboard</a>
+                                </li>
+                            }
+                            @if (User.IsInRole("User"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Contact" asp-action="Index">Contact</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Claim" asp-action="Index">Claim</a>
+                                </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Policylayout">Policy</a>
-                            </li>
-                           
-                        }
-                        <partial name="_LoginPartial" />
-                    </ul>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Policylayout">Policy</a>
+                                </li>
+
+                            }
+                            <partial name="_LoginPartial" />
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
-    </header>
-    <div>
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+            </nav>
+        </header>
+        <div>
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
 
    
-    <footer class="footer">
-        <p>© 2026 Insurance Portal • Karachi, Pakistan • support@insurance.com</p>
-    </footer>
+        <footer class="footer">
+            <p>© 2026 Insurance Portal • Karachi, Pakistan • support@insurance.com</p>
+        </footer>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
 
-    @await RenderSectionAsync("Scripts", required: false)
+        @await RenderSectionAsync("Scripts", required: false)
 
 
 
-    <!-- 🔹 Chat Toggle Button -->
-    <div id="chatToggle" onclick="toggleChat()">
-        💬
-    </div>
+        <!-- =========================================================
+     INSURANCE CHATBOT
+========================================================= -->
 
-    <!-- 🔹 Chat Window -->
-    <div id="chatContainer" class="d-none">
-        <div class="chat-header">
-            🚗 Insurance Assistant
-            <span onclick="toggleChat()" style="cursor:pointer;">✖</span>
+        <div id="insuranceChatToggle"
+             onclick="insuranceToggleChat()"
+             title="Insurance Assistant">
+
+            <i class="fas fa-comments"></i>
+
+            <span class="insurance-chat-online-dot"></span>
+
         </div>
 
-        <div id="chatBox" class="chat-body">
-            <div class="text-muted">👋 Ask anything about our system</div>
+
+        <div id="insuranceChatContainer"
+             class="insurance-chat-hidden">
+
+            <!-- Header -->
+            <div class="insurance-chat-header">
+
+                <div class="insurance-chat-header-left">
+
+                    <div class="insurance-chat-avatar">
+                        <i class="fas fa-car"></i>
+                    </div>
+
+                    <div class="insurance-chat-header-info">
+
+                        <div class="insurance-chat-title">
+                            Insurance Assistant
+                        </div>
+
+                        <div class="insurance-chat-status">
+                            <span></span>
+                            Online • Ready to help
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <button type="button"
+                        class="insurance-chat-close"
+                        onclick="insuranceToggleChat()">
+
+                    <i class="fas fa-times"></i>
+
+                </button>
+
+            </div>
+
+
+            <!-- Body -->
+            <div id="insuranceChatBox"
+                 class="insurance-chat-body">
+
+                <div class="insurance-chat-welcome">
+
+                    <div class="insurance-chat-welcome-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+
+                    <h4>Hello! 👋</h4>
+
+                    <p>
+                        I'm your Insurance Assistant.
+                        Ask me anything about the system.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Footer / Input -->
+            <div class="insurance-chat-footer">
+
+                <input type="text"
+                       id="insuranceUserInput"
+                       placeholder="Ask about insurance..."
+                       autocomplete="off" />
+
+                <button type="button"
+                        class="insurance-chat-send"
+                        onclick="insuranceSendMessage()">
+
+                    <i class="fas fa-paper-plane"></i>
+
+                </button>
+
+            </div>
+
         </div>
 
-        <div class="chat-footer">
-            <input type="text" id="userInput" placeholder="Type here..." />
-            <button onclick="sendMessage()">➤</button>
-        </div>
-    </div>
 
+        <script>
 
-    <script>
-        function toggleChat() {
-            let chat = document.getElementById("chatContainer");
-            chat.classList.toggle("d-none");
-        }
+                /* =========================================================
+                   TOGGLE CHAT
+                ========================================================= */
 
-        const responses = [
-            { keywords: ["website", "system"], answer: "This is a Vehicle Insurance Management System that automates policy management, billing, and claims." },
-            { keywords: ["purpose"], answer: "The purpose is to reduce paperwork, improve efficiency, and provide secure insurance management." },
-            { keywords: ["modules"], answer: "Modules include Login, Customer, Vehicle, Estimate, Policy, Billing, Reports, Claims, and Expenses." },
-            { keywords: ["customer"], answer: "Customers can register, login, purchase policies, and submit claims." },
-            { keywords: ["admin"], answer: "Admin manages policies, claims, billing, and reports." },
-            { keywords: ["claim"], answer: "Claims allow customers to request insurance compensation after accidents." },
-            { keywords: ["billing"], answer: "Billing module generates invoices and stores payment details." },
-            { keywords: ["default"], answer: "Ask me anything about the Vehicle Insurance System." },
-                    {
-            keywords: ["policy form", "application form"],
-            answer: "The policy form is an online application form used to collect all necessary details from the customer and their vehicle before issuing an insurance policy. It includes personal information, vehicle specifications, and policy preferences."
-        },
-        {
-            keywords: ["what is policy form"],
-            answer: "A policy form is a structured document that captures customer and vehicle details required for insurance processing. It ensures accurate data collection for policy generation."
-        },
-        {
-            keywords: ["why policy form"],
-            answer: "The policy form is important because it ensures that all required information is collected systematically, which helps in accurate policy creation, risk assessment, and claim processing."
-        },
-        {
-            keywords: ["what includes policy form"],
-            answer: "The policy form includes customer name, contact details, vehicle information, engine number, model, policy type, and duration."
-        }
-        ];
+                function insuranceToggleChat() {
 
-        function sendMessage() {
-            let input = document.getElementById("userInput").value;
-            if (input.trim() === "") return;
+                    const chat =
+                        document.getElementById("insuranceChatContainer");
 
-            addMessage("You", input);
+                    chat.classList.toggle("insurance-chat-hidden");
 
-            let response = getResponse(input.toLowerCase());
-            setTimeout(() => addMessage("Bot", response), 400);
+                    if (!chat.classList.contains("insurance-chat-hidden")) {
 
-            document.getElementById("userInput").value = "";
-        }
+                        setTimeout(function() {
 
-        function addMessage(sender, text) {
-            let chatBox = document.getElementById("chatBox");
-            let div = document.createElement("div");
+                            document
+                                .getElementById("insuranceUserInput")
+                                .focus();
 
-            div.innerHTML = `<strong>${sender}:</strong> ${text}`;
-            div.classList.add("mb-1");
+                        }, 100);
 
-            chatBox.appendChild(div);
-            chatBox.scrollTop = chatBox.scrollHeight;
-        }
-
-        function getResponse(input) {
-            for (let r of responses) {
-                for (let k of r.keywords) {
-                    if (input.includes(k)) return r.answer;
+                    }
                 }
-            }
-            return responses.find(r => r.keywords.includes("default")).answer;
-        }
 
-        document.addEventListener("DOMContentLoaded", function () {
-            document.getElementById("userInput").addEventListener("keypress", function (e) {
-                if (e.key === "Enter") sendMessage();
-            });
-        });
-    </script>
-</body>
+
+                /* =========================================================
+                   CHAT RESPONSES
+                ========================================================= */
+
+                const insuranceResponses = [
+
+                    {
+                        keywords: ["website", "system"],
+                        answer:
+                            "This is a Vehicle Insurance Management System that automates policy management, billing, and claims."
+                    },
+
+                    {
+                        keywords: ["purpose"],
+                        answer:
+                            "The purpose is to reduce paperwork, improve efficiency, and provide secure insurance management."
+                    },
+
+                    {
+                        keywords: ["modules"],
+                        answer:
+                            "Modules include Login, Customer, Vehicle, Estimate, Policy, Billing, Reports, Claims, and Expenses."
+                    },
+
+                    {
+                        keywords: ["customer"],
+                        answer:
+                            "Customers can register, login, purchase policies, and submit claims."
+                    },
+
+                    {
+                        keywords: ["admin"],
+                        answer:
+                            "Admin manages policies, claims, billing, and reports."
+                    },
+
+                    {
+                        keywords: ["claim"],
+                        answer:
+                            "Claims allow customers to request insurance compensation after accidents."
+                    },
+
+                    {
+                        keywords: ["billing"],
+                        answer:
+                            "Billing module generates invoices and stores payment details."
+                    },
+
+                    {
+                        keywords: ["policy form", "application form"],
+                        answer:
+                            "The policy form is an online application form used to collect all necessary details from the customer and their vehicle before issuing an insurance policy. It includes personal information, vehicle specifications, and policy preferences."
+                    },
+
+                    {
+                        keywords: ["what is policy form"],
+                        answer:
+                            "A policy form is a structured document that captures customer and vehicle details required for insurance processing. It ensures accurate data collection for policy generation."
+                    },
+
+                    {
+                        keywords: ["why policy form"],
+                        answer:
+                            "The policy form is important because it ensures that all required information is collected systematically, which helps in accurate policy creation, risk assessment, and claim processing."
+                    },
+
+                    {
+                        keywords: ["what includes policy form"],
+                        answer:
+                            "The policy form includes customer name, contact details, vehicle information, engine number, model, policy type, and duration."
+                    },
+
+                    {
+                        keywords: ["default"],
+                        answer:
+                            "Ask me anything about the Vehicle Insurance System."
+                    }
+
+                ];
+
+
+                /* =========================================================
+                   SEND MESSAGE
+                ========================================================= */
+
+                function insuranceSendMessage() {
+
+                    const inputElement =
+                        document.getElementById("insuranceUserInput");
+
+                    const input =
+                        inputElement.value.trim();
+
+                    if (input === "") return;
+
+
+                    insuranceAddMessage(
+                        "You",
+                        input,
+                        "user"
+                    );
+
+
+                    inputElement.value = "";
+
+
+                    insuranceShowTyping();
+
+
+                    setTimeout(function() {
+
+                        insuranceRemoveTyping();
+
+                        const response =
+                            insuranceGetResponse(
+                                input.toLowerCase()
+                            );
+
+                        insuranceAddMessage(
+                            "Assistant",
+                            response,
+                            "bot"
+                        );
+
+                    }, 500);
+
+                }
+
+
+                /* =========================================================
+                   ADD MESSAGE
+                ========================================================= */
+
+                function insuranceAddMessage(
+                    sender,
+                    text,
+                    type
+                ) {
+
+                    const chatBox =
+                        document.getElementById(
+                            "insuranceChatBox"
+                        );
+
+
+                    const message =
+                        document.createElement("div");
+
+                    message.className =
+                        "insurance-chat-message " + type;
+
+
+                    const avatar =
+                        document.createElement("div");
+
+                    avatar.className =
+                        "insurance-message-avatar";
+
+
+                    if (type === "user") {
+
+                        avatar.innerHTML =
+                            '<i class="fas fa-user"></i>';
+
+                    } else {
+
+                        avatar.innerHTML =
+                            '<i class="fas fa-car"></i>';
+
+                    }
+
+
+                    const content =
+                        document.createElement("div");
+
+                    content.className =
+                        "insurance-message-content";
+
+
+                    const senderElement =
+                        document.createElement("div");
+
+                    senderElement.className =
+                        "insurance-message-sender";
+
+                    senderElement.textContent =
+                        sender;
+
+
+                    const textElement =
+                        document.createElement("div");
+
+                    textElement.className =
+                        "insurance-message-text";
+
+                    textElement.textContent =
+                        text;
+
+
+                    content.appendChild(senderElement);
+
+                    content.appendChild(textElement);
+
+                    message.appendChild(avatar);
+
+                    message.appendChild(content);
+
+                    chatBox.appendChild(message);
+
+
+                    chatBox.scrollTop =
+                        chatBox.scrollHeight;
+
+                }
+
+
+                /* =========================================================
+                   TYPING INDICATOR
+                ========================================================= */
+
+                function insuranceShowTyping() {
+
+                    const chatBox =
+                        document.getElementById(
+                            "insuranceChatBox"
+                        );
+
+
+                    const typing =
+                        document.createElement("div");
+
+                    typing.id =
+                        "insuranceTypingIndicator";
+
+                    typing.className =
+                        "insurance-chat-message bot";
+
+
+                    typing.innerHTML = `
+
+                            <div class="insurance-message-avatar">
+                                <i class="fas fa-car"></i>
+                            </div>
+
+                            <div class="insurance-message-content">
+
+                                <div class="insurance-message-sender">
+                                    Assistant
+                                </div>
+
+                                <div class="insurance-typing-dots">
+
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+
+                                </div>
+
+                            </div>
+
+                        `;
+
+
+                    chatBox.appendChild(typing);
+
+                    chatBox.scrollTop =
+                        chatBox.scrollHeight;
+
+                }
+
+
+                function insuranceRemoveTyping() {
+
+                    const typing =
+                        document.getElementById(
+                            "insuranceTypingIndicator"
+                        );
+
+                    if (typing) {
+
+                        typing.remove();
+
+                    }
+
+                }
+
+
+                /* =========================================================
+                   GET RESPONSE
+                ========================================================= */
+
+                function insuranceGetResponse(input) {
+
+                    for (
+                        let response of insuranceResponses
+                    ) {
+
+                        for (
+                            let keyword of response.keywords
+                        ) {
+
+                            if (input.includes(keyword)) {
+
+                                return response.answer;
+
+                            }
+
+                        }
+
+                    }
+
+
+                    const defaultResponse =
+                        insuranceResponses.find(
+                            response =>
+                                response.keywords.includes("default")
+                        );
+
+
+                    return defaultResponse.answer;
+
+                }
+
+
+                /* =========================================================
+                   ENTER KEY
+                ========================================================= */
+
+                document.addEventListener(
+                    "DOMContentLoaded",
+                    function() {
+
+                        const input =
+                            document.getElementById(
+                                "insuranceUserInput"
+                            );
+
+
+                        input.addEventListener(
+                            "keypress",
+                            function(event) {
+
+                                if (event.key === "Enter") {
+
+                                    event.preventDefault();
+
+                                    insuranceSendMessage();
+
+                                }
+
+                            }
+                        );
+
+                    }
+                );
+
+        </script>
+    </body>
 </html>

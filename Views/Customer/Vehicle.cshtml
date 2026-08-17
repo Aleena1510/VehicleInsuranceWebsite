@@ -1,116 +1,547 @@
 ﻿@model InsurancePortal.Models.Vehicle
+
 @{
     ViewData["Title"] = "Step 2: Vehicle Information";
-    // Layout = "~/Views/Shared/_AdmissionLayout.cshtml";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    
+
     var customer = ViewBag.CustomerData as InsurancePortal.Models.Customer;
 }
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card shadow-lg border-0">
-                <div class="card-header bg-primary text-white text-center py-4">
-                    <h2 class="mb-0">
-                        <i class="fas fa-car me-3"></i>
-                        Step 2: Vehicle Details
-                    </h2>
-                    <small class="text-white-50">Enter complete vehicle information</small>
-                </div>
-                <div class="card-body p-5">
-                    <form asp-action="Vehicle" method="post">
-                        @Html.AntiForgeryToken()
-                        <div asp-validation-summary="All" class="text-danger"></div>
-                        <div asp-validation-summary="ModelOnly" class="text-danger mb-4"></div>
-                        <input type="hidden" asp-for="CustomerId" />
-                        
-                        
+<link rel="stylesheet" href="~/css/VehicleLayout.css" />
 
-                        <div class="row">
-                            <div class="col-md-6 mb-4">
-                                <label asp-for="VehicleName" class="form-label fw-bold">
-                                    <i class="fas fa-car text-success me-2"></i>Vehicle Name *
-                                </label>
-                                <input asp-for="VehicleName" class="form-control form-control-lg" />
-                                <span asp-validation-for="VehicleName" class="text-danger"></span>
-                            </div>
-                            <div class="col-md-6 mb-4">
-                                <label asp-for="VehicleOwnerName" class="form-label fw-bold">
-                                    <i class="fas fa-user-tie text-success me-2"></i>Owner Name *
-                                </label>
-                                <input asp-for="VehicleOwnerName" class="form-control form-control-lg" />
-                                <span asp-validation-for="VehicleOwnerName" class="text-danger"></span>
-                            </div>
-                        </div>
+<div class="vehicle-page">
 
-                        <div class="row">
-                            <div class="col-md-4 mb-4">
-                                <label asp-for="VehicleModel" class="form-label fw-bold">
-                                    <i class="fas fa-cog text-success me-2"></i>Model *
-                                </label>
-                                <input asp-for="VehicleModel" class="form-control form-control-lg" />
-                                <span asp-validation-for="VehicleModel" class="text-danger"></span>
-                            </div>
-                            <div class="col-md-4 mb-4">
-                                <label asp-for="VehicleVersion" class="form-label">
-                                    <i class="fas fa-tag text-success me-2"></i>Version
-                                </label>
-                                <input asp-for="VehicleVersion" class="form-control form-control-lg" />
-                            </div>
-                            <div class="col-md-4 mb-4">
-                                <label asp-for="VehicleRate" class="form-label fw-bold">
-                                    <i class="fas fa-rupee-sign text-success me-2"></i>Rate ($) *
-                                </label>
-                                <input asp-for="VehicleRate" class="form-control form-control-lg" type="number" step="0.01" />
-                                <span asp-validation-for="VehicleRate" class="text-danger"></span>
-                            </div>
-                        </div>
+    <div class="container">
 
-                        <div class="row">
-                            <div class="col-md-6 mb-4">
-                                <label asp-for="VehicleBodyNumber" class="form-label fw-bold">
-                                    <i class="fas fa-id-card text-success me-2"></i>Body Number *
-                                </label>
-                                <input asp-for="VehicleBodyNumber" class="form-control form-control-lg" />
-                                <span asp-validation-for="VehicleBodyNumber" class="text-danger"></span>
-                            </div>
-                            <div class="col-md-6 mb-4">
-                                <label asp-for="VehicleEngineNumber" class="form-label fw-bold">
-                                    <i class="fas fa-cogs text-success me-2"></i>Engine Number *
-                                </label>
-                                <input asp-for="VehicleEngineNumber" class="form-control form-control-lg" />
-                                <span asp-validation-for="VehicleEngineNumber" class="text-danger"></span>
-                            </div>
-                        </div>
+        <!-- ================= HEADER ================= -->
 
-                        <div class="row">
-                            <div class="col-md-12 mb-4">
-                                <label asp-for="VehicleNumber" class="form-label fw-bold">
-                                    <i class="fas fa-hashtag text-success me-2"></i>Vehicle Number *
-                                </label>
-                                <input asp-for="VehicleNumber" class="form-control form-control-lg" />
-                                <span asp-validation-for="VehicleNumber" class="text-danger"></span>
-                            </div>
-                        </div>
+        <div class="vehicle-header">
 
-                        <div class="d-grid gap-3 d-md-flex justify-content-between mt-5">
-                            <a asp-action="Index" class="btn btn-secondary btn-lg px-5">
-                                <i class="fas fa-arrow-left me-2"></i>Previous
-                            </a>
-                            <button type="submit" class="btn btn-primary btn-lg px-5">
-                                <i class="fas fa-arrow-right me-2"></i>Next: Estimate
-                            </button>
-                        </div>
-                    </form>
-                </div>
+            <div class="step-badge">
+                <i class="fas fa-car"></i>
             </div>
+
+            <div class="step-label">
+                STEP 02
+            </div>
+
+            <h1>Vehicle Information</h1>
+
+            <p>
+                Enter your vehicle details accurately to continue your
+                insurance application.
+            </p>
+
         </div>
+
+
+        <!-- ================= PROGRESS ================= -->
+
+        <div class="progress-wrapper">
+
+            <!-- Step 1 -->
+
+            <div class="progress-step completed">
+
+                <div class="progress-circle">
+                    <i class="fas fa-user"></i>
+                </div>
+
+                <span>Customer</span>
+
+            </div>
+
+
+            <div class="progress-line completed-line"></div>
+
+
+            <!-- Step 2 -->
+
+            <div class="progress-step active">
+
+                <div class="progress-circle">
+                    <i class="fas fa-car"></i>
+                </div>
+
+                <span>Vehicle</span>
+
+            </div>
+
+
+            <div class="progress-line"></div>
+
+
+            <!-- Step 3 -->
+
+            <div class="progress-step">
+
+                <div class="progress-circle">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                </div>
+
+                <span>Estimate</span>
+
+            </div>
+
+
+            <div class="progress-line"></div>
+
+
+            <!-- Step 4 -->
+
+            <div class="progress-step">
+
+                <div class="progress-circle">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+
+                <span>Policy</span>
+
+            </div>
+
+            
+            <div class="progress-line"></div>
+
+
+            <!-- Step 5-->
+
+            <div class="progress-step">
+
+                <div class="progress-circle">
+                    <i class="fas fa-receipt"></i>
+                </div>
+
+                <span>Billing</span>
+
+            </div>
+
+            
+
+
+          
+
+        </div>
+
+
+        </div>
+
+
+        <!-- ================= MAIN CARD ================= -->
+
+        <div class="vehicle-card">
+
+            <!-- Card Header -->
+
+            <div class="vehicle-card-header">
+
+                <div class="header-icon">
+                    <i class="fas fa-car-side"></i>
+                </div>
+
+                <div>
+
+                    <h2>Vehicle Details</h2>
+
+                    <p>
+                        Provide complete and accurate information about
+                        the vehicle you want to insure.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Card Body -->
+
+            <div class="vehicle-card-body">
+
+                <form asp-action="Vehicle" method="post">
+
+                    @Html.AntiForgeryToken()
+
+                    <div asp-validation-summary="All"
+                         class="validation-summary">
+                    </div>
+
+                    <input type="hidden" asp-for="CustomerId" />
+
+
+                    <!-- ================= VEHICLE NAME + OWNER ================= -->
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+
+                            <div class="vehicle-form-group">
+
+                                <label asp-for="VehicleName">
+
+                                    <span class="label-icon">
+                                        <i class="fas fa-car"></i>
+                                    </span>
+
+                                    Vehicle Name
+
+                                    <span class="required">*</span>
+
+                                </label>
+
+                                <div class="input-wrapper">
+
+                                    <i class="fas fa-car input-icon"></i>
+
+                                    <input asp-for="VehicleName"
+                                           class="vehicle-input"
+                                           placeholder="e.g. Toyota Corolla" />
+
+                                </div>
+
+                                <span asp-validation-for="VehicleName"
+                                      class="field-error">
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-6">
+
+                            <div class="vehicle-form-group">
+
+                                <label asp-for="VehicleOwnerName">
+
+                                    <span class="label-icon">
+                                        <i class="fas fa-user-tie"></i>
+                                    </span>
+
+                                    Owner Name
+
+                                    <span class="required">*</span>
+
+                                </label>
+
+                                <div class="input-wrapper">
+
+                                    <i class="fas fa-user-tie input-icon"></i>
+
+                                    <input asp-for="VehicleOwnerName"
+                                           class="vehicle-input"
+                                           placeholder="Enter vehicle owner name" />
+
+                                </div>
+
+                                <span asp-validation-for="VehicleOwnerName"
+                                      class="field-error">
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================= MODEL / VERSION / RATE ================= -->
+
+                    <div class="row">
+
+                        <div class="col-md-4">
+
+                            <div class="vehicle-form-group">
+
+                                <label asp-for="VehicleModel">
+
+                                    <span class="label-icon">
+                                        <i class="fas fa-cog"></i>
+                                    </span>
+
+                                    Model
+
+                                    <span class="required">*</span>
+
+                                </label>
+
+                                <div class="input-wrapper">
+
+                                    <i class="fas fa-cog input-icon"></i>
+
+                                    <input asp-for="VehicleModel"
+                                           class="vehicle-input"
+                                           placeholder="e.g. 2024" />
+
+                                </div>
+
+                                <span asp-validation-for="VehicleModel"
+                                      class="field-error">
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="vehicle-form-group">
+
+                                <label asp-for="VehicleVersion">
+
+                                    <span class="label-icon">
+                                        <i class="fas fa-tag"></i>
+                                    </span>
+
+                                    Version
+
+                                </label>
+
+                                <div class="input-wrapper">
+
+                                    <i class="fas fa-tag input-icon"></i>
+
+                                    <input asp-for="VehicleVersion"
+                                           class="vehicle-input"
+                                           placeholder="e.g. Grande" />
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="vehicle-form-group">
+
+                                <label asp-for="VehicleRate">
+
+                                    <span class="label-icon gold">
+                                        <i class="fas fa-dollar-sign"></i>
+                                    </span>
+
+                                    Rate ($)
+
+                                    <span class="required">*</span>
+
+                                </label>
+
+                                <div class="input-wrapper">
+
+                                    <i class="fas fa-dollar-sign input-icon gold"></i>
+
+                                    <input asp-for="VehicleRate"
+                                           class="vehicle-input"
+                                           type="number"
+                                           step="0.01"
+                                           placeholder="Enter vehicle rate" />
+
+                                </div>
+
+                                <span asp-validation-for="VehicleRate"
+                                      class="field-error">
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================= BODY + ENGINE ================= -->
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+
+                            <div class="vehicle-form-group">
+
+                                <label asp-for="VehicleBodyNumber">
+
+                                    <span class="label-icon">
+                                        <i class="fas fa-id-card"></i>
+                                    </span>
+
+                                    Body Number
+
+                                    <span class="required">*</span>
+
+                                </label>
+
+                                <div class="input-wrapper">
+
+                                    <i class="fas fa-id-card input-icon"></i>
+
+                                    <input asp-for="VehicleBodyNumber"
+                                           class="vehicle-input"
+                                           placeholder="Enter body number" />
+
+                                </div>
+
+                                <span asp-validation-for="VehicleBodyNumber"
+                                      class="field-error">
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-6">
+
+                            <div class="vehicle-form-group">
+
+                                <label asp-for="VehicleEngineNumber">
+
+                                    <span class="label-icon">
+                                        <i class="fas fa-gears"></i>
+                                    </span>
+
+                                    Engine Number
+
+                                    <span class="required">*</span>
+
+                                </label>
+
+                                <div class="input-wrapper">
+
+                                    <i class="fas fa-gears input-icon"></i>
+
+                                    <input asp-for="VehicleEngineNumber"
+                                           class="vehicle-input"
+                                           placeholder="Enter engine number" />
+
+                                </div>
+
+                                <span asp-validation-for="VehicleEngineNumber"
+                                      class="field-error">
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================= VEHICLE NUMBER ================= -->
+
+                    <div class="row">
+
+                        <div class="col-12">
+
+                            <div class="vehicle-form-group">
+
+                                <label asp-for="VehicleNumber">
+
+                                    <span class="label-icon">
+                                        <i class="fas fa-hashtag"></i>
+                                    </span>
+
+                                    Vehicle Registration Number
+
+                                    <span class="required">*</span>
+
+                                </label>
+
+                                <div class="input-wrapper">
+
+                                    <i class="fas fa-hashtag input-icon"></i>
+
+                                    <input asp-for="VehicleNumber"
+                                           class="vehicle-input"
+                                           placeholder="e.g. ABC-123" />
+
+                                </div>
+
+                                <span asp-validation-for="VehicleNumber"
+                                      class="field-error">
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================= INFORMATION ================= -->
+
+                    <div class="vehicle-info-box">
+
+                        <div class="info-icon">
+                            <i class="fas fa-shield-halved"></i>
+                        </div>
+
+                        <div>
+
+                            <h6>Vehicle Information</h6>
+
+                            <p>
+                                Make sure your vehicle information matches
+                                the details shown on your official vehicle
+                                registration documents.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================= ACTION BUTTONS ================= -->
+
+                    <div class="vehicle-actions">
+
+                        <a asp-action="Index"
+                           class="vehicle-btn btn-previous">
+
+                            <i class="fas fa-arrow-left"></i>
+
+                            <span>Previous</span>
+
+                        </a>
+
+
+                        <button type="submit"
+                                class="vehicle-btn btn-next">
+
+                            <span>Next: Estimate</span>
+
+                            <i class="fas fa-arrow-right"></i>
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= SECURE NOTE ================= -->
+
+        <div class="secure-note">
+
+            <i class="fas fa-lock"></i>
+
+            Your vehicle information is securely handled throughout
+            the insurance application process.
+
+        </div>
+
     </div>
+
 </div>
 
+
 @section Scripts {
+
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+
 }

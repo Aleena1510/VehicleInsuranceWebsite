@@ -1,0 +1,909 @@
+﻿/* =========================================================
+   VEHICLE PAGE - INSURANCE PORTAL
+   Navy / Blue / Purple / Gold Theme
+========================================================= */
+
+:root {
+	--navy-bg: #0a0f24;
+	--navy-bg-2: #0d1330;
+	--card-bg: #101830;
+	--card-border: rgba(255, 255, 255, 0.08);
+	--input-bg: #0c1224;
+	--input-border: rgba(255, 255, 255, 0.14);
+	--text-light: #ffffff;
+	--text-muted: #98a2b8;
+	--gold: #f5b942;
+	--blue: #5b8cff;
+	--blue-2: #8b6cff;
+	--emerald: #22c98a;
+	--rose: #fb5b73;
+}
+
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+html,
+body {
+	overflow-x: hidden;
+}
+
+
+.vehicle-page,
+.vehicle-page * {
+	box-sizing: border-box;
+}
+
+
+/* =========================================================
+   MAIN PAGE
+========================================================= */
+
+.vehicle-page {
+	width: 100%;
+	min-height: 100vh;
+	padding: 50px 0 70px;
+	color: #ffffff;
+	background: radial-gradient( circle at 10% 5%, rgba(91, 140, 255, 0.15), transparent 28% ), radial-gradient( circle at 90% 15%, rgba(139, 108, 255, 0.14), transparent 30% ), radial-gradient( circle at 50% 100%, rgba(34, 201, 138, 0.07), transparent 35% ), linear-gradient( 135deg, var(--navy-bg), var(--navy-bg-2) );
+}
+
+
+	.vehicle-page .container {
+		width: 100%;
+	}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.vehicle-header {
+	width: 100%;
+	max-width: 900px;
+	margin: 0 auto 35px;
+	text-align: center;
+}
+
+
+.step-badge {
+	width: 75px;
+	height: 75px;
+	margin: 0 auto 18px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 22px;
+	background: linear-gradient( 135deg, rgba(91, 140, 255, 0.20), rgba(139, 108, 255, 0.18) );
+	border: 1px solid rgba(91, 140, 255, 0.35);
+	box-shadow: 0 0 35px rgba(91, 140, 255, 0.15);
+}
+
+
+	.step-badge i {
+		color: #5b8cff !important;
+		font-size: 30px;
+	}
+
+
+.step-label {
+	margin-bottom: 8px;
+	color: #f5b942 !important;
+	font-size: 0.78rem;
+	font-weight: 800;
+	letter-spacing: 2px;
+}
+
+
+.vehicle-header h1 {
+	margin: 0 0 10px;
+	color: #ffffff !important;
+	font-size: clamp(2rem, 4vw, 3rem);
+	font-weight: 800;
+	background: linear-gradient( 90deg, #ffffff, #5b8cff, #8b6cff );
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+
+.vehicle-header p {
+	margin: 0;
+	color: #98a2b8 !important;
+	font-size: 1rem;
+	line-height: 1.6;
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.progress-wrapper {
+	width: 100%;
+	max-width: 850px;
+	margin: 0 auto 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+
+.progress-step {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-width: 70px;
+}
+
+
+.progress-circle {
+	width: 45px;
+	height: 45px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	color: #68748d !important;
+	background: #0c1224;
+	border: 1px solid rgba(255, 255, 255, 0.12);
+	transition: all 0.3s ease;
+}
+
+
+	.progress-circle i {
+		color: inherit !important;
+	}
+
+
+.progress-step span {
+	margin-top: 8px;
+	color: #7f8aa2 !important;
+	font-size: 0.72rem;
+	font-weight: 500;
+}
+
+
+/* Completed */
+
+.progress-step.completed .progress-circle {
+	color: #ffffff !important;
+	background: rgba(34, 201, 138, 0.12);
+	border-color: rgba(34, 201, 138, 0.35);
+	box-shadow: 0 0 18px rgba(34, 201, 138, 0.12);
+}
+
+
+	.progress-step.completed .progress-circle i {
+		color: #22c98a !important;
+	}
+
+
+.progress-step.completed span {
+	color: #22c98a !important;
+	font-weight: 600;
+}
+
+
+/* Active */
+
+.progress-step.active .progress-circle {
+	color: #ffffff !important;
+	background: linear-gradient( 135deg, #5b8cff, #8b6cff );
+	border-color: #5b8cff;
+	box-shadow: 0 0 22px rgba(91, 140, 255, 0.35);
+}
+
+
+.progress-step.active span {
+	color: #5b8cff !important;
+	font-weight: 700;
+}
+
+
+/* Lines */
+
+.progress-line {
+	width: 90px;
+	height: 1px;
+	margin: 0 5px 24px;
+	background: linear-gradient( 90deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.05) );
+}
+
+
+	.progress-line.completed-line {
+		background: linear-gradient( 90deg, rgba(34, 201, 138, 0.55), rgba(91, 140, 255, 0.55) );
+	}
+
+
+/* =========================================================
+   MAIN CARD
+========================================================= */
+
+.vehicle-card {
+	width: 100%;
+	max-width: 900px;
+	margin: 0 auto;
+	overflow: hidden;
+	background: rgba(16, 24, 48, 0.96);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	border-radius: 24px;
+	box-shadow: 0 30px 80px rgba(0, 0, 0, 0.40), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.vehicle-card-header {
+	position: relative;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	padding: 30px 35px;
+	background: linear-gradient( 135deg, rgba(91, 140, 255, 0.15), rgba(139, 108, 255, 0.11) );
+	border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+
+	.vehicle-card-header::after {
+		content: "";
+		position: absolute;
+		left: 35px;
+		bottom: -1px;
+		width: 150px;
+		height: 2px;
+		background: linear-gradient( 90deg, #5b8cff, #8b6cff );
+		box-shadow: 0 0 15px rgba(91, 140, 255, 0.4);
+	}
+
+
+.header-icon {
+	width: 58px;
+	height: 58px;
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 17px;
+	background: rgba(91, 140, 255, 0.13);
+	border: 1px solid rgba(91, 140, 255, 0.28);
+}
+
+
+	.header-icon i {
+		color: #5b8cff !important;
+		font-size: 23px;
+	}
+
+
+.vehicle-card-header h2 {
+	margin: 0 0 5px;
+	color: #ffffff !important;
+	font-size: 1.4rem;
+	font-weight: 750;
+}
+
+
+.vehicle-card-header p {
+	margin: 0;
+	color: #98a2b8 !important;
+	font-size: 0.85rem;
+	line-height: 1.5;
+}
+
+
+/* =========================================================
+   CARD BODY
+========================================================= */
+
+.vehicle-card-body {
+	width: 100%;
+	padding: 40px;
+}
+
+
+/* =========================================================
+   FORM GROUP
+========================================================= */
+
+.vehicle-form-group {
+	width: 100%;
+	margin-bottom: 28px;
+}
+
+
+/* =========================================================
+   LABELS
+========================================================= */
+
+.vehicle-page label,
+.vehicle-page .vehicle-form-group label,
+.vehicle-page .vehicle-card label,
+.vehicle-page .vehicle-card-body label {
+	display: flex !important;
+	align-items: center;
+	gap: 7px;
+	margin-bottom: 10px;
+	color: #ffffff !important;
+	opacity: 1 !important;
+	visibility: visible !important;
+	font-size: 0.90rem;
+	font-weight: 700;
+	line-height: 1.5;
+}
+
+
+/* Label icons */
+
+.vehicle-page .label-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	color: #5b8cff !important;
+	font-size: 15px;
+}
+
+
+	.vehicle-page .label-icon.gold {
+		color: #f5b942 !important;
+	}
+
+
+/* Required */
+
+.vehicle-page .required {
+	color: #fb5b73 !important;
+	font-weight: 800;
+}
+
+
+/* =========================================================
+   INPUT WRAPPER
+========================================================= */
+
+.input-wrapper {
+	position: relative;
+	width: 100%;
+}
+
+
+/* =========================================================
+   INPUT ICON
+========================================================= */
+
+.input-icon {
+	position: absolute;
+	top: 50%;
+	left: 17px;
+	z-index: 3;
+	transform: translateY(-50%);
+	color: #98a2b8 !important;
+	pointer-events: none;
+	transition: color 0.25s ease;
+}
+
+
+.input-wrapper:focus-within .input-icon {
+	color: #5b8cff !important;
+}
+
+
+	.input-wrapper:focus-within .input-icon.gold {
+		color: #f5b942 !important;
+	}
+
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.vehicle-page .vehicle-input {
+	width: 100%;
+	min-height: 56px;
+	padding: 14px 18px 14px 48px;
+	color: #ffffff !important;
+	background: #0c1224 !important;
+	border: 1px solid rgba(255, 255, 255, 0.14) !important;
+	border-radius: 12px;
+	outline: none;
+	font-size: 0.92rem;
+	font-weight: 400;
+	-webkit-text-fill-color: #ffffff !important;
+	box-shadow: none;
+	transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+
+	/* Hover */
+
+	.vehicle-page .vehicle-input:hover {
+		border-color: rgba(91, 140, 255, 0.40) !important;
+	}
+
+
+	/* Focus */
+
+	.vehicle-page .vehicle-input:focus {
+		color: #ffffff !important;
+		background: #0d152b !important;
+		border-color: #5b8cff !important;
+		-webkit-text-fill-color: #ffffff !important;
+		box-shadow: 0 0 0 3px rgba(91, 140, 255, 0.10), 0 0 25px rgba(91, 140, 255, 0.08) !important;
+	}
+
+
+	/* Placeholder */
+
+	.vehicle-page .vehicle-input::placeholder {
+		color: #98a2b8 !important;
+		opacity: 1 !important;
+		-webkit-text-fill-color: #98a2b8 !important;
+	}
+
+
+/* =========================================================
+   AUTOFILL
+========================================================= */
+
+.vehicle-page input:-webkit-autofill,
+.vehicle-page input:-webkit-autofill:hover,
+.vehicle-page input:-webkit-autofill:focus {
+	-webkit-text-fill-color: #ffffff !important;
+	-webkit-box-shadow: 0 0 0 1000px #0c1224 inset !important;
+	box-shadow: 0 0 0 1000px #0c1224 inset !important;
+}
+
+
+/* =========================================================
+   VALIDATION
+========================================================= */
+
+.vehicle-page .validation-summary {
+	width: 100%;
+	margin-bottom: 25px;
+	padding: 13px 16px;
+	color: #fb5b73 !important;
+	background: rgba(251, 91, 115, 0.08);
+	border: 1px solid rgba(251, 91, 115, 0.22);
+	border-radius: 10px;
+	font-size: 0.84rem;
+}
+
+
+	.vehicle-page .validation-summary ul {
+		margin: 0;
+		padding-left: 20px;
+	}
+
+
+.vehicle-page .field-error,
+.vehicle-page .text-danger {
+	color: #fb5b73 !important;
+	font-size: 0.77rem;
+}
+
+
+/* =========================================================
+   INFORMATION BOX
+========================================================= */
+
+.vehicle-info-box {
+	width: 100%;
+	display: flex;
+	align-items: flex-start;
+	gap: 15px;
+	margin-top: 5px;
+	margin-bottom: 35px;
+	padding: 18px 20px;
+	background: linear-gradient( 135deg, rgba(91, 140, 255, 0.07), rgba(139, 108, 255, 0.05) );
+	border: 1px solid rgba(91, 140, 255, 0.15);
+	border-radius: 14px;
+}
+
+
+.info-icon {
+	width: 40px;
+	height: 40px;
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 11px;
+	background: rgba(91, 140, 255, 0.12);
+	border: 1px solid rgba(91, 140, 255, 0.15);
+}
+
+
+	.info-icon i {
+		color: #5b8cff !important;
+		font-size: 16px;
+	}
+
+
+.vehicle-info-box h6 {
+	margin: 0 0 5px;
+	color: #ffffff !important;
+	font-size: 0.87rem;
+	font-weight: 700;
+}
+
+
+.vehicle-info-box p {
+	margin: 0;
+	color: #98a2b8 !important;
+	font-size: 0.78rem;
+	line-height: 1.6;
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.vehicle-actions {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 15px;
+	padding-top: 5px;
+}
+
+
+/* =========================================================
+   BUTTON BASE
+========================================================= */
+
+.vehicle-btn {
+	min-width: 200px;
+	min-height: 54px;
+	padding: 13px 25px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	border-radius: 12px;
+	font-size: 0.9rem;
+	font-weight: 700;
+	text-decoration: none;
+	cursor: pointer;
+	transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+}
+
+
+/* =========================================================
+   PREVIOUS
+========================================================= */
+
+.vehicle-page .btn-previous {
+	color: #ffffff !important;
+	background: rgba(255, 255, 255, 0.04) !important;
+	border: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+
+	.vehicle-page .btn-previous i {
+		color: #98a2b8 !important;
+	}
+
+
+	.vehicle-page .btn-previous:hover {
+		color: #ffffff !important;
+		background: rgba(255, 255, 255, 0.08) !important;
+		border-color: rgba(255, 255, 255, 0.22) !important;
+		transform: translateY(-2px);
+		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+	}
+
+
+/* =========================================================
+   NEXT
+========================================================= */
+
+.vehicle-page .btn-next {
+	color: #ffffff !important;
+	background: linear-gradient( 135deg, #5b8cff, #8b6cff ) !important;
+	border: none !important;
+	box-shadow: 0 10px 25px rgba(91, 140, 255, 0.22);
+}
+
+
+	.vehicle-page .btn-next span {
+		color: #ffffff !important;
+	}
+
+
+	.vehicle-page .btn-next i {
+		color: #f5b942 !important;
+	}
+
+
+	.vehicle-page .btn-next:hover {
+		color: #ffffff !important;
+		background: linear-gradient( 135deg, #6897ff, #967aff ) !important;
+		transform: translateY(-3px);
+		box-shadow: 0 15px 35px rgba(91, 140, 255, 0.35);
+	}
+
+
+/* =========================================================
+   SECURE NOTE
+========================================================= */
+
+.secure-note {
+	width: 100%;
+	margin-top: 22px;
+	text-align: center;
+	color: #7f8aa2 !important;
+	font-size: 0.75rem;
+}
+
+
+	.secure-note i {
+		margin-right: 5px;
+		color: #22c98a !important;
+	}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+
+	.vehicle-page {
+		padding: 35px 15px 50px;
+	}
+
+
+	.vehicle-card-header {
+		padding: 25px 22px;
+	}
+
+
+	.vehicle-card-body {
+		padding: 28px 22px;
+	}
+
+
+	.progress-line {
+		width: 45px;
+	}
+
+
+	.progress-circle {
+		width: 40px;
+		height: 40px;
+	}
+
+
+	.progress-step span {
+		font-size: 0.65rem;
+	}
+
+
+	.vehicle-actions {
+		flex-direction: column-reverse;
+		width: 100%;
+	}
+
+
+	.vehicle-btn {
+		width: 100%;
+		min-width: 0;
+	}
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 500px) {
+
+	.vehicle-page {
+		padding: 25px 10px 40px;
+	}
+
+
+	.vehicle-header {
+		margin-bottom: 25px;
+	}
+
+
+	.step-badge {
+		width: 65px;
+		height: 65px;
+		border-radius: 18px;
+	}
+
+
+		.step-badge i {
+			font-size: 26px;
+		}
+
+
+	.vehicle-header h1 {
+		font-size: 2rem;
+	}
+
+
+	.vehicle-header p {
+		font-size: 0.84rem;
+	}
+
+
+	/* Progress */
+
+	.progress-wrapper {
+		width: 100%;
+		justify-content: space-between;
+	}
+
+
+	.progress-step {
+		min-width: 45px;
+	}
+
+
+	.progress-line {
+		width: 18px;
+		margin-left: 2px;
+		margin-right: 2px;
+	}
+
+
+	.progress-circle {
+		width: 35px;
+		height: 35px;
+		font-size: 12px;
+	}
+
+
+	.progress-step span {
+		font-size: 0.58rem;
+	}
+
+
+	/* Card */
+
+	.vehicle-card {
+		border-radius: 18px;
+	}
+
+
+	.vehicle-card-header {
+		padding: 22px 17px;
+		gap: 13px;
+	}
+
+
+		.vehicle-card-header::after {
+			left: 20px;
+			width: 100px;
+		}
+
+
+	.header-icon {
+		width: 48px;
+		height: 48px;
+		border-radius: 14px;
+	}
+
+
+		.header-icon i {
+			font-size: 19px;
+		}
+
+
+	.vehicle-card-header h2 {
+		font-size: 1.1rem;
+	}
+
+
+	.vehicle-card-header p {
+		font-size: 0.72rem;
+	}
+
+
+	/* Body */
+
+	.vehicle-card-body {
+		padding: 24px 16px;
+	}
+
+
+	/* Labels */
+
+	.vehicle-page .vehicle-form-group label {
+		font-size: 0.86rem;
+	}
+
+
+	/* Inputs */
+
+	.vehicle-page .vehicle-input {
+		min-height: 52px;
+		padding-left: 46px;
+		font-size: 0.9rem;
+	}
+
+
+	/* Information */
+
+	.vehicle-info-box {
+		padding: 15px;
+		gap: 11px;
+	}
+
+
+	.info-icon {
+		width: 36px;
+		height: 36px;
+	}
+
+
+	.vehicle-info-box h6 {
+		font-size: 0.8rem;
+	}
+
+
+	.vehicle-info-box p {
+		font-size: 0.72rem;
+	}
+
+
+	/* Buttons */
+
+	.vehicle-btn {
+		min-height: 52px;
+		font-size: 0.85rem;
+	}
+}
+
+
+/* =========================================================
+   VERY SMALL DEVICES
+========================================================= */
+
+@media (max-width: 360px) {
+
+	.vehicle-page {
+		padding-left: 7px;
+		padding-right: 7px;
+	}
+
+
+	.progress-line {
+		width: 10px;
+	}
+
+
+	.progress-step span {
+		font-size: 0.52rem;
+	}
+
+
+	.vehicle-card-body {
+		padding: 20px 13px;
+	}
+
+
+	.vehicle-card-header {
+		padding: 20px 14px;
+	}
+	.policy-progress-circle i {
+		color: inherit !important;
+	}
+
+	.policy-progress-step span {
+		margin-top: 8px;
+		color: #7f8aa2 !important;
+		font-size: 0.72rem;
+		font-weight: 500;
+	}
+
+}

@@ -1,0 +1,866 @@
+﻿/* =========================================================
+   POLICY PAGE
+   INSURANCE PORTAL
+   NAVY / BLUE / PURPLE / GOLD THEME
+========================================================= */
+
+:root {
+	--navy-bg: #0a0f24;
+	--navy-bg-2: #0d1330;
+	--card-bg: #101830;
+	--card-border: rgba(255, 255, 255, 0.08);
+	--input-bg: #0c1224;
+	--input-border: rgba(255, 255, 255, 0.14);
+	--text-light: #ffffff;
+	--text-muted: #98a2b8;
+	--gold: #f5b942;
+	--blue: #5b8cff;
+	--blue-2: #8b6cff;
+	--emerald: #22c98a;
+	--rose: #fb5b73;
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.policy-page {
+	width: 100%;
+	min-height: 100vh;
+	padding: 50px 0 70px;
+	color: #ffffff;
+	background: radial-gradient( circle at 8% 5%, rgba(91, 140, 255, 0.15), transparent 28% ), radial-gradient( circle at 92% 12%, rgba(139, 108, 255, 0.14), transparent 30% ), radial-gradient( circle at 50% 100%, rgba(34, 201, 138, 0.06), transparent 35% ), linear-gradient( 135deg, var(--navy-bg), var(--navy-bg-2) );
+}
+
+	.policy-page *,
+	.policy-page *::before,
+	.policy-page *::after {
+		box-sizing: border-box;
+	}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.policy-container {
+	width: 100%;
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 0 15px;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.policy-header {
+	width: 100%;
+	max-width: 900px;
+	margin: 0 auto 35px;
+	text-align: center;
+}
+
+.policy-step-icon {
+	width: 75px;
+	height: 75px;
+	margin: 0 auto 17px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 22px;
+	background: linear-gradient( 135deg, rgba(91, 140, 255, 0.20), rgba(139, 108, 255, 0.18) );
+	border: 1px solid rgba(91, 140, 255, 0.35);
+	box-shadow: 0 0 35px rgba(91, 140, 255, 0.15);
+}
+
+	.policy-step-icon i {
+		color: #5b8cff !important;
+		font-size: 30px;
+	}
+
+.policy-step-number {
+	margin-bottom: 7px;
+	color: #f5b942 !important;
+	font-size: 0.78rem;
+	font-weight: 800;
+	letter-spacing: 2px;
+}
+
+.policy-header h1 {
+	margin: 0 0 10px;
+	color: #ffffff !important;
+	font-size: clamp(2rem, 4vw, 3rem);
+	font-weight: 800;
+	background: linear-gradient( 90deg, #ffffff, #5b8cff, #8b6cff );
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+.policy-header p {
+	margin: 0;
+	color: #98a2b8 !important;
+	font-size: 1rem;
+	line-height: 1.6;
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.policy-progress {
+	width: 100%;
+	max-width: 850px;
+	margin: 0 auto 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.policy-progress-step {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-width: 70px;
+}
+
+.policy-progress-circle {
+	width: 45px;
+	height: 45px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	color: #68748d !important;
+	background: #0c1224;
+	border: 1px solid rgba(255, 255, 255, 0.12);
+	transition: all 0.3s ease;
+}
+
+	.policy-progress-circle i {
+		color: inherit !important;
+	}
+
+.policy-progress-step span {
+	margin-top: 8px;
+	color: #7f8aa2 !important;
+	font-size: 0.72rem;
+	font-weight: 500;
+}
+
+
+/* Completed */
+
+.policy-progress-step.completed
+.policy-progress-circle {
+	color: #ffffff !important;
+	background: rgba(34, 201, 138, 0.12);
+	border-color: rgba(34, 201, 138, 0.35);
+	box-shadow: 0 0 18px rgba(34, 201, 138, 0.12);
+}
+
+	.policy-progress-step.completed
+	.policy-progress-circle i {
+		color: #22c98a !important;
+	}
+
+.policy-progress-step.completed span {
+	color: #22c98a !important;
+	font-weight: 600;
+}
+
+
+/* Active */
+
+.policy-progress-step.active
+.policy-progress-circle {
+	color: #ffffff !important;
+	background: linear-gradient( 135deg, #5b8cff, #8b6cff );
+	border-color: #5b8cff;
+	box-shadow: 0 0 22px rgba(91, 140, 255, 0.35);
+}
+
+.policy-progress-step.active span {
+	color: #5b8cff !important;
+	font-weight: 700;
+}
+
+
+/* Lines */
+
+.policy-progress-line {
+	width: 90px;
+	height: 1px;
+	margin: 0 5px 24px;
+	background: rgba(255, 255, 255, 0.07);
+}
+
+	.policy-progress-line.completed-line {
+		background: linear-gradient( 90deg, rgba(34, 201, 138, 0.55), rgba(91, 140, 255, 0.55) );
+	}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.policy-card {
+	width: 100%;
+	max-width: 1000px;
+	margin: 0 auto;
+	overflow: hidden;
+	background: rgba(16, 24, 48, 0.97);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	border-radius: 24px;
+	box-shadow: 0 30px 80px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.policy-card-header {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	padding: 30px 35px;
+	background: linear-gradient( 135deg, rgba(91, 140, 255, 0.15), rgba(139, 108, 255, 0.10) );
+	border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+	.policy-card-header::after {
+		content: "";
+		position: absolute;
+		left: 35px;
+		bottom: -1px;
+		width: 160px;
+		height: 2px;
+		background: linear-gradient( 90deg, #5b8cff, #8b6cff );
+		box-shadow: 0 0 15px rgba(91, 140, 255, 0.4);
+	}
+
+.policy-card-icon {
+	width: 58px;
+	height: 58px;
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 17px;
+	background: rgba(91, 140, 255, 0.13);
+	border: 1px solid rgba(91, 140, 255, 0.28);
+}
+
+	.policy-card-icon i {
+		color: #5b8cff !important;
+		font-size: 23px;
+	}
+
+.policy-card-header h2 {
+	margin: 0 0 5px;
+	color: #ffffff !important;
+	font-size: 1.4rem;
+	font-weight: 750;
+}
+
+.policy-card-header p {
+	margin: 0;
+	color: #98a2b8 !important;
+	font-size: 0.85rem;
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+.policy-card-body {
+	padding: 40px;
+}
+
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+.policy-section {
+	margin-bottom: 35px;
+}
+
+.policy-section-title {
+	display: flex;
+	align-items: center;
+	gap: 13px;
+	margin: 5px 0 25px;
+	padding-bottom: 14px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.policy-section-icon {
+	width: 38px;
+	height: 38px;
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 10px;
+	color: #5b8cff !important;
+	background: rgba(91, 140, 255, 0.10);
+	border: 1px solid rgba(91, 140, 255, 0.18);
+}
+
+	.policy-section-icon i {
+		color: #5b8cff !important;
+		font-size: 15px;
+	}
+
+	.policy-section-icon.vehicle {
+		color: #22c98a !important;
+		background: rgba(34, 201, 138, 0.09);
+		border-color: rgba(34, 201, 138, 0.16);
+	}
+
+		.policy-section-icon.vehicle i {
+			color: #22c98a !important;
+		}
+
+	.policy-section-icon.warranty {
+		color: #f5b942 !important;
+		background: rgba(245, 185, 66, 0.08);
+		border-color: rgba(245, 185, 66, 0.15);
+	}
+
+		.policy-section-icon.warranty i {
+			color: #f5b942 !important;
+		}
+
+.policy-section-title h3 {
+	margin: 0 0 2px;
+	color: #ffffff !important;
+	font-size: 0.98rem;
+	font-weight: 700;
+}
+
+.policy-section-title p {
+	margin: 0;
+	color: #7f8aa2 !important;
+	font-size: 0.72rem;
+}
+
+
+/* =========================================================
+   FORM GROUP
+========================================================= */
+
+.policy-form-group {
+	width: 100%;
+	margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   LABELS
+========================================================= */
+
+.policy-page label {
+	display: flex !important;
+	align-items: center;
+	gap: 7px;
+	margin-bottom: 10px;
+	color: #ffffff !important;
+	opacity: 1 !important;
+	visibility: visible !important;
+	font-size: 0.88rem;
+	font-weight: 700;
+	line-height: 1.5;
+}
+
+.policy-label-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	color: #5b8cff !important;
+	font-size: 14px;
+}
+
+	.policy-label-icon.gold {
+		color: #f5b942 !important;
+	}
+
+.policy-required {
+	color: #fb5b73 !important;
+	font-weight: 800;
+}
+
+
+/* =========================================================
+   INPUT WRAPPER
+========================================================= */
+
+.policy-input-wrapper {
+	position: relative;
+	width: 100%;
+}
+
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.policy-page .policy-input {
+	width: 100%;
+	min-height: 56px;
+	padding: 14px 18px 14px 18px;
+	color: #ffffff !important;
+	background: #0c1224 !important;
+	border: 1px solid rgba(255, 255, 255, 0.14) !important;
+	border-radius: 12px;
+	outline: none;
+	font-size: 0.90rem;
+	-webkit-text-fill-color: #ffffff !important;
+	box-shadow: none;
+	transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+	.policy-page .policy-input:hover {
+		border-color: rgba(91, 140, 255, 0.40) !important;
+	}
+
+	.policy-page .policy-input:focus {
+		color: #ffffff !important;
+		background: #0d152b !important;
+		border-color: #5b8cff !important;
+		-webkit-text-fill-color: #ffffff !important;
+		box-shadow: 0 0 0 3px rgba(91, 140, 255, 0.10), 0 0 25px rgba(91, 140, 255, 0.08) !important;
+	}
+
+	.policy-page .policy-input::placeholder {
+		color: #98a2b8 !important;
+		opacity: 1 !important;
+		-webkit-text-fill-color: #98a2b8 !important;
+	}
+
+
+/* =========================================================
+   READONLY
+========================================================= */
+
+.policy-page .policy-readonly {
+	color: #dbe2f0 !important;
+	background: #0a1021 !important;
+	border-color: rgba(255, 255, 255, 0.09) !important;
+	cursor: not-allowed;
+	-webkit-text-fill-color: #dbe2f0 !important;
+}
+
+	.policy-page .policy-readonly:hover {
+		border-color: rgba(255, 255, 255, 0.13) !important;
+	}
+
+	.policy-page .policy-readonly:focus {
+		border-color: rgba(255, 255, 255, 0.13) !important;
+		box-shadow: none !important;
+		background: #0a1021 !important;
+	}
+
+
+/* =========================================================
+   SELECT
+========================================================= */
+
+.policy-page .policy-select {
+	width: 100%;
+	min-height: 56px;
+	padding: 14px 45px 14px 18px;
+	color: #ffffff !important;
+	background: #0c1224 !important;
+	border: 1px solid rgba(255, 255, 255, 0.14) !important;
+	border-radius: 12px;
+	outline: none;
+	font-size: 0.90rem;
+	cursor: pointer;
+	appearance: none;
+	-webkit-appearance: none;
+}
+
+	.policy-page .policy-select:focus {
+		color: #ffffff !important;
+		background: #0d152b !important;
+		border-color: #5b8cff !important;
+		box-shadow: 0 0 0 3px rgba(91, 140, 255, 0.10) !important;
+	}
+
+	.policy-page .policy-select option {
+		color: #ffffff !important;
+		background: #0c1224;
+	}
+
+
+/* =========================================================
+   FILE UPLOAD
+========================================================= */
+
+.policy-page input[type="file"] {
+	width: 100%;
+	min-height: 56px;
+	padding: 14px 18px;
+	color: #ffffff !important;
+	background: #0c1224 !important;
+	border: 1px solid rgba(255, 255, 255, 0.14) !important;
+	border-radius: 12px;
+	font-size: 0.90rem;
+	cursor: pointer;
+}
+
+	.policy-page input[type="file"]:hover {
+		border-color: rgba(91, 140, 255, 0.40) !important;
+	}
+
+	.policy-page input[type="file"]:focus {
+		outline: none;
+		border-color: #5b8cff !important;
+		box-shadow: 0 0 0 3px rgba(91, 140, 255, 0.10) !important;
+	}
+
+	.policy-page input[type="file"]::file-selector-button {
+		margin-right: 15px;
+		padding: 8px 15px;
+		color: #ffffff;
+		background: linear-gradient( 135deg, #5b8cff, #8b6cff );
+		border: none;
+		border-radius: 8px;
+		font-weight: 600;
+		cursor: pointer;
+	}
+
+
+/* =========================================================
+   FORM TEXT
+========================================================= */
+
+.policy-page .form-text {
+	margin-top: 8px;
+	color: #7f8aa2 !important;
+	font-size: 0.72rem;
+}
+
+
+/* =========================================================
+   VALIDATION
+========================================================= */
+
+.policy-page .text-danger {
+	display: block;
+	margin-top: 6px;
+	color: #fb5b73 !important;
+	font-size: 0.75rem;
+}
+
+.policy-page [asp-validation-summary] {
+	color: #fb5b73 !important;
+}
+
+
+/* =========================================================
+   ACTION BUTTONS
+========================================================= */
+
+.policy-actions {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 15px;
+	padding-top: 25px;
+	border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.policy-btn {
+	min-width: 200px;
+	min-height: 54px;
+	padding: 13px 25px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	border-radius: 12px;
+	font-size: 0.90rem;
+	font-weight: 700;
+	text-decoration: none;
+	cursor: pointer;
+	transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+
+/* Previous */
+
+.policy-page .policy-previous {
+	color: #ffffff !important;
+	background: rgba(255, 255, 255, 0.04) !important;
+	border: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+	.policy-page .policy-previous i {
+		color: #98a2b8 !important;
+	}
+
+	.policy-page .policy-previous:hover {
+		color: #ffffff !important;
+		background: rgba(255, 255, 255, 0.08) !important;
+		transform: translateY(-2px);
+		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.20);
+	}
+
+
+/* Next */
+
+.policy-page .policy-next {
+	color: #ffffff !important;
+	background: linear-gradient( 135deg, #5b8cff, #8b6cff ) !important;
+	border: none !important;
+	box-shadow: 0 10px 25px rgba(91, 140, 255, 0.22);
+}
+
+	.policy-page .policy-next i {
+		color: #f5b942 !important;
+	}
+
+	.policy-page .policy-next:hover {
+		color: #ffffff !important;
+		transform: translateY(-3px);
+		box-shadow: 0 15px 35px rgba(91, 140, 255, 0.35);
+	}
+
+
+/* =========================================================
+   AUTOFILL FIX
+========================================================= */
+
+.policy-page input:-webkit-autofill,
+.policy-page input:-webkit-autofill:hover,
+.policy-page input:-webkit-autofill:focus {
+	-webkit-text-fill-color: #ffffff !important;
+	-webkit-box-shadow: 0 0 0 1000px #0c1224 inset !important;
+	box-shadow: 0 0 0 1000px #0c1224 inset !important;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+
+	.policy-page {
+		padding: 35px 15px 50px;
+	}
+
+	.policy-card-header {
+		padding: 25px 22px;
+	}
+
+	.policy-card-body {
+		padding: 28px 22px;
+	}
+
+	.policy-progress-line {
+		width: 45px;
+	}
+
+	.policy-progress-circle {
+		width: 40px;
+		height: 40px;
+	}
+
+	.policy-progress-step span {
+		font-size: 0.65rem;
+	}
+
+	.policy-actions {
+		flex-direction: column-reverse;
+	}
+
+	.policy-btn {
+		width: 100%;
+		min-width: 0;
+	}
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 500px) {
+
+	.policy-page {
+		padding: 25px 10px 40px;
+	}
+
+	.policy-step-icon {
+		width: 65px;
+		height: 65px;
+		border-radius: 18px;
+	}
+
+		.policy-step-icon i {
+			font-size: 26px;
+		}
+
+	.policy-header h1 {
+		font-size: 2rem;
+	}
+
+	.policy-header p {
+		font-size: 0.84rem;
+	}
+
+
+	/* Progress */
+
+	.policy-progress {
+		justify-content: space-between;
+	}
+
+	.policy-progress-step {
+		min-width: 45px;
+	}
+
+	.policy-progress-line {
+		width: 18px;
+		margin-left: 2px;
+		margin-right: 2px;
+	}
+
+	.policy-progress-circle {
+		width: 35px;
+		height: 35px;
+		font-size: 12px;
+	}
+
+	.policy-progress-step span {
+		font-size: 0.58rem;
+	}
+
+
+	/* Card */
+
+	.policy-card {
+		border-radius: 18px;
+	}
+
+	.policy-card-header {
+		padding: 22px 17px;
+		gap: 13px;
+	}
+
+		.policy-card-header::after {
+			left: 20px;
+			width: 100px;
+		}
+
+	.policy-card-icon {
+		width: 48px;
+		height: 48px;
+		border-radius: 14px;
+	}
+
+		.policy-card-icon i {
+			font-size: 19px;
+		}
+
+	.policy-card-header h2 {
+		font-size: 1.08rem;
+	}
+
+	.policy-card-header p {
+		font-size: 0.72rem;
+	}
+
+
+	/* Body */
+
+	.policy-card-body {
+		padding: 24px 16px;
+	}
+
+
+	/* Section */
+
+	.policy-section-title {
+		gap: 10px;
+		margin-bottom: 20px;
+	}
+
+	.policy-section-icon {
+		width: 34px;
+		height: 34px;
+	}
+
+	.policy-section-title h3 {
+		font-size: 0.90rem;
+	}
+
+	.policy-section-title p {
+		font-size: 0.66rem;
+	}
+
+
+	/* Labels */
+
+	.policy-page label {
+		font-size: 0.84rem;
+	}
+
+
+	/* Inputs */
+
+	.policy-page .policy-input,
+	.policy-page .policy-select,
+	.policy-page input[type="file"] {
+		min-height: 52px;
+		font-size: 0.87rem;
+	}
+
+
+	/* Buttons */
+
+	.policy-btn {
+		min-height: 52px;
+		font-size: 0.84rem;
+	}
+}
+
+
+/* =========================================================
+   VERY SMALL
+========================================================= */
+
+@media (max-width: 360px) {
+
+	.policy-page {
+		padding-left: 7px;
+		padding-right: 7px;
+	}
+
+	.policy-progress-line {
+		width: 10px;
+	}
+
+	.policy-progress-step span {
+		font-size: 0.51rem;
+	}
+
+	.policy-card-body {
+		padding: 20px 13px;
+	}
+
+	.policy-card-header {
+		padding: 20px 14px;
+	}
+}

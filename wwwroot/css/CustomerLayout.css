@@ -1,0 +1,972 @@
+﻿/* =========================================================
+   CUSTOMER PAGE - INSURANCE PORTAL
+   Navy / Blue / Purple / Gold Theme
+========================================================= */
+
+:root {
+	--navy-bg: #0a0f24;
+	--navy-bg-2: #0d1330;
+	--card-bg: #101830;
+	--card-border: rgba(255, 255, 255, 0.08);
+	--input-bg: #0c1224;
+	--input-border: rgba(255, 255, 255, 0.14);
+	--text-light: #ffffff;
+	--text-muted: #98a2b8;
+	--gold: #f5b942;
+	--blue: #5b8cff;
+	--blue-2: #8b6cff;
+	--emerald: #22c98a;
+	--rose: #fb5b73;
+}
+
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+html,
+body {
+	overflow-x: hidden;
+}
+
+.customer-page,
+.customer-page * {
+	box-sizing: border-box;
+}
+
+
+/* =========================================================
+   MAIN PAGE
+========================================================= */
+
+.customer-page {
+	width: 100%;
+	min-height: 100vh;
+	padding: 50px 0 70px;
+	color: var(--text-light);
+	background: radial-gradient( circle at 10% 5%, rgba(91, 140, 255, 0.15), transparent 28% ), radial-gradient( circle at 90% 15%, rgba(139, 108, 255, 0.14), transparent 30% ), radial-gradient( circle at 50% 100%, rgba(34, 201, 138, 0.07), transparent 35% ), linear-gradient( 135deg, var(--navy-bg), var(--navy-bg-2) );
+}
+
+
+	/* Bootstrap container override */
+
+	.customer-page .container {
+		width: 100%;
+	}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.customer-header {
+	width: 100%;
+	max-width: 900px;
+	margin: 0 auto 35px;
+	text-align: center;
+}
+
+
+/* Icon */
+
+.step-badge {
+	width: 75px;
+	height: 75px;
+	margin: 0 auto 18px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 22px;
+	background: linear-gradient( 135deg, rgba(91, 140, 255, 0.20), rgba(139, 108, 255, 0.18) );
+	border: 1px solid rgba(91, 140, 255, 0.35);
+	box-shadow: 0 0 35px rgba(91, 140, 255, 0.15);
+}
+
+
+	.step-badge i {
+		color: var(--blue) !important;
+		font-size: 30px;
+	}
+
+
+/* Step number */
+
+.step-label {
+	margin-bottom: 8px;
+	color: var(--gold) !important;
+	font-size: 0.78rem;
+	font-weight: 800;
+	letter-spacing: 2px;
+}
+
+
+/* Heading */
+
+.customer-header h1 {
+	margin: 0 0 10px;
+	color: #ffffff !important;
+	font-size: clamp(2rem, 4vw, 3rem);
+	font-weight: 800;
+	background: linear-gradient( 90deg, #ffffff, var(--blue), var(--blue-2) );
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+
+/* Description */
+
+.customer-header p {
+	margin: 0;
+	color: #98a2b8 !important;
+	font-size: 1rem;
+	line-height: 1.6;
+}
+
+
+/* =========================================================
+   PROGRESS STEPPER
+========================================================= */
+
+.progress-wrapper {
+	width: 100%;
+	max-width: 850px;
+	margin: 0 auto 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+
+.progress-step {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-width: 70px;
+}
+
+
+/* Circle */
+
+.progress-circle {
+	width: 45px;
+	height: 45px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	color: #68748d !important;
+	background: #0c1224;
+	border: 1px solid rgba(255, 255, 255, 0.12);
+	transition: all 0.3s ease;
+}
+
+
+	.progress-circle i {
+		color: inherit !important;
+	}
+
+
+/* Step text */
+
+.progress-step span {
+	margin-top: 8px;
+	color: #7f8aa2 !important;
+	font-size: 0.72rem;
+	font-weight: 500;
+}
+
+
+/* Active */
+
+.progress-step.active .progress-circle {
+	color: #ffffff !important;
+	background: linear-gradient( 135deg, var(--blue), var(--blue-2) );
+	border-color: var(--blue);
+	box-shadow: 0 0 20px rgba(91, 140, 255, 0.35);
+}
+
+
+.progress-step.active span {
+	color: var(--blue) !important;
+	font-weight: 700;
+}
+
+
+/* Line */
+
+.progress-line {
+	width: 90px;
+	height: 1px;
+	margin: 0 5px 24px;
+	background: linear-gradient( 90deg, rgba(91, 140, 255, 0.35), rgba(255, 255, 255, 0.08) );
+}
+
+
+/* =========================================================
+   MAIN CARD
+========================================================= */
+
+.customer-card {
+	width: 100%;
+	max-width: 900px;
+	margin: 0 auto;
+	overflow: hidden;
+	background: rgba(16, 24, 48, 0.96);
+	border: 1px solid var(--card-border);
+	border-radius: 24px;
+	box-shadow: 0 30px 80px rgba(0, 0, 0, 0.40), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.customer-card-header {
+	position: relative;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	padding: 30px 35px;
+	background: linear-gradient( 135deg, rgba(91, 140, 255, 0.15), rgba(139, 108, 255, 0.11) );
+	border-bottom: 1px solid var(--card-border);
+}
+
+
+	/* Header bottom line */
+
+	.customer-card-header::after {
+		content: "";
+		position: absolute;
+		left: 35px;
+		bottom: -1px;
+		width: 150px;
+		height: 2px;
+		background: linear-gradient( 90deg, var(--blue), var(--blue-2) );
+		box-shadow: 0 0 15px rgba(91, 140, 255, 0.4);
+	}
+
+
+/* Header icon */
+
+.header-icon {
+	width: 58px;
+	height: 58px;
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 17px;
+	background: rgba(91, 140, 255, 0.13);
+	border: 1px solid rgba(91, 140, 255, 0.28);
+}
+
+
+	.header-icon i {
+		color: var(--blue) !important;
+		font-size: 23px;
+	}
+
+
+/* Header title */
+
+.customer-card-header h2 {
+	margin: 0 0 5px;
+	color: #ffffff !important;
+	font-size: 1.4rem;
+	font-weight: 750;
+}
+
+
+/* Header description */
+
+.customer-card-header p {
+	margin: 0;
+	color: #98a2b8 !important;
+	font-size: 0.85rem;
+	line-height: 1.5;
+}
+
+
+/* =========================================================
+   CARD BODY
+========================================================= */
+
+.customer-card-body {
+	width: 100%;
+	padding: 40px;
+}
+
+
+/* =========================================================
+   SUCCESS MESSAGE
+========================================================= */
+
+.success-message {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-bottom: 25px;
+	padding: 14px 18px;
+	color: #9af1ce !important;
+	background: rgba(34, 201, 138, 0.08);
+	border: 1px solid rgba(34, 201, 138, 0.22);
+	border-radius: 12px;
+	font-size: 0.9rem;
+}
+
+
+	.success-message i {
+		color: var(--emerald) !important;
+		font-size: 20px;
+	}
+
+
+/* =========================================================
+   FORM GROUP
+========================================================= */
+
+.form-group {
+	width: 100%;
+	margin-bottom: 28px;
+}
+
+
+/* =========================================================
+   LABELS - FORCE WHITE
+========================================================= */
+
+.customer-page label,
+.customer-page .form-group label,
+.customer-page .customer-card label,
+.customer-page .customer-card-body label,
+.customer-page label.form-label {
+	display: flex !important;
+	align-items: center;
+	gap: 7px;
+	margin-bottom: 10px;
+	color: #ffffff !important;
+	opacity: 1 !important;
+	visibility: visible !important;
+	font-size: 0.92rem;
+	font-weight: 700;
+	line-height: 1.5;
+}
+
+
+	/* Label icon */
+
+	.customer-page .form-group label .label-icon,
+	.customer-page label .label-icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		color: #5b8cff !important;
+		font-size: 15px;
+	}
+
+
+	/* Required star */
+
+	.customer-page .form-group label .required,
+	.customer-page label .required {
+		color: #fb5b73 !important;
+		font-weight: 800;
+	}
+
+
+/* =========================================================
+   INPUT WRAPPER
+========================================================= */
+
+.input-wrapper {
+	position: relative;
+	width: 100%;
+}
+
+
+/* =========================================================
+   INPUT ICON
+========================================================= */
+
+.input-icon {
+	position: absolute;
+	top: 50%;
+	left: 17px;
+	z-index: 3;
+	transform: translateY(-50%);
+	color: #98a2b8 !important;
+	pointer-events: none;
+	transition: color 0.25s ease;
+}
+
+
+.input-wrapper:focus-within .input-icon {
+	color: #5b8cff !important;
+}
+
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.customer-page .theme-input,
+.customer-page input.theme-input,
+.customer-page textarea.theme-input {
+	width: 100%;
+	min-height: 56px;
+	padding: 14px 18px 14px 48px;
+	color: #ffffff !important;
+	background: #0c1224 !important;
+	border: 1px solid rgba(255, 255, 255, 0.14) !important;
+	border-radius: 12px;
+	outline: none;
+	font-size: 0.95rem;
+	font-weight: 400;
+	-webkit-text-fill-color: #ffffff !important;
+	box-shadow: none;
+	transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+
+	/* =========================================================
+   INPUT HOVER
+========================================================= */
+
+	.customer-page .theme-input:hover {
+		border-color: rgba(91, 140, 255, 0.40) !important;
+	}
+
+
+	/* =========================================================
+   INPUT FOCUS
+========================================================= */
+
+	.customer-page .theme-input:focus {
+		color: #ffffff !important;
+		background: #0d152b !important;
+		border-color: #5b8cff !important;
+		-webkit-text-fill-color: #ffffff !important;
+		box-shadow: 0 0 0 3px rgba(91, 140, 255, 0.10), 0 0 25px rgba(91, 140, 255, 0.08) !important;
+	}
+
+
+	/* =========================================================
+   PLACEHOLDER
+========================================================= */
+
+	.customer-page .theme-input::placeholder,
+	.customer-page input.theme-input::placeholder,
+	.customer-page textarea.theme-input::placeholder {
+		color: #98a2b8 !important;
+		opacity: 1 !important;
+		-webkit-text-fill-color: #98a2b8 !important;
+	}
+
+
+/* =========================================================
+   TEXTAREA
+========================================================= */
+
+.customer-page textarea.theme-input {
+	min-height: 120px;
+	padding-top: 16px;
+	resize: vertical;
+	line-height: 1.6;
+}
+
+
+/* Textarea icon */
+
+.textarea-wrapper .input-icon {
+	top: 24px;
+	transform: none;
+}
+
+
+/* =========================================================
+   AUTOFILL FIX
+========================================================= */
+
+.customer-page input:-webkit-autofill,
+.customer-page input:-webkit-autofill:hover,
+.customer-page input:-webkit-autofill:focus,
+.customer-page textarea:-webkit-autofill,
+.customer-page textarea:-webkit-autofill:hover,
+.customer-page textarea:-webkit-autofill:focus {
+	-webkit-text-fill-color: #ffffff !important;
+	-webkit-box-shadow: 0 0 0 1000px #0c1224 inset !important;
+	box-shadow: 0 0 0 1000px #0c1224 inset !important;
+	transition: background-color 5000s ease-in-out 0s;
+}
+
+
+/* =========================================================
+   VALIDATION SUMMARY
+========================================================= */
+
+.customer-page .validation-summary {
+	width: 100%;
+	margin-bottom: 22px;
+	padding: 13px 16px;
+	color: #fb5b73 !important;
+	background: rgba(251, 91, 115, 0.08);
+	border: 1px solid rgba(251, 91, 115, 0.22);
+	border-radius: 10px;
+	font-size: 0.84rem;
+}
+
+
+	.customer-page .validation-summary ul {
+		margin: 0;
+		padding-left: 20px;
+	}
+
+
+/* =========================================================
+   FIELD VALIDATION
+========================================================= */
+
+.customer-page .field-error,
+.customer-page .text-danger {
+	color: #fb5b73 !important;
+	font-size: 0.78rem;
+}
+
+
+.customer-page .theme-input.input-validation-error {
+	border-color: #fb5b73 !important;
+	box-shadow: 0 0 0 3px rgba(251, 91, 115, 0.08) !important;
+}
+
+
+/* =========================================================
+   INFORMATION BOX
+========================================================= */
+
+.information-box {
+	width: 100%;
+	display: flex;
+	align-items: flex-start;
+	gap: 15px;
+	margin-top: 5px;
+	margin-bottom: 35px;
+	padding: 18px 20px;
+	background: linear-gradient( 135deg, rgba(91, 140, 255, 0.07), rgba(139, 108, 255, 0.05) );
+	border: 1px solid rgba(91, 140, 255, 0.15);
+	border-radius: 14px;
+}
+
+
+.information-icon {
+	width: 40px;
+	height: 40px;
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 11px;
+	background: rgba(91, 140, 255, 0.12);
+	border: 1px solid rgba(91, 140, 255, 0.15);
+}
+
+
+	.information-icon i {
+		color: #5b8cff !important;
+		font-size: 16px;
+	}
+
+
+.information-box h6 {
+	margin: 0 0 5px;
+	color: #ffffff !important;
+	font-size: 0.87rem;
+	font-weight: 700;
+}
+
+
+.information-box p {
+	margin: 0;
+	color: #98a2b8 !important;
+	font-size: 0.78rem;
+	line-height: 1.6;
+}
+
+
+/* =========================================================
+   FORM ACTIONS
+========================================================= */
+
+.form-actions {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 15px;
+	padding-top: 5px;
+}
+
+
+/* =========================================================
+   BUTTON BASE
+========================================================= */
+
+.customer-btn {
+	min-width: 200px;
+	min-height: 54px;
+	padding: 13px 25px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	border-radius: 12px;
+	font-size: 0.9rem;
+	font-weight: 700;
+	text-decoration: none;
+	cursor: pointer;
+	transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
+.customer-page .btn-back {
+	color: #ffffff !important;
+	background: rgba(255, 255, 255, 0.04) !important;
+	border: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+
+	.customer-page .btn-back i {
+		color: #98a2b8 !important;
+	}
+
+
+	.customer-page .btn-back:hover {
+		color: #ffffff !important;
+		background: rgba(255, 255, 255, 0.08) !important;
+		border-color: rgba(255, 255, 255, 0.22) !important;
+		transform: translateY(-2px);
+		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+	}
+
+
+/* =========================================================
+   NEXT BUTTON
+========================================================= */
+
+.customer-page .btn-next {
+	color: #ffffff !important;
+	background: linear-gradient( 135deg, #5b8cff, #8b6cff ) !important;
+	border: none !important;
+	box-shadow: 0 10px 25px rgba(91, 140, 255, 0.22);
+}
+
+
+	.customer-page .btn-next span {
+		color: #ffffff !important;
+	}
+
+
+	.customer-page .btn-next i {
+		color: #f5b942 !important;
+	}
+
+
+	.customer-page .btn-next:hover {
+		color: #ffffff !important;
+		background: linear-gradient( 135deg, #6897ff, #967aff ) !important;
+		transform: translateY(-3px);
+		box-shadow: 0 15px 35px rgba(91, 140, 255, 0.35);
+	}
+
+
+/* =========================================================
+   SECURE NOTE
+========================================================= */
+
+.secure-note {
+	width: 100%;
+	margin-top: 22px;
+	text-align: center;
+	color: #7f8aa2 !important;
+	font-size: 0.75rem;
+}
+
+
+	.secure-note i {
+		margin-right: 5px;
+		color: #22c98a !important;
+	}
+
+
+/* =========================================================
+   RESPONSIVE - TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+
+	.customer-page {
+		padding: 35px 15px 50px;
+	}
+
+
+	.customer-card-header {
+		padding: 25px 22px;
+	}
+
+
+	.customer-card-body {
+		padding: 28px 22px;
+	}
+
+
+	.progress-line {
+		width: 45px;
+	}
+
+
+	.progress-circle {
+		width: 40px;
+		height: 40px;
+	}
+
+
+	.progress-step span {
+		font-size: 0.65rem;
+	}
+
+
+	.form-actions {
+		flex-direction: column-reverse;
+		width: 100%;
+	}
+
+
+	.customer-btn {
+		width: 100%;
+		min-width: 0;
+	}
+}
+
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+========================================================= */
+
+@media (max-width: 500px) {
+
+	.customer-page {
+		padding: 25px 10px 40px;
+	}
+
+
+	.customer-header {
+		margin-bottom: 25px;
+	}
+
+
+	.step-badge {
+		width: 65px;
+		height: 65px;
+		border-radius: 18px;
+	}
+
+
+		.step-badge i {
+			font-size: 26px;
+		}
+
+
+	.customer-header h1 {
+		font-size: 2rem;
+	}
+
+
+	.customer-header p {
+		font-size: 0.84rem;
+	}
+
+
+	/* Progress */
+
+	.progress-wrapper {
+		width: 100%;
+		justify-content: space-between;
+	}
+
+
+	.progress-step {
+		min-width: 45px;
+	}
+
+
+	.progress-line {
+		width: 18px;
+		margin-left: 2px;
+		margin-right: 2px;
+	}
+
+
+	.progress-circle {
+		width: 35px;
+		height: 35px;
+		font-size: 12px;
+	}
+
+
+	.progress-step span {
+		font-size: 0.58rem;
+	}
+
+
+	/* Card */
+
+	.customer-card {
+		border-radius: 18px;
+	}
+
+
+	.customer-card-header {
+		padding: 22px 17px;
+		gap: 13px;
+	}
+
+
+		.customer-card-header::after {
+			left: 20px;
+			width: 100px;
+		}
+
+
+	.header-icon {
+		width: 48px;
+		height: 48px;
+		border-radius: 14px;
+	}
+
+
+		.header-icon i {
+			font-size: 19px;
+		}
+
+
+	.customer-card-header h2 {
+		font-size: 1.1rem;
+	}
+
+
+	.customer-card-header p {
+		font-size: 0.72rem;
+	}
+
+
+	/* Body */
+
+	.customer-card-body {
+		padding: 24px 16px;
+	}
+
+
+	/* Labels */
+
+	.customer-page .form-group label {
+		font-size: 0.88rem;
+	}
+
+
+	/* Inputs */
+
+	.customer-page .theme-input {
+		min-height: 52px;
+		padding-left: 46px;
+		font-size: 0.9rem;
+	}
+
+
+	.customer-page textarea.theme-input {
+		min-height: 110px;
+	}
+
+
+	/* Information */
+
+	.information-box {
+		padding: 15px;
+		gap: 11px;
+	}
+
+
+	.information-icon {
+		width: 36px;
+		height: 36px;
+	}
+
+
+	.information-box h6 {
+		font-size: 0.8rem;
+	}
+
+
+	.information-box p {
+		font-size: 0.72rem;
+	}
+
+
+	/* Buttons */
+
+	.customer-btn {
+		min-height: 52px;
+		font-size: 0.85rem;
+	}
+}
+
+
+/* =========================================================
+   VERY SMALL DEVICES
+========================================================= */
+
+@media (max-width: 360px) {
+
+	.customer-page {
+		padding-left: 7px;
+		padding-right: 7px;
+	}
+
+
+	.progress-line {
+		width: 10px;
+	}
+
+
+	.progress-step span {
+		font-size: 0.52rem;
+	}
+
+
+	.customer-card-body {
+		padding: 20px 13px;
+	}
+
+
+	.customer-card-header {
+		padding: 20px 14px;
+	}
+
+	.policy-progress-circle i {
+		color: inherit !important;
+	}
+
+	.policy-progress-step span {
+		margin-top: 8px;
+		color: #7f8aa2 !important;
+		font-size: 0.72rem;
+		font-weight: 500;
+	}
+
+}
